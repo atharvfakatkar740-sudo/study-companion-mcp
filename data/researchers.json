@@ -1,0 +1,36 @@
+{
+  "researchers": [
+    { "name": "Mohammad Lotfollahi", "focus": "perturbation prediction, foundation models", "lab": "Wellcome Sanger", "arxiv_query": "au:Lotfollahi" },
+    { "name": "Fabian Theis", "focus": "single-cell analysis, scVI ecosystem", "lab": "Helmholtz Munich", "arxiv_query": "au:Theis AND single-cell" },
+    { "name": "Jian Tang", "focus": "graph ML, drug discovery", "lab": "Mila", "arxiv_query": "au:Tang AND graph neural" },
+    { "name": "Michael Bronstein", "focus": "geometric deep learning", "lab": "Oxford", "arxiv_query": "au:Bronstein AND geometric" },
+    { "name": "Aviv Regev", "focus": "single-cell genomics, perturbation biology", "lab": "Genentech", "arxiv_query": "au:Regev AND single-cell" }
+  ],
+  "search_recommendations": [
+    {
+      "area": "Perturbation Prediction",
+      "queries": ["CPA perturbation prediction", "GEARS gene perturbation", "single-cell counterfactual"],
+      "why": "Core to target lab direction"
+    },
+    {
+      "area": "Single-Cell Foundation Models",
+      "queries": ["scGPT", "Geneformer", "scFoundation", "universal cell embedding"],
+      "why": "Cutting edge of the field — likely future lab direction"
+    },
+    {
+      "area": "Spatial Transcriptomics + GNNs",
+      "queries": ["spatial transcriptomics graph neural", "tissue architecture deep learning", "cell-cell communication GNN"],
+      "why": "Intersection of GNN skills and bio applications"
+    },
+    {
+      "area": "Multimodal Biology",
+      "queries": ["multimodal single-cell", "CITE-seq representation learning", "multi-omics integration"],
+      "why": "Lab explicitly lists multimodal learning as focus"
+    }
+  ],
+  "suggested_arxiv_queries": [
+    "single-cell foundation model 2024",
+    "perturbation prediction variational",
+    "graph neural network spatial transcriptomics"
+  ]
+}

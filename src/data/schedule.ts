@@ -1,4 +1,5 @@
 import { StudyBlock } from "../utils/types.js";
+import { getCurrentPhaseFromPlan } from "../engine/plan-loader.js";
 
 // Time-aware scheduling based on the study plan's recommended schedule
 // Weekdays: 3 focused hours (1hr reading, 1hr implementation, 1hr math+experiments)
@@ -79,16 +80,9 @@ export function generateWeekendBlocks(currentTopics: string[], currentProject?: 
   return blocks;
 }
 
-// Determine current phase based on month number (1-indexed from start date)
+// Determine current phase based on month number — dynamically from plan JSON
 export function getCurrentPhaseId(startDate: string, now: Date = new Date()): string {
-  const start = new Date(startDate);
-  const monthsElapsed = Math.floor((now.getTime() - start.getTime()) / (30.44 * 24 * 60 * 60 * 1000));
-
-  if (monthsElapsed < 6) return "phase1-foundations";
-  if (monthsElapsed < 12) return "phase2-compbio";
-  if (monthsElapsed < 18) return "phase3-visibility";
-  if (monthsElapsed < 24) return "phase4-alignment";
-  return "phase5-outreach";
+  return getCurrentPhaseFromPlan(startDate, now);
 }
 
 // Calculate optimal focus topics based on phase progress

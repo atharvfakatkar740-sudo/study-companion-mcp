@@ -1,5 +1,5 @@
 import { loadJSON, saveJSON } from "../utils/storage.js";
-import { STUDY_PHASES } from "../data/study-plan.js";
+import { getStudyPhases, findPhaseById } from "../engine/plan-loader.js";
 import { getDayType, generateWeekdayBlocks, generateWeekendBlocks, getCurrentPhaseId, getActiveFocusTopics } from "../data/schedule.js";
 import { DailyPlan, ProgressSnapshot, Topic } from "../utils/types.js";
 
@@ -34,7 +34,7 @@ export function getDailyPlan(): DailyPlan {
   const now = new Date();
   const dayType = getDayType(now);
   const currentPhaseId = state.currentPhaseOverride || getCurrentPhaseId(state.startDate, now);
-  const phase = STUDY_PHASES.find((p) => p.id === currentPhaseId);
+  const phase = findPhaseById(currentPhaseId);
 
   if (!phase) {
     return {
@@ -73,7 +73,7 @@ export function getPhaseStatus(): object {
   const state = getState();
   const now = new Date();
   const currentPhaseId = state.currentPhaseOverride || getCurrentPhaseId(state.startDate, now);
-  const phase = STUDY_PHASES.find((p) => p.id === currentPhaseId);
+  const phase = findPhaseById(currentPhaseId);
 
   if (!phase) return { error: "Phase not found" };
 
@@ -134,7 +134,7 @@ export function markProjectMilestone(projectId: string, milestoneId: string): ob
   saveJSON("milestones-completed.json", milestones);
 
   // Check if project is fully complete
-  const phase = STUDY_PHASES.find((p) => p.projects.some((pr) => pr.id === projectId));
+  const phase = getStudyPhases().find((p) => p.projects.some((pr) => pr.id === projectId));
   const project = phase?.projects.find((p) => p.id === projectId);
   if (project && project.milestones.every((m) => milestones[projectId].includes(m.id))) {
     if (!state.completedProjects.includes(projectId)) {
@@ -185,9 +185,10 @@ export function setStartDate(date: string): object {
 
 export function overridePhase(phaseId: string): object {
   const state = getState();
-  const phase = STUDY_PHASES.find((p) => p.id === phaseId);
+  const PHASES = getStudyPhases();
+  const phase = PHASES.find((p) => p.id === phaseId);
   if (!phase) {
-    return { error: `Phase '${phaseId}' not found. Valid phases: ${STUDY_PHASES.map((p) => p.id).join(", ")}` };
+    return { error: `Phase '${phaseId}' not found. Valid phases: ${PHASES.map((p) => p.id).join(", ")}` };
   }
   state.currentPhaseOverride = phaseId;
   setState(state);
@@ -202,7 +203,7 @@ export function clearPhaseOverride(): object {
 }
 
 export function getFullRoadmap(): object {
-  return STUDY_PHASES.map((phase) => ({
+  return getStudyPhases().map((phase) => ({
     id: phase.id,
     name: phase.name,
     months: `${phase.monthRange[0]}-${phase.monthRange[1]}`,

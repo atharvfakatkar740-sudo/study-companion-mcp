@@ -1,0 +1,40 @@
+version: "3.8"
+
+services:
+  # ChromaDB — free local vector database
+  chromadb:
+    image: chromadb/chroma:latest
+    ports:
+      - "8000:8000"
+    volumes:
+      - chromadb-data:/chroma/chroma
+    restart: unless-stopped
+
+  # Study Companion MCP Server
+  study-companion:
+    build: .
+    image: ghcr.io/afakatkar/study-companion-mcp:latest
+    volumes:
+      - ./data:/app/data    # Persist study data
+    environment:
+      - NODE_ENV=production
+    # MCP uses stdio — attach interactively:
+    #   docker compose run --rm study-companion
+    stdin_open: true
+    depends_on:
+      - chromadb
+
+  # Ollama — free local LLM (optional, heavy image)
+  # Uncomment to run Ollama in Docker instead of host install
+  # ollama:
+  #   image: ollama/ollama:latest
+  #   ports:
+  #     - "11434:11434"
+  #   volumes:
+  #     - ollama-models:/root/.ollama
+  #   restart: unless-stopped
+  #   # After starting: docker exec -it <container> ollama pull llama3.1:8b
+
+volumes:
+  chromadb-data:
+  # ollama-models:

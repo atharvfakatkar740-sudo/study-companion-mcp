@@ -153,11 +153,39 @@ import {
   getResearchersInfo,
 } from "./tools/plan-manager.js";
 
+import {
+  addConcept,
+  addConceptDependency,
+  getLearningPath,
+  visualizeKnowledgeGraph,
+  findKnowledgeGaps,
+  suggestNextConcept,
+  getGraphStats,
+} from "./tools/concept-graph.js";
+
+import {
+  assessUnderstanding,
+  getDifficultyProfile,
+  generateChallenge,
+  detectStruggle,
+  getMasteryDashboard,
+} from "./tools/mastery.js";
+
+import {
+  generateDerivationQuiz,
+  generateImplementationChallenge,
+  generateELI5Challenge,
+  generateComparison,
+  generateWeeklyTest,
+  exportAnkiDeck,
+  recordTestResult,
+} from "./tools/active-recall.js";
+
 // Create the MCP server
 const server = new McpServer({
   name: "study-companion",
-  version: "3.0.0",
-  description: "AI-powered study companion with dynamic JSON study plans, local LLM chat (Ollama), vector memory (ChromaDB), Google Calendar OAuth sync, paper summarization, mobile notifications, and collaborative tracking. Hybrid architecture: edit plans without rebuild.",
+  version: "3.1.0",
+  description: "AI-powered study companion with concept dependency graph, adaptive mastery tracking, active recall engine, Anki export, dynamic JSON study plans, local LLM chat, vector memory, and more. Hybrid architecture.",
 });
 
 // ============================================
@@ -1226,6 +1254,256 @@ server.tool(
 );
 
 // ============================================
+// CONCEPT DEPENDENCY GRAPH TOOLS (v3.0.1)
+// ============================================
+
+server.tool(
+  "add_concept",
+  "Add a concept node to the knowledge dependency graph.",
+  {
+    id: z.string().describe("Unique concept ID (e.g., 'kl-divergence')"),
+    name: z.string().describe("Human-readable concept name"),
+    topic: z.string().optional().describe("Topic area (e.g., 'probability', 'vaes')"),
+    description: z.string().optional().describe("Brief description"),
+  },
+  async ({ id, name, topic, description }) => {
+    const result = addConcept(id, name, topic, description);
+    return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
+  }
+);
+
+server.tool(
+  "add_concept_dependency",
+  "Define a prerequisite relationship between two concepts (e.g., 'probability-distributions' is required for 'kl-divergence'). Auto-creates nodes if they don't exist. Rejects cycles.",
+  {
+    prerequisite_id: z.string().describe("ID of the prerequisite concept"),
+    dependent_id: z.string().describe("ID of the concept that depends on the prerequisite"),
+    strength: z.enum(["required", "recommended", "helpful"]).optional().describe("Dependency strength (default: required)"),
+  },
+  async ({ prerequisite_id, dependent_id, strength }) => {
+    const result = addConceptDependency(prerequisite_id, dependent_id, strength || "required");
+    return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
+  }
+);
+
+server.tool(
+  "get_learning_path",
+  "Generate the optimal learning order for a target concept by traversing its prerequisite graph. Shows mastery status at each step.",
+  {
+    target_concept_id: z.string().describe("ID of the concept you want to learn"),
+  },
+  async ({ target_concept_id }) => {
+    const result = getLearningPath(target_concept_id);
+    return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
+  }
+);
+
+server.tool(
+  "visualize_knowledge_graph",
+  "Generate an ASCII and Mermaid visualization of your concept dependency graph, color-coded by mastery level.",
+  {
+    topic: z.string().optional().describe("Filter to a specific topic area"),
+  },
+  async ({ topic }) => {
+    const result = visualizeKnowledgeGraph(topic);
+    return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
+  }
+);
+
+server.tool(
+  "find_knowledge_gaps",
+  "Detect unmastered concepts that block downstream learning. Ranked by severity (how many concepts they block).",
+  {},
+  async () => {
+    const result = findKnowledgeGaps();
+    return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
+  }
+);
+
+server.tool(
+  "suggest_next_concept",
+  "AI-recommended next concept to learn based on your dependency graph, mastery levels, and SRS state. Prioritizes high-impact concepts.",
+  {},
+  async () => {
+    const result = suggestNextConcept();
+    return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
+  }
+);
+
+server.tool(
+  "knowledge_graph_stats",
+  "Get statistics about your concept dependency graph: node/edge counts, mastery distribution, hub concepts.",
+  {},
+  async () => {
+    const result = getGraphStats();
+    return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
+  }
+);
+
+// ============================================
+// ADAPTIVE MASTERY TRACKING TOOLS (v3.0.2)
+// ============================================
+
+server.tool(
+  "assess_understanding",
+  "Record an assessment result for a concept. Auto-adjusts mastery level using exponential moving average. Harder assessments and derivation/implementation types weigh more.",
+  {
+    concept_id: z.string().describe("Concept ID to assess"),
+    assessment_type: z.enum(["quiz", "derivation", "implementation", "explanation", "review"]).describe("Type of assessment"),
+    score: z.number().min(0).max(100).describe("Score from 0-100"),
+    difficulty: z.enum(["easy", "medium", "hard"]).optional().describe("Assessment difficulty (default: medium)"),
+    time_spent_minutes: z.number().optional().describe("Time spent on the assessment"),
+    notes: z.string().optional().describe("Any notes about the assessment"),
+  },
+  async ({ concept_id, assessment_type, score, difficulty, time_spent_minutes, notes }) => {
+    const result = assessUnderstanding(concept_id, assessment_type, score, difficulty || "medium", time_spent_minutes, notes);
+    return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
+  }
+);
+
+server.tool(
+  "difficulty_profile",
+  "View your mastery level and trend for all tracked concepts, optionally filtered by topic.",
+  {
+    topic: z.string().optional().describe("Filter by topic area"),
+  },
+  async ({ topic }) => {
+    const result = getDifficultyProfile(topic);
+    return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
+  }
+);
+
+server.tool(
+  "generate_challenge",
+  "Generate an appropriately difficult challenge for a concept based on your mastery level. Types: derivation, implementation, explanation, comparison.",
+  {
+    concept_id: z.string().describe("Concept ID to generate a challenge for"),
+    challenge_type: z.enum(["derivation", "implementation", "explanation", "comparison"]).optional().describe("Challenge type (auto-selected based on mastery if omitted)"),
+  },
+  async ({ concept_id, challenge_type }) => {
+    const result = generateChallenge(concept_id, challenge_type);
+    return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
+  }
+);
+
+server.tool(
+  "detect_struggles",
+  "Detect concepts where you're struggling: declining performance, many assessments with low scores, knowledge decay, or frequent SRS 'forgot' marks.",
+  {
+    concept_id: z.string().optional().describe("Check a specific concept (optional, checks all if omitted)"),
+  },
+  async ({ concept_id }) => {
+    const result = detectStruggle(concept_id);
+    return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
+  }
+);
+
+server.tool(
+  "mastery_dashboard",
+  "Overview of your mastery state: level distribution, recently improved concepts, concepts needing attention, and total assessments.",
+  {},
+  async () => {
+    const result = getMasteryDashboard();
+    return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
+  }
+);
+
+// ============================================
+// ACTIVE RECALL & TESTING TOOLS (v3.0.3)
+// ============================================
+
+server.tool(
+  "derivation_quiz",
+  "Generate a derivation quiz: 'derive X from first principles' challenges. Difficulty adapts to your mastery level.",
+  {
+    topic: z.string().describe("Topic to generate derivation questions for"),
+    count: z.number().optional().describe("Number of questions (default: 3)"),
+  },
+  async ({ topic, count }) => {
+    const result = generateDerivationQuiz(topic, count || 3);
+    return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
+  }
+);
+
+server.tool(
+  "implementation_challenge",
+  "Generate an 'implement X without references' coding challenge. Adapts to mastery: skeleton → core module → full pipeline.",
+  {
+    topic: z.string().describe("Topic/concept to implement"),
+    language: z.string().optional().describe("Programming language (default: python)"),
+  },
+  async ({ topic, language }) => {
+    const result = generateImplementationChallenge(topic, language || "python");
+    return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
+  }
+);
+
+server.tool(
+  "explain_like_im_5",
+  "Feynman technique challenge: explain a concept to 3 audiences (5-year-old, undergrad, NeurIPS reviewer). Tests true understanding.",
+  {
+    concept: z.string().describe("Concept to explain"),
+  },
+  async ({ concept }) => {
+    const result = generateELI5Challenge(concept);
+    return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
+  }
+);
+
+server.tool(
+  "compare_contrast",
+  "Generate a structured comparison between two concepts across 6 dimensions: formulation, math, architecture, strengths, cost, use cases.",
+  {
+    concept_a: z.string().describe("First concept"),
+    concept_b: z.string().describe("Second concept"),
+  },
+  async ({ concept_a, concept_b }) => {
+    const result = generateComparison(concept_a, concept_b);
+    return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
+  }
+);
+
+server.tool(
+  "weekly_comprehensive_test",
+  "Generate an end-of-week test covering all topics studied this week. Includes quick recall, application, synthesis, and deep-dive sections.",
+  {},
+  async () => {
+    const result = generateWeeklyTest();
+    return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
+  }
+);
+
+server.tool(
+  "export_anki_deck",
+  "Export your SRS items and insights as an Anki-compatible deck (TSV format). Import into Anki for mobile review.",
+  {
+    topic: z.string().optional().describe("Filter to a specific topic (optional, exports all if omitted)"),
+    include_insights: z.boolean().optional().describe("Include memory insights as cards (default: true)"),
+  },
+  async ({ topic, include_insights }) => {
+    const result = exportAnkiDeck(topic, include_insights !== false);
+    return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
+  }
+);
+
+server.tool(
+  "record_test_result",
+  "Record the results of a test (derivation quiz, weekly test, etc.) for performance tracking.",
+  {
+    test_id: z.string().describe("ID of the test (from the quiz/test generator)"),
+    scores: z.array(z.object({
+      questionId: z.string().describe("Question ID"),
+      score: z.number().min(0).max(100).describe("Score for this question"),
+    })).describe("Scores for each question"),
+    duration: z.number().optional().describe("Total time spent in minutes"),
+  },
+  async ({ test_id, scores, duration }) => {
+    const result = recordTestResult(test_id, scores, duration);
+    return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
+  }
+);
+
+// ============================================
 // PLAN MANAGEMENT TOOLS (v3.0)
 // ============================================
 
@@ -1359,9 +1637,9 @@ server.tool(
 async function main() {
   const transport = new StdioServerTransport();
   await server.connect(transport);
-  console.error("Study Companion MCP server v3.0.0 running on stdio");
-  console.error("Hybrid architecture: JSON study plans + Plan Engine");
-  console.error("Local AI: Ollama | Vector DB: ChromaDB | Notifications: ntfy.sh");
+  console.error("Study Companion MCP server v3.1.0 running on stdio");
+  console.error("Sprint 1: Concept Graph + Adaptive Mastery + Active Recall + Anki Export");
+  console.error("Hybrid architecture | Ollama | ChromaDB | ntfy.sh");
 }
 
 main().catch((error) => {

@@ -1,5 +1,6 @@
 import { loadJSON, saveJSON } from "../utils/storage.js";
 import { MemoryEntry } from "../utils/types.js";
+import { getResearcherConfig } from "../engine/plan-loader.js";
 
 // ============================================
 // v1.4 — Multi-Agent System
@@ -90,7 +91,7 @@ export function reviewCode(code: string, context: string, language: string = "py
   }
 
   if (lowerCode.includes("message_passing") || lowerCode.includes("propagate")) {
-    strengths.push("GNN message passing pattern detected — core pattern for Lotfollahi-relevant work.");
+    strengths.push("GNN message passing pattern detected — core pattern for graph-based research work.");
   }
 
   // General code quality
@@ -351,28 +352,24 @@ export function scoutNewResearch(focusArea?: string): object {
     searchRecommendations,
     suggestedArxivQueries: [
       `"${focus}" deep learning`,
-      "single-cell foundation model 2024",
-      "perturbation prediction variational",
-      "graph neural network spatial transcriptomics",
-      "Lotfollahi",
+      ...(getResearcherConfig().suggested_arxiv_queries || []),
+      ...(getResearcherConfig().researchers.map((r) => r.name)),
     ],
     papersToRevisit: oldPapers.slice(0, 3).map((p: any) => ({
       title: p.title,
       completedDate: p.completedDate,
       suggestion: "Re-read with fresh eyes — you've learned more since then.",
     })),
-    keyResearchers: [
-      { name: "Mohammad Lotfollahi", focus: "perturbation prediction, foundation models", lab: "Wellcome Sanger" },
-      { name: "Fabian Theis", focus: "single-cell analysis, scVI ecosystem", lab: "Helmholtz Munich" },
-      { name: "Jian Tang", focus: "graph ML, drug discovery", lab: "Mila" },
-      { name: "Michael Bronstein", focus: "geometric deep learning", lab: "Oxford" },
-      { name: "Aviv Regev", focus: "single-cell genomics, perturbation biology", lab: "Genentech" },
-    ],
+    keyResearchers: getResearcherConfig().researchers.map((r) => ({
+      name: r.name,
+      focus: r.focus,
+      lab: r.lab,
+    })),
     actionItems: [
       `Search arXiv for recent "${focus}" papers (use search_arxiv tool)`,
-      "Check Lotfollahi lab GitHub for new repos/updates",
+      ...getResearcherConfig().researchers.slice(0, 2).map((r) => `Check ${r.name}'s lab GitHub for new repos/updates`),
       "Look for conference workshops: NeurIPS, ICML, ICLR bio-focused tracks",
-      "Follow #singlecell and #compbio on Twitter/X for real-time discoveries",
+      "Follow relevant hashtags on Twitter/X for real-time discoveries",
     ],
   };
 }
@@ -380,28 +377,6 @@ export function scoutNewResearch(focusArea?: string): object {
 function generateSearchRecommendations(focus: string, papers: any[]): object[] {
   const readTitles = papers.filter((p: any) => p.status === "completed").map((p: any) => p.title.toLowerCase());
 
-  const recommendations = [
-    {
-      area: "Perturbation Prediction",
-      queries: ["CPA perturbation prediction", "GEARS gene perturbation", "single-cell counterfactual"],
-      why: "Core to Lotfollahi lab direction",
-    },
-    {
-      area: "Single-Cell Foundation Models",
-      queries: ["scGPT", "Geneformer", "scFoundation", "universal cell embedding"],
-      why: "Cutting edge of the field — likely future lab direction",
-    },
-    {
-      area: "Spatial Transcriptomics + GNNs",
-      queries: ["spatial transcriptomics graph neural", "tissue architecture deep learning", "cell-cell communication GNN"],
-      why: "Intersection of your GNN skills and bio applications",
-    },
-    {
-      area: "Multimodal Biology",
-      queries: ["multimodal single-cell", "CITE-seq representation learning", "multi-omics integration"],
-      why: "Lab explicitly lists multimodal learning as focus",
-    },
-  ];
-
-  return recommendations;
+  const config = getResearcherConfig();
+  return config.search_recommendations || [];
 }

@@ -1,5 +1,6 @@
 import { loadJSON, saveJSON, loadNotes } from "../utils/storage.js";
 import { MemoryEntry } from "../utils/types.js";
+import { getResearcherConfig } from "../engine/plan-loader.js";
 
 // ============================================
 // v1.3 — External Integrations
@@ -199,8 +200,28 @@ function parseArxivXML(xml: string): ArxivPaper[] {
   return papers;
 }
 
+export async function fetchResearcherPapers(researcherName?: string): Promise<object> {
+  const config = getResearcherConfig();
+  if (researcherName) {
+    const researcher = config.researchers.find(
+      (r) => r.name.toLowerCase().includes(researcherName.toLowerCase())
+    );
+    if (researcher?.arxiv_query) {
+      return searchArxiv(researcher.arxiv_query, 15);
+    }
+    return searchArxiv(`au:${researcherName}`, 15);
+  }
+  // Default: fetch papers for the first researcher in config
+  const primary = config.researchers[0];
+  if (primary?.arxiv_query) {
+    return searchArxiv(primary.arxiv_query, 15);
+  }
+  return { error: "No researchers configured. Add researchers to data/researchers.json" };
+}
+
+// Backward compatibility alias
 export async function fetchLotfollahiPapers(): Promise<object> {
-  return searchArxiv("au:Lotfollahi", 15);
+  return fetchResearcherPapers("Lotfollahi");
 }
 
 // --- Blog Post Drafting ---

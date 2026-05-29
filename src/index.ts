@@ -66,6 +66,7 @@ import {
   fetchGitHubActivity,
   searchArxiv,
   fetchLotfollahiPapers,
+  fetchResearcherPapers,
   draftBlogPost,
 } from "./tools/integrations.js";
 
@@ -139,11 +140,24 @@ import {
   generateShareableReport,
 } from "./tools/collab.js";
 
+import {
+  getPlanInfo,
+  reloadStudyPlan,
+  validatePlan,
+  addPhaseToPlan,
+  addTopicToPlan,
+  addProjectToPlan,
+  snapshotCurrentPlan,
+  listPlanSnapshots,
+  exportPlanAsMarkdown,
+  getResearchersInfo,
+} from "./tools/plan-manager.js";
+
 // Create the MCP server
 const server = new McpServer({
   name: "study-companion",
-  version: "2.0.0",
-  description: "AI-powered study companion with local LLM chat (Ollama), vector memory (ChromaDB), Google Calendar OAuth sync, paper summarization, mobile notifications, and collaborative tracking. 100% free and local.",
+  version: "3.0.0",
+  description: "AI-powered study companion with dynamic JSON study plans, local LLM chat (Ollama), vector memory (ChromaDB), Google Calendar OAuth sync, paper summarization, mobile notifications, and collaborative tracking. Hybrid architecture: edit plans without rebuild.",
 });
 
 // ============================================
@@ -653,6 +667,18 @@ server.tool(
   {},
   async () => {
     const result = await fetchLotfollahiPapers();
+    return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
+  }
+);
+
+server.tool(
+  "fetch_researcher_papers",
+  "Fetch papers for any researcher configured in data/researchers.json. Defaults to primary researcher if no name given.",
+  {
+    researcher_name: z.string().optional().describe("Researcher name to search for (partial match). Omit to use primary researcher."),
+  },
+  async ({ researcher_name }) => {
+    const result = await fetchResearcherPapers(researcher_name);
     return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
   }
 );
@@ -1200,13 +1226,141 @@ server.tool(
 );
 
 // ============================================
+// PLAN MANAGEMENT TOOLS (v3.0)
+// ============================================
+
+server.tool(
+  "plan_info",
+  "Get info about the currently loaded study plan: name, version, phases, topics, and projects.",
+  {},
+  async () => {
+    const result = getPlanInfo();
+    return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
+  }
+);
+
+server.tool(
+  "reload_plan",
+  "Reload the study plan from data/study-plan.json. Use after editing the JSON file to apply changes without restarting.",
+  {},
+  async () => {
+    const result = reloadStudyPlan();
+    return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
+  }
+);
+
+server.tool(
+  "validate_plan",
+  "Validate the study plan JSON for schema correctness, duplicate IDs, phase overlaps, and reference integrity.",
+  {},
+  async () => {
+    const result = validatePlan();
+    return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
+  }
+);
+
+server.tool(
+  "add_phase",
+  "Add a new phase to the study plan. Automatically snapshots before modification.",
+  {
+    id: z.string().describe("Phase ID (e.g., 'phase6-advanced')"),
+    name: z.string().describe("Phase display name"),
+    month_start: z.number().describe("Start month number"),
+    month_end: z.number().describe("End month number"),
+    description: z.string().describe("Phase description"),
+  },
+  async ({ id, name, month_start, month_end, description }) => {
+    const result = addPhaseToPlan(id, name, month_start, month_end, description);
+    return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
+  }
+);
+
+server.tool(
+  "add_topic",
+  "Add a new topic to an existing phase. Automatically snapshots before modification.",
+  {
+    phase_id: z.string().describe("Phase ID to add the topic to"),
+    topic_id: z.string().describe("Unique topic ID"),
+    name: z.string().describe("Topic display name"),
+    priority: z.enum(["critical", "high", "medium", "low"]).describe("Topic priority"),
+    subtopics: z.array(z.string()).describe("List of subtopics"),
+  },
+  async ({ phase_id, topic_id, name, priority, subtopics }) => {
+    const result = addTopicToPlan(phase_id, topic_id, name, priority, subtopics);
+    return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
+  }
+);
+
+server.tool(
+  "add_project",
+  "Add a new project to an existing phase with milestones. Automatically snapshots before modification.",
+  {
+    phase_id: z.string().describe("Phase ID to add the project to"),
+    project_id: z.string().describe("Unique project ID"),
+    name: z.string().describe("Project display name"),
+    description: z.string().describe("Project description"),
+    milestones: z.array(z.object({
+      id: z.string().describe("Milestone ID"),
+      description: z.string().describe("Milestone description"),
+    })).describe("List of milestones for the project"),
+  },
+  async ({ phase_id, project_id, name, description, milestones }) => {
+    const result = addProjectToPlan(phase_id, project_id, name, description, milestones);
+    return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
+  }
+);
+
+server.tool(
+  "snapshot_plan",
+  "Create a timestamped backup of the current study plan.",
+  {
+    label: z.string().optional().describe("Optional label for the snapshot (e.g., 'before-restructure')"),
+  },
+  async ({ label }) => {
+    const result = snapshotCurrentPlan(label);
+    return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
+  }
+);
+
+server.tool(
+  "list_plan_snapshots",
+  "List all saved study plan snapshots/backups.",
+  {},
+  async () => {
+    const result = listPlanSnapshots();
+    return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
+  }
+);
+
+server.tool(
+  "export_plan_markdown",
+  "Export the current study plan as a formatted markdown document.",
+  {},
+  async () => {
+    const result = exportPlanAsMarkdown();
+    return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
+  }
+);
+
+server.tool(
+  "researchers_info",
+  "View configured researchers, search recommendations, and arXiv queries from data/researchers.json.",
+  {},
+  async () => {
+    const result = getResearchersInfo();
+    return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
+  }
+);
+
+// ============================================
 // START SERVER
 // ============================================
 
 async function main() {
   const transport = new StdioServerTransport();
   await server.connect(transport);
-  console.error("Study Companion MCP server v2.0.0 running on stdio");
+  console.error("Study Companion MCP server v3.0.0 running on stdio");
+  console.error("Hybrid architecture: JSON study plans + Plan Engine");
   console.error("Local AI: Ollama | Vector DB: ChromaDB | Notifications: ntfy.sh");
 }
 

@@ -2,7 +2,7 @@ import { loadJSON } from "../utils/storage.js";
 import { readFileSync, existsSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
-import { STUDY_PHASES } from "../data/study-plan.js";
+import { getStudyPhases } from "../engine/plan-loader.js";
 
 // ============================================
 // v1.2 — Progress Analytics
@@ -206,8 +206,9 @@ export function getPredictedCompletion(): object {
   }>("planner-state.json", { startDate: new Date().toISOString().split("T")[0], completedTopics: [], completedProjects: [], totalStudyHours: 0 });
 
   // Total topics and projects across all phases
-  const totalTopics = STUDY_PHASES.reduce((sum, p) => sum + p.topics.length, 0);
-  const totalProjects = STUDY_PHASES.reduce((sum, p) => sum + p.projects.length, 0);
+  const PHASES = getStudyPhases();
+  const totalTopics = PHASES.reduce((sum, p) => sum + p.topics.length, 0);
+  const totalProjects = PHASES.reduce((sum, p) => sum + p.projects.length, 0);
   const completedTopics = plannerState.completedTopics.length;
   const completedProjects = plannerState.completedProjects.length;
 
@@ -238,7 +239,7 @@ export function getPredictedCompletion(): object {
     : "Unable to predict (need more data)";
 
   // Phase-level predictions
-  const phasePredictons = STUDY_PHASES.map((phase) => {
+  const phasePredictons = PHASES.map((phase) => {
     const phaseTopics = phase.topics.length;
     const phaseCompleted = phase.topics.filter((t) => plannerState.completedTopics.includes(t.id)).length;
     const phaseRemaining = phaseTopics - phaseCompleted;

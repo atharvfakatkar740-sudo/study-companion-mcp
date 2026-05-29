@@ -1,5 +1,5 @@
 import { loadJSON, saveJSON } from "../utils/storage.js";
-import { STUDY_PHASES } from "../data/study-plan.js";
+import { getStudyPhases, findPhaseById, getCurrentPhaseFromPlan } from "../engine/plan-loader.js";
 
 // ============================================
 // Google Calendar Integration
@@ -68,7 +68,7 @@ export function scheduleStudySessions(
 
   // Determine current phase topics
   const currentPhaseId = plannerState.currentPhaseOverride || getCurrentPhaseFromDate(plannerState.startDate);
-  const phase = STUDY_PHASES.find((p) => p.id === currentPhaseId);
+  const phase = findPhaseById(currentPhaseId);
   const activeTopics = customTopics || phase?.topics
     .filter((t) => !plannerState.completedTopics.includes(t.id))
     .sort((a, b) => priorityRank(a.priority) - priorityRank(b.priority))
@@ -290,16 +290,7 @@ export function getWeeklyScheduleOverview(): object {
 // --- Helpers ---
 
 function getCurrentPhaseFromDate(startDate: string): string {
-  const start = new Date(startDate);
-  const now = new Date();
-  const monthsElapsed = (now.getFullYear() - start.getFullYear()) * 12 + (now.getMonth() - start.getMonth());
-
-  for (const phase of STUDY_PHASES) {
-    if (monthsElapsed >= phase.monthRange[0] && monthsElapsed <= phase.monthRange[1]) {
-      return phase.id;
-    }
-  }
-  return STUDY_PHASES[STUDY_PHASES.length - 1].id;
+  return getCurrentPhaseFromPlan(startDate);
 }
 
 function priorityRank(priority: string): number {

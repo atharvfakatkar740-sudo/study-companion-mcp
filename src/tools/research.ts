@@ -1,12 +1,13 @@
 import { loadJSON, saveJSON } from "../utils/storage.js";
 import { PaperEntry } from "../utils/types.js";
-import { PAPERS_READING_LIST } from "../data/study-plan.js";
+import { getPapersReadingList } from "../engine/plan-loader.js";
 
 function getPapers(): PaperEntry[] {
   const papers = loadJSON<PaperEntry[]>("papers.json", []);
   if (papers.length === 0) {
     // Initialize with the pre-defined reading list
-    const initial: PaperEntry[] = PAPERS_READING_LIST.map((p, i) => ({
+    const readingList = getPapersReadingList() || [];
+    const initial: PaperEntry[] = readingList.map((p, i) => ({
       id: `paper-${i + 1}`,
       title: p.title,
       authors: [p.authors],

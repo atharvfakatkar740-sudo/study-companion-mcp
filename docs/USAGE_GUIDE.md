@@ -34,59 +34,105 @@
 
 ---
 
-## Setup: Adding to Windsurf
+## Setup: Adding to Windsurf via Docker (Minimal Install)
 
-### Step 1: Build the project
+**Prerequisite: Docker Desktop installed.** That's it. No Node.js, no npm, no build step.
+
+---
+
+### Step 1: Get the Docker image
+
+**Option A — Pull from GHCR (after merging to `main`):**
 
 ```bash
-cd study-companion-mcp
-npm install
-npm run build
+docker pull ghcr.io/atharvfakatkar740-sudo/study-companion-mcp:v3.3.0
 ```
 
-### Step 2: Configure Windsurf MCP
+> The image is published automatically when a PR is merged to `main`. If `v3.3.0` doesn't exist yet, follow the "Publishing the image" section below.
+
+**Option B — Build locally right now:**
+
+```bash
+cd "c:\Users\afakatkar\Documents\Learning\ML\anomaly detection\study-companion-mcp"
+docker build -t study-companion-mcp:v3.3.0 .
+```
+
+Use `study-companion-mcp:v3.3.0` (no `ghcr.io/` prefix) as the image name in the config below.
+
+---
+
+### Step 2: Create a persistent data folder
+
+Your notes, sessions, citations, and checklists are stored in a folder you mount into the container. Create it once:
+
+```bash
+mkdir "c:\Users\afakatkar\Documents\Learning\ML\anomaly detection\study-companion-mcp\data"
+```
+
+(Already exists if you've used the Node.js version before.)
+
+---
+
+### Step 3: Configure Windsurf MCP
 
 1. Open Windsurf
-2. Go to **Settings** → **MCP** (or press `Ctrl+Shift+P` → "MCP: Open Settings")
-3. Add this configuration:
+2. Press `Ctrl+Shift+P` → type **"Open MCP Configuration"** → Enter
+3. Add this block (use the **absolute path** — `./data` won't work):
 
 ```json
 {
   "mcpServers": {
     "study-companion": {
-      "command": "node",
-      "args": ["c:\\Users\\afakatkar\\Documents\\Learning\\ML\\anomaly detection\\study-companion-mcp\\dist\\index.js"],
-      "env": {}
+      "command": "docker",
+      "args": [
+        "run", "--rm", "-i",
+        "-v", "c:\\Users\\afakatkar\\Documents\\Learning\\ML\\anomaly detection\\study-companion-mcp\\data:/app/data",
+        "ghcr.io/atharvfakatkar740-sudo/study-companion-mcp:v3.3.0"
+      ]
     }
   }
 }
 ```
 
-4. Restart Windsurf or reload the MCP connection
+> **Why absolute path?** Windsurf spawns Docker from an unknown working directory. `./data` resolves to the wrong place. Always use the full path.
 
-### Step 3: Verify it works
-
-In Windsurf's AI chat (Cascade), type:
-
-> "What tools do you have from study-companion?"
-
-Claude should list all ~122 tools. If it doesn't, check that:
-- `npm run build` completed without errors
-- The path in the config matches your actual project location
-- You restarted Windsurf after adding the config
+4. Save and **restart Windsurf completely**
 
 ---
 
-## Alternative Hosts (Not Just Windsurf)
+### Step 4: Verify
 
-| Host | How to Use | Cost |
-|------|-----------|------|
-| **Windsurf** | Add to MCP settings (see above) | Free / $15/mo Pro |
-| **Claude Desktop** | Add to `claude_desktop_config.json` | Free / $20/mo Pro |
-| **Cursor** | Add to MCP settings in Cursor | Free / $20/mo Pro |
-| **VS Code + Copilot** | MCP support via extensions | Copilot sub |
+In Windsurf's AI chat, type:
 
-All use the same config format. The MCP server doesn't care which host you use.
+> "What study-companion tools do you have?"
+
+You should see the tool list. The container starts fresh each time a tool is called (`--rm` flag) and all data persists in your mounted `data/` folder.
+
+---
+
+### Publishing the image (triggering the CI release)
+
+The Docker image is only built when a PR is **merged to `main`**. To publish `v3.3.0`:
+
+1. Go to your GitHub repo
+2. Create a PR: **`dev` → `main`**
+3. Merge it
+4. GitHub Actions builds and pushes:
+   - `ghcr.io/atharvfakatkar740-sudo/study-companion-mcp:v3.3.0`
+   - `ghcr.io/atharvfakatkar740-sudo/study-companion-mcp:latest`
+5. Pull and use it
+
+---
+
+## Alternative Hosts (Same Config Format)
+
+| Host | Config file location |
+|------|---------------------|
+| **Windsurf** | MCP settings panel (`Ctrl+Shift+P` → Open MCP Configuration) |
+| **Claude Desktop** | `%APPDATA%\Claude\claude_desktop_config.json` |
+| **Cursor** | Settings → MCP |
+
+All use the exact same JSON format. Just paste the same block.
 
 ---
 

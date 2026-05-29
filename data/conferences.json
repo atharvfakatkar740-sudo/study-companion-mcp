@@ -1,0 +1,391 @@
+{
+  "conferences": [
+    {
+      "id": "neurips",
+      "name": "NeurIPS",
+      "fullName": "Conference on Neural Information Processing Systems",
+      "tier": "S",
+      "type": "conference",
+      "url": "https://neurips.cc",
+      "typical_deadline_month": 5,
+      "typical_conference_month": 12,
+      "deadlines": {
+        "abstract": "2025-05-11",
+        "full_paper": "2025-05-18",
+        "workshop_proposals": "2025-08-01",
+        "workshop_papers": "2025-09-15",
+        "conference_start": "2025-12-09",
+        "conference_end": "2025-12-15"
+      },
+      "topics": ["biological foundation models", "multimodal learning", "graph learning", "generative biology", "perturbation modeling", "representation learning", "transformers", "scaling studies"],
+      "strategic_fit": "Highest-impact ML venue. Target for frontier AI-biology work. Best entry via workshops first.",
+      "your_entry_path": ["GNNs for biological interaction modeling", "foundation models for cells", "perturbation prediction", "multimodal embeddings", "self-supervised biological learning"],
+      "workshop_targets": ["ML4H", "AI4Science", "Learning Meaningful Representations of Life", "Graph Learning"],
+      "difficulty": "very_hard",
+      "phase_target": "phase4"
+    },
+    {
+      "id": "icml",
+      "name": "ICML",
+      "fullName": "International Conference on Machine Learning",
+      "tier": "S",
+      "type": "conference",
+      "url": "https://icml.cc",
+      "typical_deadline_month": 1,
+      "typical_conference_month": 7,
+      "deadlines": {
+        "full_paper": "2025-01-31",
+        "workshop_papers": "2025-05-15",
+        "conference_start": "2025-07-21",
+        "conference_end": "2025-07-27"
+      },
+      "topics": ["probabilistic ML", "generative models", "representation learning", "optimization", "causal ML"],
+      "strategic_fit": "More theoretical than NeurIPS. Aligned with Fabian Theis ecosystem and scVI/scverse work.",
+      "your_entry_path": ["variational inference methods", "probabilistic generative models", "causal perturbation modeling"],
+      "workshop_targets": ["Computational Biology", "Structured Probabilistic Inference"],
+      "difficulty": "very_hard",
+      "phase_target": "phase4"
+    },
+    {
+      "id": "iclr",
+      "name": "ICLR",
+      "fullName": "International Conference on Learning Representations",
+      "tier": "S",
+      "type": "conference",
+      "url": "https://iclr.cc",
+      "typical_deadline_month": 10,
+      "typical_conference_month": 5,
+      "deadlines": {
+        "full_paper": "2025-10-01",
+        "workshop_papers": "2026-02-15",
+        "conference_start": "2026-04-27",
+        "conference_end": "2026-05-01"
+      },
+      "topics": ["experimental deep learning", "representation learning", "graph neural networks", "generative models"],
+      "strategic_fit": "Best conference for biology-GNN papers. Strong experimental focus.",
+      "your_entry_path": ["cell-cell interaction graphs", "spatial transcriptomics with GNNs", "biological graph representation learning"],
+      "workshop_targets": ["AI for Science", "Graph Learning", "Biological Sequence Modeling"],
+      "difficulty": "very_hard",
+      "phase_target": "phase3"
+    },
+    {
+      "id": "recomb",
+      "name": "RECOMB",
+      "fullName": "Research in Computational Molecular Biology",
+      "tier": "S",
+      "type": "conference",
+      "url": "https://recomb.org",
+      "typical_deadline_month": 11,
+      "typical_conference_month": 4,
+      "deadlines": {
+        "full_paper": "2025-11-01",
+        "conference_start": "2026-04-20",
+        "conference_end": "2026-04-23"
+      },
+      "topics": ["single-cell analysis", "genomics algorithms", "biological ML", "sequencing analysis", "graph methods"],
+      "strategic_fit": "Most prestigious comp bio conference. Publishing here signals deep computational biology understanding.",
+      "your_entry_path": ["novel single-cell methods", "graph-based genomics", "perturbation prediction"],
+      "workshop_targets": [],
+      "difficulty": "hard",
+      "phase_target": "phase3"
+    },
+    {
+      "id": "ismb",
+      "name": "ISMB",
+      "fullName": "Intelligent Systems for Molecular Biology",
+      "tier": "S",
+      "type": "conference",
+      "url": "https://www.iscb.org/ismb2025",
+      "typical_deadline_month": 1,
+      "typical_conference_month": 7,
+      "deadlines": {
+        "full_paper": "2025-01-25",
+        "conference_start": "2025-07-20",
+        "conference_end": "2025-07-24"
+      },
+      "topics": ["genomics", "single-cell analysis", "biological data science", "systems biology"],
+      "strategic_fit": "Flagship bioinformatics conference. Critical for networking in the comp bio community.",
+      "your_entry_path": ["ML methods for single-cell", "deep learning for genomics", "computational methods benchmarking"],
+      "workshop_targets": ["MLCSB", "CompBio"],
+      "difficulty": "hard",
+      "phase_target": "phase3"
+    },
+    {
+      "id": "nature-methods",
+      "name": "Nature Methods",
+      "fullName": "Nature Methods",
+      "tier": "A",
+      "type": "journal",
+      "url": "https://www.nature.com/nmeth/",
+      "typical_deadline_month": null,
+      "typical_conference_month": null,
+      "deadlines": {},
+      "topics": ["computational methods", "single-cell tools", "novel algorithms", "biological pipelines"],
+      "strategic_fit": "A strong computational method paper here is career-defining. scVI, scanpy, Cellxgene were published here.",
+      "your_entry_path": ["novel computational tool with strong benchmarks", "methods paper with biological validation"],
+      "workshop_targets": [],
+      "difficulty": "very_hard",
+      "phase_target": "phase4"
+    },
+    {
+      "id": "nature-biotech",
+      "name": "Nature Biotechnology",
+      "fullName": "Nature Biotechnology",
+      "tier": "A",
+      "type": "journal",
+      "url": "https://www.nature.com/nbt/",
+      "typical_deadline_month": null,
+      "typical_conference_month": null,
+      "deadlines": {},
+      "topics": ["biotechnology methods", "computational biology tools", "single-cell methods"],
+      "strategic_fit": "Enormous impact in biology. Many major single-cell tools published here.",
+      "your_entry_path": ["scalable computational tools", "novel biological discovery via ML"],
+      "workshop_targets": [],
+      "difficulty": "very_hard",
+      "phase_target": "phase4"
+    },
+    {
+      "id": "cell-systems",
+      "name": "Cell Systems",
+      "fullName": "Cell Systems",
+      "tier": "A",
+      "type": "journal",
+      "url": "https://www.cell.com/cell-systems/home",
+      "typical_deadline_month": null,
+      "typical_conference_month": null,
+      "deadlines": {},
+      "topics": ["computational systems biology", "network biology", "biological modeling"],
+      "strategic_fit": "Very strong for computational systems biology. Good target for methods with biological insight.",
+      "your_entry_path": ["ML-driven biological discovery", "systems-level perturbation modeling"],
+      "workshop_targets": [],
+      "difficulty": "hard",
+      "phase_target": "phase4"
+    },
+    {
+      "id": "bioinformatics",
+      "name": "Bioinformatics",
+      "fullName": "Bioinformatics (Oxford Academic)",
+      "tier": "A",
+      "type": "journal",
+      "url": "https://academic.oup.com/bioinformatics",
+      "typical_deadline_month": null,
+      "typical_conference_month": null,
+      "deadlines": {},
+      "topics": ["computational biology", "bioinformatics tools", "genomics algorithms", "single-cell methods"],
+      "strategic_fit": "Standard comp bio venue. Good early-career publication target. Faster review than Nature.",
+      "your_entry_path": ["benchmark studies", "tool papers", "novel computational methods"],
+      "workshop_targets": [],
+      "difficulty": "medium",
+      "phase_target": "phase2"
+    },
+    {
+      "id": "genome-biology",
+      "name": "Genome Biology",
+      "fullName": "Genome Biology",
+      "tier": "A",
+      "type": "journal",
+      "url": "https://genomebiology.biomedcentral.com",
+      "typical_deadline_month": null,
+      "typical_conference_month": null,
+      "deadlines": {},
+      "topics": ["single-cell methods", "spatial transcriptomics", "genomics pipelines"],
+      "strategic_fit": "Important for single-cell methods and spatial transcriptomics. Strong community reach.",
+      "your_entry_path": ["single-cell analysis tools", "spatial transcriptomics methods", "benchmarking studies"],
+      "workshop_targets": [],
+      "difficulty": "hard",
+      "phase_target": "phase3"
+    },
+    {
+      "id": "aaai",
+      "name": "AAAI",
+      "fullName": "AAAI Conference on Artificial Intelligence",
+      "tier": "A",
+      "type": "conference",
+      "url": "https://aaai.org",
+      "typical_deadline_month": 8,
+      "typical_conference_month": 2,
+      "deadlines": {
+        "full_paper": "2025-08-15",
+        "conference_start": "2026-02-22",
+        "conference_end": "2026-02-27"
+      },
+      "topics": ["artificial intelligence", "ML applications", "knowledge representation"],
+      "strategic_fit": "Less dominant for biology than NeurIPS/ICML/ICLR, but still valuable for applied AI work.",
+      "your_entry_path": ["applied AI for biology", "knowledge graph applications"],
+      "workshop_targets": ["AI for Science"],
+      "difficulty": "hard",
+      "phase_target": "phase3"
+    },
+    {
+      "id": "aistats",
+      "name": "AISTATS",
+      "fullName": "International Conference on Artificial Intelligence and Statistics",
+      "tier": "B",
+      "type": "conference",
+      "url": "https://aistats.org",
+      "typical_deadline_month": 10,
+      "typical_conference_month": 4,
+      "deadlines": {
+        "full_paper": "2025-10-10",
+        "conference_start": "2026-04-06",
+        "conference_end": "2026-04-08"
+      },
+      "topics": ["probabilistic ML", "Bayesian modeling", "latent variable models"],
+      "strategic_fit": "Very good for VAE work, probabilistic models, Bayesian single-cell methods.",
+      "your_entry_path": ["variational inference for biology", "Bayesian single-cell modeling"],
+      "workshop_targets": [],
+      "difficulty": "hard",
+      "phase_target": "phase3"
+    },
+    {
+      "id": "miccai",
+      "name": "MICCAI",
+      "fullName": "Medical Image Computing and Computer Assisted Intervention",
+      "tier": "B",
+      "type": "conference",
+      "url": "https://www.miccai.org",
+      "typical_deadline_month": 3,
+      "typical_conference_month": 10,
+      "deadlines": {
+        "full_paper": "2025-03-07",
+        "conference_start": "2025-10-05",
+        "conference_end": "2025-10-09"
+      },
+      "topics": ["spatial transcriptomics", "pathology imaging", "multimodal tissue AI"],
+      "strategic_fit": "Important if you enter spatial transcriptomics or tissue imaging. Niche but high impact.",
+      "your_entry_path": ["spatial transcriptomics with GNNs", "tissue graph analysis"],
+      "workshop_targets": [],
+      "difficulty": "hard",
+      "phase_target": "phase4"
+    },
+    {
+      "id": "kdd",
+      "name": "KDD",
+      "fullName": "ACM SIGKDD Conference on Knowledge Discovery and Data Mining",
+      "tier": "B",
+      "type": "conference",
+      "url": "https://www.kdd.org",
+      "typical_deadline_month": 2,
+      "typical_conference_month": 8,
+      "deadlines": {
+        "full_paper": "2025-02-08",
+        "conference_start": "2025-08-03",
+        "conference_end": "2025-08-07"
+      },
+      "topics": ["large-scale biological graphs", "network biology", "graph mining"],
+      "strategic_fit": "Useful for large-scale graph work and biological network analysis.",
+      "your_entry_path": ["biological knowledge graphs", "drug interaction networks", "graph mining on omics data"],
+      "workshop_targets": ["Biomedical Data Science"],
+      "difficulty": "hard",
+      "phase_target": "phase3"
+    },
+    {
+      "id": "ml4h",
+      "name": "ML4H",
+      "fullName": "Machine Learning for Health",
+      "tier": "B",
+      "type": "workshop",
+      "url": "https://ml4health.github.io",
+      "typical_deadline_month": 9,
+      "typical_conference_month": 12,
+      "deadlines": {
+        "full_paper": "2025-09-20",
+        "workshop_date": "2025-12-09"
+      },
+      "topics": ["ML for health", "clinical ML", "biological ML"],
+      "strategic_fit": "Excellent entry point. Workshop papers at NeurIPS. Lower bar than main conference.",
+      "your_entry_path": ["any ML-biology work", "benchmarks", "reproductions with improvements"],
+      "workshop_targets": [],
+      "difficulty": "medium",
+      "phase_target": "phase2"
+    },
+    {
+      "id": "lmrl",
+      "name": "LMRL",
+      "fullName": "Learning Meaningful Representations of Life",
+      "tier": "B",
+      "type": "workshop",
+      "url": "https://lmrl.org",
+      "typical_deadline_month": 9,
+      "typical_conference_month": 12,
+      "deadlines": {
+        "full_paper": "2025-09-25",
+        "workshop_date": "2025-12-10"
+      },
+      "topics": ["biological representations", "single-cell embeddings", "multimodal biology"],
+      "strategic_fit": "PERFECTLY aligned with your research direction. Directly relevant to Lotfollahi's work.",
+      "your_entry_path": ["cell embeddings", "perturbation representations", "multimodal single-cell"],
+      "workshop_targets": [],
+      "difficulty": "medium",
+      "phase_target": "phase2"
+    }
+  ],
+  "publication_timeline": {
+    "phase1_0_6_months": {
+      "goal": "Technical competency, reproducibility, open-source familiarity",
+      "outputs": ["reproductions", "notebooks", "blog posts", "GitHub repos", "small contributions"],
+      "publication_pressure": "none",
+      "targets": []
+    },
+    "phase2_6_12_months": {
+      "goal": "First workshop paper or preprint",
+      "outputs": ["workshop paper", "arXiv preprint", "open-source tool"],
+      "publication_pressure": "low",
+      "targets": ["ml4h", "lmrl", "neurips-workshop", "iclr-workshop"]
+    },
+    "phase3_1_2_years": {
+      "goal": "Strong first-author paper",
+      "outputs": ["conference paper", "journal paper"],
+      "publication_pressure": "medium",
+      "targets": ["ismb", "bioinformatics", "genome-biology", "recomb"]
+    },
+    "phase4_2_4_years": {
+      "goal": "Frontier ML-biology work",
+      "outputs": ["top-tier conference paper", "high-impact journal"],
+      "publication_pressure": "high",
+      "targets": ["neurips", "icml", "iclr", "nature-methods"]
+    }
+  },
+  "first_paper_strategies": [
+    {
+      "id": "reproduce-improve",
+      "name": "Reproduce + Improve Existing Papers",
+      "description": "Take scGPT/scVI/Geneformer/CPA/scGNN, reproduce results, improve one component, benchmark rigorously, publish workshop/preprint, contribute code.",
+      "difficulty": "medium",
+      "time_estimate": "3-6 months",
+      "upside": "high",
+      "recommended": true,
+      "example_papers": ["scGPT", "scVI", "Geneformer", "CPA", "scGNN"]
+    },
+    {
+      "id": "gnns-cell-interaction",
+      "name": "GNNs For Cell-Cell Interaction",
+      "description": "Tissue graphs, immune interaction graphs, spatial transcriptomics graphs, perturbation propagation. Leverages your engineering advantage and graph intuition.",
+      "difficulty": "medium",
+      "time_estimate": "4-8 months",
+      "upside": "very_high",
+      "recommended": true,
+      "example_topics": ["tissue graphs", "immune interaction graphs", "spatial transcriptomics graphs", "perturbation propagation"]
+    },
+    {
+      "id": "foundation-models",
+      "name": "Biological Foundation Models",
+      "description": "Transformer embeddings for cells, multimodal biological embeddings, latent biological representations, cell-state language models.",
+      "difficulty": "hard",
+      "time_estimate": "6-12 months",
+      "upside": "very_high",
+      "recommended": false,
+      "example_topics": ["cell embeddings", "multimodal biological embeddings", "cell-state language models"]
+    },
+    {
+      "id": "benchmark-systems",
+      "name": "Benchmark / Systems Papers",
+      "description": "Compare scVI vs Geneformer vs scGPT vs scFoundation across robustness, transfer learning, perturbation prediction, compute efficiency. Underrated but heavily cited.",
+      "difficulty": "medium",
+      "time_estimate": "3-5 months",
+      "upside": "high",
+      "recommended": true,
+      "example_comparisons": ["scVI", "Geneformer", "scGPT", "scFoundation"]
+    }
+  ]
+}

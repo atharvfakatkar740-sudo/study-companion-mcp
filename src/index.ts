@@ -189,11 +189,42 @@ import {
   detectBurnout,
 } from "./tools/accountability.js";
 
+import {
+  searchSemanticScholar,
+  addToCitationGraph,
+  addManualCitation,
+  getCitationGraph,
+  trackPaperLineage,
+  getPaperLineages,
+  generateImplementationChecklist,
+  updateChecklistItem,
+  getImplementationChecklists,
+  findBridgePapers,
+  citationGraphStats,
+} from "./tools/research-intel.js";
+
+import {
+  getConferenceDeadlines,
+  getConferenceInfo,
+  getConferencesByTier,
+  getPublicationStrategy,
+  startPaperDraft,
+  updatePaperDraft,
+  getPaperDrafts,
+  getTargetResearchers,
+  checkOutreachReadiness,
+  logEcosystemContribution,
+  getEcosystemVisibility,
+  getConferenceAlerts,
+  getFirstPaperAdvice,
+  getPublishingDashboard,
+} from "./tools/publishing.js";
+
 // Create the MCP server
 const server = new McpServer({
   name: "study-companion",
-  version: "3.2.0",
-  description: "AI-powered study companion with accountability engine, concept dependency graph, adaptive mastery tracking, active recall engine, Anki export, dynamic JSON study plans, local LLM chat, vector memory, and more.",
+  version: "3.3.0",
+  description: "AI-powered study companion with research intelligence, publishing strategy, conference tracking, accountability, concept graph, mastery tracking, active recall, Anki export, dynamic plans, Ollama chat, vector memory, and more.",
 });
 
 // ============================================
@@ -1566,6 +1597,326 @@ server.tool(
 );
 
 // ============================================
+// RESEARCH INTELLIGENCE TOOLS (v3.3)
+// ============================================
+
+server.tool(
+  "search_semantic_scholar",
+  "Search Semantic Scholar for papers by query. Returns paper IDs, titles, authors, citations, TLDRs. Use add_to_citation_graph to build your citation graph.",
+  {
+    query: z.string().describe("Search query (e.g., 'perturbation prediction single-cell')"),
+    limit: z.number().optional().describe("Max results (default 10)"),
+  },
+  async ({ query, limit }) => {
+    const result = await searchSemanticScholar(query, limit);
+    return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
+  }
+);
+
+server.tool(
+  "add_to_citation_graph",
+  "Add a paper to your citation graph via Semantic Scholar paper ID. Optionally fetches references and citations to build the graph.",
+  {
+    paper_id: z.string().describe("Semantic Scholar paper ID or DOI"),
+    fetch_citations: z.boolean().optional().describe("Also fetch references and citing papers (default true)"),
+    depth: z.number().optional().describe("How many levels of citations to fetch (default 1)"),
+  },
+  async ({ paper_id, fetch_citations, depth }) => {
+    const result = await addToCitationGraph(paper_id, fetch_citations, depth);
+    return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
+  }
+);
+
+server.tool(
+  "add_manual_citation",
+  "Manually add a citation edge between two papers (by title). Creates nodes if they don't exist.",
+  {
+    from_title: z.string().describe("Title of the citing paper"),
+    to_title: z.string().describe("Title of the cited paper"),
+    type: z.enum(["cites", "extends", "reproduces", "competes"]).optional().describe("Relationship type (default 'cites')"),
+  },
+  async ({ from_title, to_title, type }) => {
+    const result = addManualCitation(from_title, to_title, type);
+    return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
+  }
+);
+
+server.tool(
+  "get_citation_graph",
+  "View your citation graph. Optionally filter by paper title to see its references and citing papers.",
+  {
+    paper_title: z.string().optional().describe("Filter to show connections for a specific paper"),
+  },
+  async ({ paper_title }) => {
+    const result = getCitationGraph(paper_title);
+    return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
+  }
+);
+
+server.tool(
+  "track_paper_lineage",
+  "Track the evolution of a paper series (e.g., scGen → trVAE → CPA → chemCPA). Shows how ideas evolved over time.",
+  {
+    lineage_name: z.string().describe("Name for this lineage (e.g., 'Lotfollahi Evolution')"),
+    description: z.string().describe("What this lineage represents"),
+    papers: z.array(z.object({
+      title: z.string(),
+      year: z.number().optional(),
+      contribution: z.string().describe("What this paper contributed to the lineage"),
+    })).describe("Papers in chronological order"),
+  },
+  async ({ lineage_name, description, papers }) => {
+    const result = trackPaperLineage(lineage_name, description, papers);
+    return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
+  }
+);
+
+server.tool(
+  "get_paper_lineages",
+  "View all tracked paper lineages (evolution chains).",
+  {},
+  async () => {
+    const result = getPaperLineages();
+    return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
+  }
+);
+
+server.tool(
+  "generate_implementation_checklist",
+  "Generate a structured checklist for reproducing a paper. Templates for VAE, GNN, Transformer, or general architectures.",
+  {
+    paper_title: z.string().describe("Title of the paper to reproduce"),
+    paper_type: z.enum(["vae", "gnn", "transformer", "general"]).optional().describe("Architecture type for specialized checklist"),
+  },
+  async ({ paper_title, paper_type }) => {
+    const result = generateImplementationChecklist(paper_title, paper_type);
+    return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
+  }
+);
+
+server.tool(
+  "update_checklist_item",
+  "Mark a checklist item as completed or add notes.",
+  {
+    checklist_id: z.string().describe("Checklist ID"),
+    item_id: z.string().describe("Item ID within the checklist"),
+    completed: z.boolean().describe("Whether the item is completed"),
+    notes: z.string().optional().describe("Optional notes"),
+  },
+  async ({ checklist_id, item_id, completed, notes }) => {
+    const result = updateChecklistItem(checklist_id, item_id, completed, notes);
+    return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
+  }
+);
+
+server.tool(
+  "get_implementation_checklists",
+  "View all implementation checklists or details of a specific one.",
+  {
+    checklist_id: z.string().optional().describe("Specific checklist ID to view details"),
+  },
+  async ({ checklist_id }) => {
+    const result = getImplementationChecklists(checklist_id);
+    return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
+  }
+);
+
+server.tool(
+  "find_bridge_papers",
+  "Find papers that bridge two topics (e.g., 'VAEs' and 'spatial transcriptomics'). Uses your citation graph.",
+  {
+    topic_a: z.string().describe("First topic"),
+    topic_b: z.string().describe("Second topic"),
+  },
+  async ({ topic_a, topic_b }) => {
+    const result = findBridgePapers(topic_a, topic_b);
+    return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
+  }
+);
+
+server.tool(
+  "citation_graph_stats",
+  "Get statistics about your citation graph: paper count, year distribution, top venues, most connected papers.",
+  {},
+  async () => {
+    const result = citationGraphStats();
+    return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
+  }
+);
+
+// ============================================
+// PUBLISHING STRATEGY TOOLS (v3.3)
+// ============================================
+
+server.tool(
+  "conference_deadlines",
+  "Track upcoming conference and journal deadlines. Filter by tier (S/A/B) or time window. Shows urgent, upcoming, and future deadlines.",
+  {
+    tier: z.string().optional().describe("Filter by tier: S, A, or B"),
+    within_days: z.number().optional().describe("Show deadlines within N days"),
+  },
+  async ({ tier, within_days }) => {
+    const result = getConferenceDeadlines(tier, within_days);
+    return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
+  }
+);
+
+server.tool(
+  "conference_info",
+  "Get detailed info about a specific conference or journal: deadlines, topics, strategic fit, your entry path.",
+  {
+    conference_id: z.string().describe("Conference ID (e.g., 'neurips', 'icml', 'iclr', 'recomb', 'ismb', 'bioinformatics')"),
+  },
+  async ({ conference_id }) => {
+    const result = getConferenceInfo(conference_id);
+    return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
+  }
+);
+
+server.tool(
+  "conferences_by_tier",
+  "View all tracked conferences and journals organized by strategic tier (S/A/B).",
+  {},
+  async () => {
+    const result = getConferencesByTier();
+    return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
+  }
+);
+
+server.tool(
+  "publication_strategy",
+  "Your publication strategy dashboard: current phase, readiness metrics, recommended strategies, and next actions.",
+  {},
+  async () => {
+    const result = getPublicationStrategy();
+    return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
+  }
+);
+
+server.tool(
+  "start_paper_draft",
+  "Start tracking a new paper draft with target venue, strategy, and co-authors.",
+  {
+    title: z.string().describe("Working title of the paper"),
+    strategy: z.string().describe("Strategy: reproduce-improve, gnns-cell-interaction, foundation-models, benchmark-systems"),
+    target_venue: z.string().describe("Target venue (e.g., 'neurips-workshop', 'bioinformatics', 'arxiv')"),
+    coauthors: z.array(z.string()).optional().describe("List of co-author names"),
+    notes: z.string().optional().describe("Additional notes"),
+  },
+  async ({ title, strategy, target_venue, coauthors, notes }) => {
+    const result = startPaperDraft(title, strategy, target_venue, coauthors, notes);
+    return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
+  }
+);
+
+server.tool(
+  "update_paper_draft",
+  "Update a paper draft's status, title, venue, co-authors, or notes.",
+  {
+    draft_id: z.string().describe("Draft ID"),
+    status: z.string().optional().describe("New status: idea, planning, implementing, writing, submitted, revision, accepted, rejected"),
+    title: z.string().optional().describe("Updated title"),
+    target_venue: z.string().optional().describe("Updated target venue"),
+    coauthors: z.array(z.string()).optional().describe("Updated co-authors"),
+    notes: z.string().optional().describe("Updated notes"),
+  },
+  async ({ draft_id, status, title, target_venue, coauthors, notes }) => {
+    const result = updatePaperDraft(draft_id, { status, title, targetVenue: target_venue, coauthors, notes });
+    return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
+  }
+);
+
+server.tool(
+  "get_paper_drafts",
+  "View all paper drafts and their status pipeline.",
+  {},
+  async () => {
+    const result = getPaperDrafts();
+    return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
+  }
+);
+
+server.tool(
+  "target_researchers",
+  "View target researchers, their labs, alignment, collaboration strategy, and contact readiness criteria.",
+  {
+    alignment: z.string().optional().describe("Filter by alignment level (e.g., 'primary_target', 'high', 'very_high')"),
+  },
+  async ({ alignment }) => {
+    const result = getTargetResearchers(alignment);
+    return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
+  }
+);
+
+server.tool(
+  "outreach_readiness",
+  "Check if you're ready to contact a target researcher. Evaluates your progress against their contact readiness criteria.",
+  {
+    researcher_id: z.string().describe("Researcher ID (e.g., 'lotfollahi', 'theis', 'zitnik')"),
+  },
+  async ({ researcher_id }) => {
+    const result = checkOutreachReadiness(researcher_id);
+    return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
+  }
+);
+
+server.tool(
+  "log_ecosystem_contribution",
+  "Log an open-source contribution (PR, issue, review, etc.) to track your ecosystem visibility.",
+  {
+    ecosystem: z.string().describe("Ecosystem ID (e.g., 'scverse', 'pyg', 'huggingface')"),
+    type: z.enum(["pr", "issue", "review", "documentation", "feature", "bug_fix"]).describe("Contribution type"),
+    repo: z.string().describe("Repository name"),
+    description: z.string().describe("What you contributed"),
+    url: z.string().optional().describe("URL to the contribution"),
+  },
+  async ({ ecosystem, type, repo, description, url }) => {
+    const result = logEcosystemContribution(ecosystem, type, repo, description, url);
+    return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
+  }
+);
+
+server.tool(
+  "ecosystem_visibility",
+  "View your open-source ecosystem visibility: contributions per ecosystem, merged count, and recommendations.",
+  {},
+  async () => {
+    const result = getEcosystemVisibility();
+    return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
+  }
+);
+
+server.tool(
+  "conference_alerts",
+  "Get conference deadline alerts: critical (≤7 days), warning (≤30 days), and upcoming tier-S deadlines.",
+  {},
+  async () => {
+    const result = getConferenceAlerts();
+    return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
+  }
+);
+
+server.tool(
+  "first_paper_advice",
+  "Get personalized first-paper strategy advice based on your current skills, mastery, and papers read.",
+  {},
+  async () => {
+    const result = getFirstPaperAdvice();
+    return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
+  }
+);
+
+server.tool(
+  "publishing_dashboard",
+  "Full publishing dashboard: paper pipeline, ecosystem health, next deadlines, target researchers, current phase.",
+  {},
+  async () => {
+    const result = getPublishingDashboard();
+    return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
+  }
+);
+
+// ============================================
 // PLAN MANAGEMENT TOOLS (v3.0)
 // ============================================
 
@@ -1699,8 +2050,8 @@ server.tool(
 async function main() {
   const transport = new StdioServerTransport();
   await server.connect(transport);
-  console.error("Study Companion MCP server v3.2.0 running on stdio");
-  console.error("Sprint 2: Daily Standup + Phase Velocity + Weekly Retro + Burnout Detection");
+  console.error("Study Companion MCP server v3.3.0 running on stdio");
+  console.error("Sprint 3: Citation Graph + Paper Lineage + Conference Tracking + Publishing Strategy");
   console.error("Hybrid architecture | Ollama | ChromaDB | ntfy.sh");
 }
 

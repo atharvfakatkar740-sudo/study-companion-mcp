@@ -479,6 +479,3 @@ External Services (all free, all local):
 - Automated GitHub commit analysis for learning patterns
 - Multi-user real-time collaboration via WebSocket
 - Custom fine-tuned models on your study data
-
-
-release

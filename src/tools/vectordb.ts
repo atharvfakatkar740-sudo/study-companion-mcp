@@ -292,8 +292,9 @@ export async function checkVectorDBStatus(): Promise<object> {
     const collectionStats: Record<string, number> = {};
     for (const col of collections) {
       try {
-        const c = await client.getCollection({ name: (col as any).name || col });
-        collectionStats[(col as any).name || col] = await c.count();
+        const colName: string = (col as any).name ?? (col as string);
+        const c = await client.getOrCreateCollection({ name: colName });
+        collectionStats[colName] = await c.count();
       } catch {
         // skip
       }

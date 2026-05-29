@@ -27,7 +27,7 @@ RUN mkdir -p /app/data
 
 ENV NODE_ENV=production
 
-LABEL org.opencontainers.image.source="https://github.com/afakatkar/study-companion-mcp"
+LABEL org.opencontainers.image.source="https://github.com/atharvfakatkar740-sudo/study-companion-mcp"
 LABEL org.opencontainers.image.description="AI-powered study companion MCP server with local LLM, vector DB, and calendar sync"
 LABEL org.opencontainers.image.licenses="MIT"
 

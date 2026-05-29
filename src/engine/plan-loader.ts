@@ -124,7 +124,7 @@ export function getMentorKnowledge(): MentorKnowledgeJSON {
       cachedMentorKnowledge = result.data;
     }
   }
-  return cachedMentorKnowledge;
+  return cachedMentorKnowledge!;
 }
 
 export function saveMentorGuidance(
@@ -162,7 +162,7 @@ export function getResearcherConfig(): ResearcherConfigJSON {
       cachedResearchers = result.data;
     }
   }
-  return cachedResearchers;
+  return cachedResearchers!;
 }
 
 // --- Plan Mutation ---

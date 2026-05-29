@@ -181,11 +181,19 @@ import {
   recordTestResult,
 } from "./tools/active-recall.js";
 
+import {
+  dailyStandup,
+  endOfDayReview,
+  phaseVelocity,
+  weeklyRetrospective,
+  detectBurnout,
+} from "./tools/accountability.js";
+
 // Create the MCP server
 const server = new McpServer({
   name: "study-companion",
-  version: "3.1.0",
-  description: "AI-powered study companion with concept dependency graph, adaptive mastery tracking, active recall engine, Anki export, dynamic JSON study plans, local LLM chat, vector memory, and more. Hybrid architecture.",
+  version: "3.2.0",
+  description: "AI-powered study companion with accountability engine, concept dependency graph, adaptive mastery tracking, active recall engine, Anki export, dynamic JSON study plans, local LLM chat, vector memory, and more.",
 });
 
 // ============================================
@@ -1504,6 +1512,60 @@ server.tool(
 );
 
 // ============================================
+// ACCOUNTABILITY & PRODUCTIVITY TOOLS (v3.2)
+// ============================================
+
+server.tool(
+  "daily_standup",
+  "Morning brief: yesterday's work, today's plan (SRS due, papers, focus topics, projects), current streak, blockers, and quick wins. Run this every morning.",
+  {},
+  async () => {
+    const result = dailyStandup();
+    return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
+  }
+);
+
+server.tool(
+  "end_of_day_review",
+  "Evening reflection: what was accomplished, revisions completed, insights saved, what was missed, and a day quality score.",
+  {},
+  async () => {
+    const result = endOfDayReview();
+    return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
+  }
+);
+
+server.tool(
+  "phase_velocity",
+  "Are you ahead or behind schedule? Tracks topics/projects completed vs expected, weekly velocity, projected completion date, and per-phase breakdown.",
+  {},
+  async () => {
+    const result = phaseVelocity();
+    return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
+  }
+);
+
+server.tool(
+  "weekly_retrospective",
+  "Deep weekly analysis: hours trend vs last week, daily breakdown, topic diversity, retention rate, mastery changes, wins, improvements, and next-week focus.",
+  {},
+  async () => {
+    const result = weeklyRetrospective();
+    return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
+  }
+);
+
+server.tool(
+  "burnout_detection",
+  "Analyze burnout risk signals: declining hours, missed days, shrinking sessions, performance drops, lack of variety. Returns risk score and recovery plan.",
+  {},
+  async () => {
+    const result = detectBurnout();
+    return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
+  }
+);
+
+// ============================================
 // PLAN MANAGEMENT TOOLS (v3.0)
 // ============================================
 
@@ -1637,8 +1699,8 @@ server.tool(
 async function main() {
   const transport = new StdioServerTransport();
   await server.connect(transport);
-  console.error("Study Companion MCP server v3.1.0 running on stdio");
-  console.error("Sprint 1: Concept Graph + Adaptive Mastery + Active Recall + Anki Export");
+  console.error("Study Companion MCP server v3.2.0 running on stdio");
+  console.error("Sprint 2: Daily Standup + Phase Velocity + Weekly Retro + Burnout Detection");
   console.error("Hybrid architecture | Ollama | ChromaDB | ntfy.sh");
 }
 

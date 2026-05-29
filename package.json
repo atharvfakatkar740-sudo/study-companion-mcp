@@ -1,6 +1,6 @@
 {
   "name": "study-companion-mcp",
-  "version": "3.2.0",
+  "version": "3.3.0",
   "description": "AI-powered study companion MCP server with local LLM (Ollama), vector DB (ChromaDB), Google Calendar OAuth, paper summarization, mobile notifications, and collaborative tracking. 100% free and local.",
   "main": "dist/index.js",
   "scripts": {

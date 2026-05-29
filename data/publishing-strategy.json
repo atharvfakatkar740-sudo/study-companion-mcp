@@ -1,0 +1,170 @@
+{
+  "target_researchers": [
+    {
+      "id": "lotfollahi",
+      "name": "Mohammad Lotfollahi",
+      "role": "Group Leader",
+      "lab": "Wellcome Sanger Institute / Helmholtz Munich",
+      "focus": ["perturbation prediction", "foundation models", "single-cell AI"],
+      "key_papers": ["scGen", "trVAE", "CPA", "chemCPA", "expiMap"],
+      "alignment": "primary_target",
+      "collaboration_strategy": "Reproduce and improve his methods. Contribute to his open-source tools. Engage via scverse ecosystem.",
+      "contact_readiness_criteria": [
+        "Reproduced at least 2 of his papers with good results",
+        "Published or preprinted at least 1 paper in perturbation prediction",
+        "Active contributor to scverse/scvi-tools",
+        "Strong GitHub portfolio with 4+ bio-ML repos"
+      ],
+      "urls": {
+        "scholar": "https://scholar.google.com/citations?user=EXAMPLE",
+        "github": "https://github.com/theislab",
+        "twitter": "https://twitter.com/mo_lotfollahi"
+      }
+    },
+    {
+      "id": "theis",
+      "name": "Fabian Theis",
+      "role": "Director",
+      "lab": "Helmholtz Munich - Institute of Computational Biology",
+      "focus": ["single-cell analysis", "scVI ecosystem", "computational biology"],
+      "key_papers": ["scVI", "scanpy", "scArches", "totalVI"],
+      "alignment": "high",
+      "collaboration_strategy": "Theis lab is the hub of scverse. Contributing to scanpy/scvi-tools makes you visible to this ecosystem.",
+      "contact_readiness_criteria": [
+        "Meaningful contributions to scverse packages",
+        "Understanding of variational inference at a deep level"
+      ],
+      "urls": {}
+    },
+    {
+      "id": "vento-tormo",
+      "name": "Roser Vento-Tormo",
+      "role": "Group Leader",
+      "lab": "Wellcome Sanger Institute",
+      "focus": ["spatial transcriptomics", "immune system", "tissue development"],
+      "key_papers": ["CellPhoneDB"],
+      "alignment": "high",
+      "collaboration_strategy": "Spatial transcriptomics + GNNs is a natural intersection. Her lab needs ML engineers.",
+      "contact_readiness_criteria": [
+        "Working spatial transcriptomics analysis pipeline",
+        "Graph-based tissue analysis project"
+      ],
+      "urls": {}
+    },
+    {
+      "id": "peer",
+      "name": "Dana Pe'er",
+      "role": "Professor",
+      "lab": "Memorial Sloan Kettering Cancer Center",
+      "focus": ["single-cell genomics", "trajectory inference", "cancer genomics"],
+      "key_papers": ["Wanderlust", "Palantir"],
+      "alignment": "high",
+      "collaboration_strategy": "Strong ML background. Her lab appreciates rigorous engineering and benchmarking.",
+      "contact_readiness_criteria": [
+        "Trajectory inference or cancer genomics project",
+        "Published benchmark paper"
+      ],
+      "urls": {}
+    },
+    {
+      "id": "zitnik",
+      "name": "Marinka Zitnik",
+      "role": "Assistant Professor",
+      "lab": "Harvard - Zitnik Lab",
+      "focus": ["graph ML", "drug discovery", "biomedical AI"],
+      "key_papers": ["Decagon", "GraphSAINT", "TxGNN"],
+      "alignment": "very_high",
+      "collaboration_strategy": "Perfect GNN + biology intersection. Her lab actively recruits ML engineers. Contribute to her open-source repos.",
+      "contact_readiness_criteria": [
+        "GNN project in biological context",
+        "Contribution to her lab's repositories"
+      ],
+      "urls": {
+        "lab": "https://zitniklab.hms.harvard.edu"
+      }
+    },
+    {
+      "id": "trapnell",
+      "name": "Cole Trapnell",
+      "role": "Professor",
+      "lab": "University of Washington",
+      "focus": ["single-cell analysis", "Monocle", "perturbation biology"],
+      "key_papers": ["Monocle", "sci-RNA-seq"],
+      "alignment": "high",
+      "collaboration_strategy": "Monocle ecosystem is important. Biology-heavy but values strong computational contributions.",
+      "contact_readiness_criteria": [
+        "Understanding of trajectory inference",
+        "Single-cell analysis project"
+      ],
+      "urls": {}
+    }
+  ],
+  "coauthor_strategy": {
+    "primary_targets": {
+      "description": "PhD Students & Postdocs in Top Labs — most accessible, code-focused, often overloaded, willing to collaborate",
+      "why": "Top labs run largely through postdocs and PhD students. These are your actual entry points.",
+      "how_to_find": [
+        "Check lab websites for team members",
+        "Look at recent paper author lists (non-PI authors)",
+        "Find them on Twitter/X — they are often active",
+        "Engage with their GitHub repositories",
+        "Attend their poster sessions at workshops"
+      ]
+    },
+    "secondary_targets": {
+      "description": "Open-Source Maintainers — scverse, scanpy, scVI-tools, PyTorch Geometric, bio foundation model repos",
+      "why": "Contributors often become collaborators. Your engineering skills are directly valuable.",
+      "how_to_approach": [
+        "Start with documentation PRs and bug fixes",
+        "Gradually take on feature implementation",
+        "Engage in issue discussions with substantive suggestions",
+        "Offer benchmarking and testing contributions"
+      ]
+    },
+    "tertiary_targets": {
+      "description": "Young Faculty Building New Labs — newer assistant professors, newly funded AI-biology labs",
+      "why": "They actively need motivated engineers, infrastructure builders, benchmark contributors.",
+      "where_to_find": [
+        "Recent faculty hires at top institutions",
+        "PIs who just got their first big grant",
+        "New computational biology groups forming"
+      ]
+    }
+  },
+  "ecosystems": [
+    {
+      "id": "scverse",
+      "name": "scverse",
+      "url": "https://scverse.org",
+      "description": "One of the MOST important ecosystems in computational biology. Includes scanpy, AnnData, scVI-tools.",
+      "connected_to": ["Helmholtz Munich", "Wellcome Sanger", "single-cell AI community"],
+      "contribution_targets": ["scanpy", "anndata", "scvi-tools", "muon", "squidpy"],
+      "priority": "critical",
+      "status": "not_started",
+      "contributions": []
+    },
+    {
+      "id": "pyg",
+      "name": "PyTorch Geometric",
+      "url": "https://pytorch-geometric.readthedocs.io",
+      "description": "Extremely relevant for GNN direction. Strong community, well-maintained.",
+      "connected_to": ["Graph ML community", "Biological graph applications"],
+      "contribution_targets": ["pyg-lib", "torch-geometric", "examples/biological"],
+      "priority": "high",
+      "status": "not_started",
+      "contributions": []
+    },
+    {
+      "id": "huggingface",
+      "name": "Hugging Face",
+      "url": "https://huggingface.co",
+      "description": "Biological foundation models increasingly use this ecosystem. Model hub for scGPT, Geneformer, etc.",
+      "connected_to": ["Foundation model community", "Bio-ML model distribution"],
+      "contribution_targets": ["model cards for bio models", "datasets", "spaces for demos"],
+      "priority": "medium",
+      "status": "not_started",
+      "contributions": []
+    }
+  ],
+  "key_insight": "The fastest way into elite research ecosystems is NOT solo genius papers. It is: strong engineering, reproducibility, reliability, open-source contributions, becoming known in a niche. Especially in computational biology — this field is highly collaborative and infrastructure-driven."
+}

@@ -1,0 +1,7 @@
+{
+  "baseUrl": "http://localhost:11434",
+  "chatModel": "gemma2:2b",
+  "embedModel": "nomic-embed-text",
+  "temperature": 0.7,
+  "maxTokens": 2048
+}

@@ -1,0 +1,16 @@
+{
+  "serverUrl": "https://ntfy.sh",
+  "topic": "study-companion-test",
+  "enabled": true,
+  "defaultPriority": 3,
+  "quietHoursStart": 23,
+  "quietHoursEnd": 7,
+  "tags": {
+    "study": "books",
+    "revision": "brain",
+    "milestone": "trophy",
+    "reminder": "bell",
+    "streak": "fire",
+    "warning": "warning"
+  }
+}

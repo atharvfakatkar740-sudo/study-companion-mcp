@@ -1,0 +1,227 @@
+[
+  {
+    "id": "session-2026-06-08-200",
+    "title": "📚 Paper Reading / Theory: PyTorch Deep Mastery",
+    "description": "Study session - Paper Reading / Theory\nTopic: PyTorch Deep Mastery\nPhase: Phase 1 — Core ML Foundations\n\nRemember: Consistency > Intensity",
+    "startTime": "2026-06-08T20:00:00",
+    "endTime": "2026-06-08T21:00:00",
+    "topic": "PyTorch Deep Mastery",
+    "type": "paper"
+  },
+  {
+    "id": "session-2026-06-08-210",
+    "title": "📚 Implementation / Coding: Backpropagation & Optimization",
+    "description": "Study session - Implementation / Coding\nTopic: Backpropagation & Optimization\nPhase: Phase 1 — Core ML Foundations\n\nRemember: Consistency > Intensity",
+    "startTime": "2026-06-08T21:00:00",
+    "endTime": "2026-06-08T22:00:00",
+    "topic": "Backpropagation & Optimization",
+    "type": "study"
+  },
+  {
+    "id": "session-2026-06-08-220",
+    "title": "📚 Math + Experiments: Transformers & Attention",
+    "description": "Study session - Math + Experiments\nTopic: Transformers & Attention\nPhase: Phase 1 — Core ML Foundations\n\nRemember: Consistency > Intensity",
+    "startTime": "2026-06-08T22:00:00",
+    "endTime": "2026-06-08T23:00:00",
+    "topic": "Transformers & Attention",
+    "type": "study"
+  },
+  {
+    "id": "session-2026-06-09-200",
+    "title": "📚 Paper Reading / Theory: Backpropagation & Optimization",
+    "description": "Study session - Paper Reading / Theory\nTopic: Backpropagation & Optimization\nPhase: Phase 1 — Core ML Foundations\n\nRemember: Consistency > Intensity",
+    "startTime": "2026-06-09T20:00:00",
+    "endTime": "2026-06-09T21:00:00",
+    "topic": "Backpropagation & Optimization",
+    "type": "paper"
+  },
+  {
+    "id": "session-2026-06-09-210",
+    "title": "📚 Implementation / Coding: Transformers & Attention",
+    "description": "Study session - Implementation / Coding\nTopic: Transformers & Attention\nPhase: Phase 1 — Core ML Foundations\n\nRemember: Consistency > Intensity",
+    "startTime": "2026-06-09T21:00:00",
+    "endTime": "2026-06-09T22:00:00",
+    "topic": "Transformers & Attention",
+    "type": "study"
+  },
+  {
+    "id": "session-2026-06-09-220",
+    "title": "📚 Math + Experiments: Autoencoders",
+    "description": "Study session - Math + Experiments\nTopic: Autoencoders\nPhase: Phase 1 — Core ML Foundations\n\nRemember: Consistency > Intensity",
+    "startTime": "2026-06-09T22:00:00",
+    "endTime": "2026-06-09T23:00:00",
+    "topic": "Autoencoders",
+    "type": "study"
+  },
+  {
+    "id": "session-2026-06-10-200",
+    "title": "📚 Paper Reading / Theory: Transformers & Attention",
+    "description": "Study session - Paper Reading / Theory\nTopic: Transformers & Attention\nPhase: Phase 1 — Core ML Foundations\n\nRemember: Consistency > Intensity",
+    "startTime": "2026-06-10T20:00:00",
+    "endTime": "2026-06-10T21:00:00",
+    "topic": "Transformers & Attention",
+    "type": "paper"
+  },
+  {
+    "id": "session-2026-06-10-210",
+    "title": "📚 Implementation / Coding: Autoencoders",
+    "description": "Study session - Implementation / Coding\nTopic: Autoencoders\nPhase: Phase 1 — Core ML Foundations\n\nRemember: Consistency > Intensity",
+    "startTime": "2026-06-10T21:00:00",
+    "endTime": "2026-06-10T22:00:00",
+    "topic": "Autoencoders",
+    "type": "study"
+  },
+  {
+    "id": "session-2026-06-10-220",
+    "title": "📚 Math + Experiments: PyTorch Deep Mastery",
+    "description": "Study session - Math + Experiments\nTopic: PyTorch Deep Mastery\nPhase: Phase 1 — Core ML Foundations\n\nRemember: Consistency > Intensity",
+    "startTime": "2026-06-10T22:00:00",
+    "endTime": "2026-06-10T23:00:00",
+    "topic": "PyTorch Deep Mastery",
+    "type": "study"
+  },
+  {
+    "id": "session-2026-06-11-200",
+    "title": "📚 Paper Reading / Theory: Autoencoders",
+    "description": "Study session - Paper Reading / Theory\nTopic: Autoencoders\nPhase: Phase 1 — Core ML Foundations\n\nRemember: Consistency > Intensity",
+    "startTime": "2026-06-11T20:00:00",
+    "endTime": "2026-06-11T21:00:00",
+    "topic": "Autoencoders",
+    "type": "paper"
+  },
+  {
+    "id": "session-2026-06-11-210",
+    "title": "📚 Implementation / Coding: PyTorch Deep Mastery",
+    "description": "Study session - Implementation / Coding\nTopic: PyTorch Deep Mastery\nPhase: Phase 1 — Core ML Foundations\n\nRemember: Consistency > Intensity",
+    "startTime": "2026-06-11T21:00:00",
+    "endTime": "2026-06-11T22:00:00",
+    "topic": "PyTorch Deep Mastery",
+    "type": "study"
+  },
+  {
+    "id": "session-2026-06-11-220",
+    "title": "📚 Math + Experiments: Backpropagation & Optimization",
+    "description": "Study session - Math + Experiments\nTopic: Backpropagation & Optimization\nPhase: Phase 1 — Core ML Foundations\n\nRemember: Consistency > Intensity",
+    "startTime": "2026-06-11T22:00:00",
+    "endTime": "2026-06-11T23:00:00",
+    "topic": "Backpropagation & Optimization",
+    "type": "study"
+  },
+  {
+    "id": "session-2026-06-12-200",
+    "title": "📚 Paper Reading / Theory: PyTorch Deep Mastery",
+    "description": "Study session - Paper Reading / Theory\nTopic: PyTorch Deep Mastery\nPhase: Phase 1 — Core ML Foundations\n\nRemember: Consistency > Intensity",
+    "startTime": "2026-06-12T20:00:00",
+    "endTime": "2026-06-12T21:00:00",
+    "topic": "PyTorch Deep Mastery",
+    "type": "paper"
+  },
+  {
+    "id": "session-2026-06-12-210",
+    "title": "📚 Implementation / Coding: Backpropagation & Optimization",
+    "description": "Study session - Implementation / Coding\nTopic: Backpropagation & Optimization\nPhase: Phase 1 — Core ML Foundations\n\nRemember: Consistency > Intensity",
+    "startTime": "2026-06-12T21:00:00",
+    "endTime": "2026-06-12T22:00:00",
+    "topic": "Backpropagation & Optimization",
+    "type": "study"
+  },
+  {
+    "id": "session-2026-06-12-220",
+    "title": "📚 Math + Experiments: Transformers & Attention",
+    "description": "Study session - Math + Experiments\nTopic: Transformers & Attention\nPhase: Phase 1 — Core ML Foundations\n\nRemember: Consistency > Intensity",
+    "startTime": "2026-06-12T22:00:00",
+    "endTime": "2026-06-12T23:00:00",
+    "topic": "Transformers & Attention",
+    "type": "study"
+  },
+  {
+    "id": "session-2026-06-13-80",
+    "title": "📚 Deep Focus: Implementation: Backpropagation & Optimization",
+    "description": "Study session - Deep Focus: Implementation\nTopic: Backpropagation & Optimization\nPhase: Phase 1 — Core ML Foundations\n\nRemember: Consistency > Intensity",
+    "startTime": "2026-06-13T08:00:00",
+    "endTime": "2026-06-13T10:00:00",
+    "topic": "Backpropagation & Optimization",
+    "type": "study"
+  },
+  {
+    "id": "session-2026-06-13-1030",
+    "title": "📚 Paper Reading + Notes: Transformers & Attention",
+    "description": "Study session - Paper Reading + Notes\nTopic: Transformers & Attention\nPhase: Phase 1 — Core ML Foundations\n\nRemember: Consistency > Intensity",
+    "startTime": "2026-06-13T10:30:00",
+    "endTime": "2026-06-13T12:30:00",
+    "topic": "Transformers & Attention",
+    "type": "paper"
+  },
+  {
+    "id": "session-2026-06-13-1330",
+    "title": "📚 Project Work: Autoencoders",
+    "description": "Study session - Project Work\nTopic: Autoencoders\nPhase: Phase 1 — Core ML Foundations\n\nRemember: Consistency > Intensity",
+    "startTime": "2026-06-13T13:30:00",
+    "endTime": "2026-06-13T15:30:00",
+    "topic": "Autoencoders",
+    "type": "project"
+  },
+  {
+    "id": "session-2026-06-13-160",
+    "title": "📚 Spaced Repetition + Review: PyTorch Deep Mastery",
+    "description": "Study session - Spaced Repetition + Review\nTopic: PyTorch Deep Mastery\nPhase: Phase 1 — Core ML Foundations\n\nRemember: Consistency > Intensity",
+    "startTime": "2026-06-13T16:00:00",
+    "endTime": "2026-06-13T17:30:00",
+    "topic": "PyTorch Deep Mastery",
+    "type": "revision"
+  },
+  {
+    "id": "session-2026-06-13-1730",
+    "title": "📚 Blog Writing / Documentation: Backpropagation & Optimization",
+    "description": "Study session - Blog Writing / Documentation\nTopic: Backpropagation & Optimization\nPhase: Phase 1 — Core ML Foundations\n\nRemember: Consistency > Intensity",
+    "startTime": "2026-06-13T17:30:00",
+    "endTime": "2026-06-13T18:30:00",
+    "topic": "Backpropagation & Optimization",
+    "type": "blog"
+  },
+  {
+    "id": "session-2026-06-14-80",
+    "title": "📚 Deep Focus: Implementation: Transformers & Attention",
+    "description": "Study session - Deep Focus: Implementation\nTopic: Transformers & Attention\nPhase: Phase 1 — Core ML Foundations\n\nRemember: Consistency > Intensity",
+    "startTime": "2026-06-14T08:00:00",
+    "endTime": "2026-06-14T10:00:00",
+    "topic": "Transformers & Attention",
+    "type": "study"
+  },
+  {
+    "id": "session-2026-06-14-1030",
+    "title": "📚 Paper Reading + Notes: Autoencoders",
+    "description": "Study session - Paper Reading + Notes\nTopic: Autoencoders\nPhase: Phase 1 — Core ML Foundations\n\nRemember: Consistency > Intensity",
+    "startTime": "2026-06-14T10:30:00",
+    "endTime": "2026-06-14T12:30:00",
+    "topic": "Autoencoders",
+    "type": "paper"
+  },
+  {
+    "id": "session-2026-06-14-1330",
+    "title": "📚 Project Work: PyTorch Deep Mastery",
+    "description": "Study session - Project Work\nTopic: PyTorch Deep Mastery\nPhase: Phase 1 — Core ML Foundations\n\nRemember: Consistency > Intensity",
+    "startTime": "2026-06-14T13:30:00",
+    "endTime": "2026-06-14T15:30:00",
+    "topic": "PyTorch Deep Mastery",
+    "type": "project"
+  },
+  {
+    "id": "session-2026-06-14-160",
+    "title": "📚 Spaced Repetition + Review: Backpropagation & Optimization",
+    "description": "Study session - Spaced Repetition + Review\nTopic: Backpropagation & Optimization\nPhase: Phase 1 — Core ML Foundations\n\nRemember: Consistency > Intensity",
+    "startTime": "2026-06-14T16:00:00",
+    "endTime": "2026-06-14T17:30:00",
+    "topic": "Backpropagation & Optimization",
+    "type": "revision"
+  },
+  {
+    "id": "session-2026-06-14-1730",
+    "title": "📚 Blog Writing / Documentation: Transformers & Attention",
+    "description": "Study session - Blog Writing / Documentation\nTopic: Transformers & Attention\nPhase: Phase 1 — Core ML Foundations\n\nRemember: Consistency > Intensity",
+    "startTime": "2026-06-14T17:30:00",
+    "endTime": "2026-06-14T18:30:00",
+    "topic": "Transformers & Attention",
+    "type": "blog"
+  }
+]

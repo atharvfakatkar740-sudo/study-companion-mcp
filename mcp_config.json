@@ -2,7 +2,7 @@
   "mcpServers": {
     "study-companion": {
       "command": "node",
-      "args": ["c:\\Users\\afakatkar\\Documents\\Learning\\ML\\anomaly detection\\study-companion-mcp\\dist\\index.js"],
+      "args": ["/home/atharvfakatkar/contrib/study-companion-mcp/dist/index.js"],
       "env": {}
     }
   }

@@ -1,0 +1,110 @@
+[
+  {
+    "id": "paper-1",
+    "title": "scGen predicts single-cell perturbation responses",
+    "authors": [
+      "Lotfollahi et al."
+    ],
+    "url": "https://www.nature.com/articles/s41592-019-0494-8",
+    "phase": "phase2-compbio",
+    "status": "queued",
+    "priority": 1,
+    "addedDate": "2026-06-07"
+  },
+  {
+    "id": "paper-2",
+    "title": "Conditional out-of-sample generation for unpaired data using trVAE",
+    "authors": [
+      "Lotfollahi et al."
+    ],
+    "url": "https://arxiv.org/abs/1910.01791",
+    "phase": "phase2-compbio",
+    "status": "queued",
+    "priority": 2,
+    "addedDate": "2026-06-07"
+  },
+  {
+    "id": "paper-3",
+    "title": "Predicting cellular responses to complex perturbations in high-throughput screens (CPA)",
+    "authors": [
+      "Lotfollahi et al."
+    ],
+    "url": "https://www.nature.com/articles/s41588-023-01477-6",
+    "phase": "phase2-compbio",
+    "status": "queued",
+    "priority": 3,
+    "addedDate": "2026-06-07"
+  },
+  {
+    "id": "paper-4",
+    "title": "Biologically informed deep learning to query gene programs in single-cell atlases (expiMap)",
+    "authors": [
+      "Lotfollahi et al."
+    ],
+    "url": "https://www.nature.com/articles/s41556-022-01072-x",
+    "phase": "phase2-compbio",
+    "status": "queued",
+    "priority": 4,
+    "addedDate": "2026-06-07"
+  },
+  {
+    "id": "paper-1780811619554-3ss4",
+    "title": "Deep Learning with PyTorch",
+    "authors": [
+      "Stevens et al."
+    ],
+    "url": "https://pytorch.org/deep-learning-with-pytorch",
+    "phase": "phase1-foundations",
+    "status": "queued",
+    "priority": 1,
+    "addedDate": "2026-06-07"
+  },
+  {
+    "id": "paper-1780811619949-ycum",
+    "title": "Adam: A Method for Stochastic Optimization",
+    "authors": [
+      "Kingma & Ba"
+    ],
+    "url": "https://arxiv.org/abs/1412.6980",
+    "phase": "phase1-foundations",
+    "status": "queued",
+    "priority": 2,
+    "addedDate": "2026-06-07"
+  },
+  {
+    "id": "paper-1780811620335-snxb",
+    "title": "Attention Is All You Need",
+    "authors": [
+      "Vaswani et al."
+    ],
+    "url": "https://arxiv.org/abs/1706.03762",
+    "phase": "phase1-foundations",
+    "status": "queued",
+    "priority": 1,
+    "addedDate": "2026-06-07"
+  },
+  {
+    "id": "paper-1780811620609-xn4u",
+    "title": "Auto-Encoding Variational Bayes",
+    "authors": [
+      "Kingma & Welling"
+    ],
+    "url": "https://arxiv.org/abs/1312.6114",
+    "phase": "phase1-foundations",
+    "status": "queued",
+    "priority": 1,
+    "addedDate": "2026-06-07"
+  },
+  {
+    "id": "paper-1780814077222-hbh8",
+    "title": "Auto-Encoding Variational Bayes",
+    "authors": [
+      "Diederik P. Kingma, M. Welling"
+    ],
+    "url": "https://arxiv.org/abs/1312.6114",
+    "phase": "phase1-foundations",
+    "status": "queued",
+    "priority": 1,
+    "addedDate": "2026-06-07"
+  }
+]

@@ -1,0 +1,12 @@
+{
+  "calendarId": "primary",
+  "timeZone": "Asia/Kolkata",
+  "colorMapping": {
+    "study": "9",
+    "revision": "6",
+    "project": "10",
+    "paper": "3",
+    "blog": "5"
+  },
+  "reminderMinutes": 10
+}

@@ -1,0 +1,26 @@
+[
+  {
+    "title": "Test",
+    "message": "Study companion test notification",
+    "timestamp": "2026-06-07T04:32:00.409Z",
+    "priority": 3
+  },
+  {
+    "title": "Today's Study Plan - June 7, 2026",
+    "message": "📚 Phase 1 — Core ML Foundations (Weekend)\n\nTopics to cover today:\n• VAE From Scratch (120 min) - De",
+    "timestamp": "2026-06-07T06:30:34.867Z",
+    "priority": 3
+  },
+  {
+    "title": "Today's Study Sessions Scheduled",
+    "message": "3 sessions added to your calendar for today (June 16):\n• 7-8PM: Math Foundations - Linear Algebra\n• ",
+    "timestamp": "2026-06-16T03:46:25.165Z",
+    "priority": 3
+  },
+  {
+    "title": "Study Resources for Today",
+    "message": "📚 Study Resources for Today:\n\n7-8PM Linear Algebra:\n• Article: https://pabloinsente.github.io/intro",
+    "timestamp": "2026-06-16T03:46:31.347Z",
+    "priority": 3
+  }
+]

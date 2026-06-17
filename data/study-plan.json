@@ -1,24 +1,73 @@
 {
   "meta": {
-    "name": "Lotfollahi Lab Research Path",
-    "version": "1.0",
-    "created": "2025-05-29",
-    "target": "Computational biology researcher at Wellcome Sanger Institute",
-    "timeframe_months": 24
+    "name": "Lotfollahi Lab Research Path — 24-Month Working-Professional Edition",
+    "version": "3.0",
+    "created": "2026-06-07",
+    "based_on": "study-plan-2.json (12-month optimized)",
+    "target": "Computational biology researcher at Wellcome Sanger Institute (Lotfollahi Lab)",
+    "timeframe_months": 24,
+    "total_hours": 1320,
+    "background": "Final-year / recently graduated computer engineering student with full-time job",
+    "design_notes": [
+      "Original 12-month plan stretched to 24 months to accommodate job fatigue and weekday constraints",
+      "Peak deep-work sessions shifted to weekends; weekdays are lighter maintenance/reading tasks",
+      "Each phase is ~doubled in duration to reduce peak load — same total output, more sustainable pace",
+      "Buffer months (6, 12, 18) are recovery/catch-up months with no new hard deliverables",
+      "Outreach phases delayed to months where your portfolio is credibly dense"
+    ]
+  },
+  "schedule_config": {
+    "weekday_hours": 1.5,
+    "weekend_hours": 7,
+    "weekly_total_hours": 21.5,
+    "monthly_total_hours": 86,
+    "weekday_breakdown": {
+      "monday": "Theory — 30 min paper reading OR watching a lecture segment. No implementation. Low cognitive load.",
+      "tuesday": "Implementation micro-session — 1.5 hrs: debug previous weekend's code, fix one failing test, push a small commit.",
+      "wednesday": "Depth drill — pick ONE concept from the week and go deep: derive it, find analogues in other papers, write a 3-sentence note.",
+      "thursday": "Biology day (from month 8) — Scanpy/AnnData workflows, reading a Lotfollahi paper section, light planning. Skip before month 8.",
+      "friday": "Review + plan — 30 min: check what you were supposed to do this week, write 3 sentences in your research journal, plan Saturday deep work."
+    },
+    "weekend_breakdown": {
+      "saturday": "Primary deep work: 3.5 hrs total. Morning block (2 hrs): major implementation or experiment. Afternoon block (1.5 hrs): analysis, visualization, commit and document.",
+      "sunday": "Secondary deep work: 3.5 hrs total. Morning (1.5 hrs): paper reading + annotations. Afternoon (1 hr): blog draft or README writing. Evening (1 hr): week review + planning next week's weekday micro-tasks."
+    },
+    "recovery_rules": [
+      "If a week goes bad (overtime, illness, burnout), skip ALL weekday tasks. Protect the weekend blocks.",
+      "If even one weekend day is lost, use the other to recover — do not try to compress two sessions into one.",
+      "Buffer months exist precisely for 2-4 week disruptions. Do not panic.",
+      "Never carry guilt across a buffer month boundary. Reset cleanly."
+    ]
   },
   "phases": [
     {
       "id": "phase1-foundations",
       "name": "Phase 1 — Core ML Foundations",
-      "monthRange": [1, 6],
-      "description": "Become elite at core ML. Stronger than generic bootcamp people and beginner bioinformatics students.",
+      "monthRange": [1, 10],
+      "description": "Build elite-level PyTorch, deep maths intuition, and GNN mastery. Spread over 10 months (vs 5 in the 12-month plan) to fit around job fatigue. Each weekend does what two weekdays used to do. Deliverables are identical — timeline is the only change. Non-negotiable base.",
       "topics": [
         {
           "id": "pytorch-deep",
           "name": "PyTorch Deep Mastery",
           "phase": "phase1-foundations",
           "priority": "critical",
-          "subtopics": ["tensor operations", "autograd", "custom datasets", "dataloaders", "training loops", "GPU management", "custom layers", "hooks"],
+          "monthTarget": [1, 5],
+          "weekday_approach": "Mon: Read one PyTorch tutorial section. Wed: Trace one autograd computation by hand. Fri: Check what you implemented last weekend — does it make sense now?",
+          "weekend_approach": "Sat: Implement one new PyTorch primitive from scratch. Sun: Write a 3-sentence explanation of what you built — rubber-duck style.",
+          "subtopics": [
+            "tensor operations",
+            "autograd",
+            "custom datasets",
+            "dataloaders",
+            "training loops",
+            "GPU management",
+            "custom layers",
+            "hooks"
+          ],
+          "resources": [
+            "PyTorch official tutorials (pytorch.org/tutorials)",
+            "Dive into Deep Learning (d2l.ai) — Chapters 1-5"
+          ],
           "status": "not_started"
         },
         {
@@ -26,47 +75,23 @@
           "name": "Backpropagation & Optimization",
           "phase": "phase1-foundations",
           "priority": "critical",
-          "subtopics": ["chain rule", "gradient flow", "SGD", "Adam", "learning rate scheduling", "gradient clipping", "batch normalization"],
-          "status": "not_started"
-        },
-        {
-          "id": "embeddings-representations",
-          "name": "Embeddings & Representations",
-          "phase": "phase1-foundations",
-          "priority": "high",
-          "subtopics": ["word embeddings", "learned representations", "embedding spaces", "similarity metrics"],
-          "status": "not_started"
-        },
-        {
-          "id": "cnns",
-          "name": "Convolutional Neural Networks",
-          "phase": "phase1-foundations",
-          "priority": "high",
-          "subtopics": ["convolution operation", "pooling", "architectures (ResNet, VGG)", "feature maps", "receptive fields"],
-          "status": "not_started"
-        },
-        {
-          "id": "transformers-attention",
-          "name": "Transformers & Attention",
-          "phase": "phase1-foundations",
-          "priority": "critical",
-          "subtopics": ["self-attention", "multi-head attention", "positional encoding", "encoder-decoder", "layer normalization", "BERT", "GPT architecture"],
-          "status": "not_started"
-        },
-        {
-          "id": "autoencoders",
-          "name": "Autoencoders",
-          "phase": "phase1-foundations",
-          "priority": "critical",
-          "subtopics": ["encoder-decoder architecture", "latent spaces", "reconstruction loss", "denoising AE", "sparse AE", "contractive AE"],
-          "status": "not_started"
-        },
-        {
-          "id": "vaes",
-          "name": "Variational Autoencoders",
-          "phase": "phase1-foundations",
-          "priority": "critical",
-          "subtopics": ["KL divergence", "ELBO", "reparameterization trick", "variational inference", "posterior collapse", "beta-VAE", "conditional VAE"],
+          "monthTarget": [1, 5],
+          "weekday_approach": "Mon: Read one Goodfellow section. Wed: Derive one update rule by hand — SGD first, then Adam. Fri: Review what confused you mid-week and note it.",
+          "weekend_approach": "Sat: Implement optimizer from scratch and verify outputs match PyTorch. Sun: Test different learning rates on a toy problem — visualize loss curves.",
+          "subtopics": [
+            "chain rule",
+            "gradient flow",
+            "SGD",
+            "Adam",
+            "RMSprop",
+            "learning rate scheduling",
+            "gradient clipping",
+            "batch normalization"
+          ],
+          "resources": [
+            "Deep Learning — Goodfellow, Bengio, Courville (Chapters 6-8)",
+            "The Matrix Calculus You Need for Deep Learning — Parr & Howard (free PDF)"
+          ],
           "status": "not_started"
         },
         {
@@ -74,7 +99,112 @@
           "name": "Mathematics Foundations",
           "phase": "phase1-foundations",
           "priority": "high",
-          "subtopics": ["linear algebra", "probability distributions", "Gaussian intuition", "gradients", "expectation", "KL divergence math", "ELBO derivation"],
+          "monthTarget": [1, 7],
+          "weekday_approach": "Mon: One section of MML textbook — just read, no pressure to derive everything. Wed: Pick one concept (e.g. KL divergence) and derive it cleanly on paper.",
+          "weekend_approach": "Sat: Implement the concept in NumPy to verify intuition. Sun: Write a short 'explain it to a friend' note for your journal.",
+          "subtopics": [
+            "linear algebra",
+            "probability distributions",
+            "Gaussian intuition",
+            "gradients",
+            "expectation",
+            "KL divergence math",
+            "ELBO derivation"
+          ],
+          "resources": [
+            "Mathematics for Machine Learning — Deisenroth et al. (free PDF)",
+            "The Matrix Calculus You Need for Deep Learning — Parr & Howard"
+          ],
+          "status": "not_started"
+        },
+        {
+          "id": "autoencoders",
+          "name": "Autoencoders",
+          "phase": "phase1-foundations",
+          "priority": "critical",
+          "monthTarget": [3, 5],
+          "weekday_approach": "Mon: Read Goodfellow Chapter 14 section by section. Wed: Trace one forward pass through your autoencoder on paper.",
+          "weekend_approach": "Sat: Build encoder-decoder from scratch — no libraries. Sun: Visualize latent space with matplotlib, commit and document.",
+          "subtopics": [
+            "encoder-decoder architecture",
+            "latent spaces",
+            "reconstruction loss",
+            "denoising AE",
+            "sparse AE",
+            "contractive AE"
+          ],
+          "resources": [
+            "Deep Learning — Goodfellow Chapter 14",
+            "Implement from scratch in PyTorch before using any library"
+          ],
+          "status": "not_started"
+        },
+        {
+          "id": "vaes",
+          "name": "Variational Autoencoders",
+          "phase": "phase1-foundations",
+          "priority": "critical",
+          "monthTarget": [5, 7],
+          "weekday_approach": "Mon: Re-read one section of Kingma & Welling. Wed: Re-derive one component of ELBO from scratch — do this until it's muscle memory. Fri: Review your implementation notes from last weekend.",
+          "weekend_approach": "Sat: Implement one VAE component (encoder / reparameterization / decoder / ELBO loss) per weekend. Sun: Visualize outputs and write derivation notes for README.",
+          "subtopics": [
+            "KL divergence",
+            "ELBO",
+            "reparameterization trick",
+            "variational inference",
+            "posterior collapse",
+            "beta-VAE",
+            "conditional VAE"
+          ],
+          "resources": [
+            "Auto-Encoding Variational Bayes — Kingma & Welling 2013 (arXiv:1312.6114) — read 10 times",
+            "Tutorial on Variational Autoencoders — Doersch 2016 (arXiv:1606.05908)",
+            "Derive ELBO by hand before implementing"
+          ],
+          "status": "not_started"
+        },
+        {
+          "id": "embeddings-representations",
+          "name": "Embeddings & Representations",
+          "phase": "phase1-foundations",
+          "priority": "high",
+          "monthTarget": [4, 7],
+          "weekday_approach": "Mon: Read one d2l.ai chapter section. Wed: Experiment with cosine similarity and embedding spaces on paper.",
+          "weekend_approach": "Sat: Implement Word2Vec skip-gram. Sun: Visualize embedding space with UMAP and write notes.",
+          "subtopics": [
+            "word embeddings",
+            "learned representations",
+            "embedding spaces",
+            "similarity metrics"
+          ],
+          "resources": [
+            "d2l.ai Chapter 14-15",
+            "Word2Vec original papers (Mikolov et al. 2013)"
+          ],
+          "status": "not_started"
+        },
+        {
+          "id": "transformers-attention",
+          "name": "Transformers & Attention",
+          "phase": "phase1-foundations",
+          "priority": "critical",
+          "monthTarget": [7, 9],
+          "weekday_approach": "Mon: Read one section of 'Attention Is All You Need.' Wed: Trace one multi-head attention computation by hand for a toy sequence length.",
+          "weekend_approach": "Sat: Implement scaled dot-product attention and multi-head wrapper from scratch. Sun: Run on a small toy task and visualize attention weights.",
+          "subtopics": [
+            "self-attention",
+            "multi-head attention",
+            "positional encoding",
+            "encoder-decoder",
+            "layer normalization",
+            "BERT",
+            "GPT architecture"
+          ],
+          "resources": [
+            "Attention Is All You Need — Vaswani et al. 2017 (arXiv:1706.03762)",
+            "The Illustrated Transformer — Jay Alammar blog post",
+            "Annotated Transformer — Harvard NLP"
+          ],
           "status": "not_started"
         },
         {
@@ -82,7 +212,23 @@
           "name": "Graph Convolutional Networks",
           "phase": "phase1-foundations",
           "priority": "critical",
-          "subtopics": ["spectral graph theory", "graph convolution", "node features", "adjacency matrix", "GCN layers", "semi-supervised classification"],
+          "monthTarget": [6, 9],
+          "weekday_approach": "Mon: Watch one CS224W lecture segment. Wed: Derive the GCN propagation rule by hand for a small 3-node graph.",
+          "weekend_approach": "Sat: Implement GCN from the adjacency matrix up — no PyG yet. Sun: Run Cora node classification, log results with wandb.",
+          "subtopics": [
+            "spectral graph theory",
+            "graph Laplacian",
+            "graph convolution",
+            "node features",
+            "adjacency matrix",
+            "GCN layers",
+            "semi-supervised classification"
+          ],
+          "resources": [
+            "Semi-Supervised Classification with GCN — Kipf & Welling 2017 (arXiv:1609.02907)",
+            "CS224W Lectures 1-8 — Stanford (YouTube, free)",
+            "Implement from scratch before using PyG"
+          ],
           "status": "not_started"
         },
         {
@@ -90,7 +236,19 @@
           "name": "Graph Attention Networks",
           "phase": "phase1-foundations",
           "priority": "critical",
-          "subtopics": ["attention over neighbors", "multi-head graph attention", "masked attention", "inductive learning"],
+          "monthTarget": [8, 10],
+          "weekday_approach": "Mon: Read GAT paper section. Wed: Trace the attention coefficient calculation by hand for one node.",
+          "weekend_approach": "Sat: Implement GAT from scratch — single head first, then multi-head. Sun: Visualize attention weights across neighbors.",
+          "subtopics": [
+            "attention over neighbors",
+            "multi-head graph attention",
+            "masked attention",
+            "inductive learning"
+          ],
+          "resources": [
+            "Graph Attention Networks — Veličković et al. 2018 (arXiv:1710.10903)",
+            "CS224W Lectures 9-12"
+          ],
           "status": "not_started"
         },
         {
@@ -98,7 +256,18 @@
           "name": "GraphSAGE",
           "phase": "phase1-foundations",
           "priority": "high",
-          "subtopics": ["sampling neighbors", "aggregation functions", "inductive representation learning", "mini-batch training"],
+          "monthTarget": [8, 10],
+          "weekday_approach": "Mon: Read Hamilton et al. paper. Wed: Sketch the neighborhood sampling process for a large graph.",
+          "weekend_approach": "Sat: Implement GraphSAGE with mean aggregation. Sun: Test on inductive setting — held-out nodes not seen during training.",
+          "subtopics": [
+            "sampling neighbors",
+            "aggregation functions",
+            "inductive representation learning",
+            "mini-batch training"
+          ],
+          "resources": [
+            "Inductive Representation Learning on Large Graphs — Hamilton et al. 2017 (arXiv:1706.02216)"
+          ],
           "status": "not_started"
         },
         {
@@ -106,7 +275,41 @@
           "name": "Message Passing Neural Networks",
           "phase": "phase1-foundations",
           "priority": "critical",
-          "subtopics": ["message function", "update function", "aggregation", "MPNN framework", "edge features"],
+          "monthTarget": [8, 10],
+          "weekday_approach": "Mon: Read Gilmer et al. paper. Wed: Map GCN and GAT into the MPNN framework on paper.",
+          "weekend_approach": "Sat: Implement MPNN for QM9 molecular property prediction. Sun: Benchmark result against baseline, document.",
+          "subtopics": [
+            "message function",
+            "update function",
+            "aggregation",
+            "MPNN framework",
+            "edge features"
+          ],
+          "resources": [
+            "Neural Message Passing for Quantum Chemistry — Gilmer et al. 2017 (arXiv:1704.01212)"
+          ],
+          "status": "not_started"
+        },
+        {
+          "id": "cnns",
+          "name": "Convolutional Neural Networks",
+          "phase": "phase1-foundations",
+          "priority": "high",
+          "monthTarget": [3, 5],
+          "weekday_approach": "Mon: Read Goodfellow Chapter 9 section. Wed: Derive the convolution operation by hand for a small kernel.",
+          "weekend_approach": "Sat: Implement a ResNet block from scratch. Sun: Train on CIFAR-10 — log accuracy curves.",
+          "subtopics": [
+            "convolution operation",
+            "pooling",
+            "ResNet",
+            "VGG",
+            "feature maps",
+            "receptive fields"
+          ],
+          "resources": [
+            "Deep Learning — Goodfellow Chapter 9",
+            "CS231n — Stanford (notes, free online)"
+          ],
           "status": "not_started"
         },
         {
@@ -114,7 +317,19 @@
           "name": "Graph Transformers",
           "phase": "phase1-foundations",
           "priority": "high",
-          "subtopics": ["positional encodings for graphs", "graph attention vs transformer attention", "Graphormer", "GPS"],
+          "monthTarget": [9, 10],
+          "weekday_approach": "Mon: Read Graphormer / GPS paper. Wed: Compare graph attention mechanism to vanilla transformer attention on paper.",
+          "weekend_approach": "Sat: Implement positional encoding scheme for graphs. Sun: Compare with GCN baseline on same benchmark.",
+          "subtopics": [
+            "positional encodings for graphs",
+            "graph attention vs transformer attention",
+            "Graphormer",
+            "GPS"
+          ],
+          "resources": [
+            "Do Transformers Really Perform Bad for Graph Representation? — Ying et al. 2021",
+            "Recipe for a General, Powerful, Scalable Graph Transformer — Rampasek et al. 2022"
+          ],
           "status": "not_started"
         },
         {
@@ -122,29 +337,43 @@
           "name": "Geometric Deep Learning",
           "phase": "phase1-foundations",
           "priority": "high",
-          "subtopics": ["symmetry groups", "equivariance", "invariance", "gauge equivariant CNNs", "manifold learning"],
+          "monthTarget": [10, 11],
+          "weekday_approach": "Mon: Read one section of Bronstein et al. proto-book. Wed: Map one GNN architecture to the symmetry-group framework.",
+          "weekend_approach": "Sat: Implement one equivariant layer. Sun: Read selectively — this is a reference text, not a cover-to-cover read.",
+          "subtopics": [
+            "symmetry groups",
+            "equivariance",
+            "invariance",
+            "gauge equivariant CNNs",
+            "manifold learning"
+          ],
+          "resources": [
+            "Geometric Deep Learning: Grids, Groups, Graphs, Geodesics, and Gauges — Bronstein et al. 2021 (free PDF)"
+          ],
           "status": "not_started"
         }
       ],
       "deliverables": [
-        "Implement a VAE from scratch in PyTorch",
-        "Explain latent spaces clearly",
-        "Explain perturbation embeddings",
-        "Train on custom datasets",
-        "One strong GitHub repo: 'Graph Neural Networks From Scratch'"
+        "MLP trained on CIFAR-10 achieving 80%+ accuracy",
+        "Autoencoder repo with MNIST latent space visualization",
+        "VAE from scratch — full repo with ELBO derivation in README",
+        "GNN from scratch repo — GCN, GAT, GraphSAGE, graph AE",
+        "GitHub commit history showing steady progression"
       ],
       "projects": [
         {
           "id": "vae-from-scratch",
           "name": "VAE From Scratch",
           "phase": "phase1-foundations",
-          "description": "Implement a complete VAE with training, visualization of latent space, and generation",
+          "description": "Implement a complete VAE with training, visualization of latent space, and generation. Do NOT use high-level libraries — build encoder, reparameterization, decoder, ELBO loss from primitive PyTorch. With a job, spread implementation across 4 weekends minimum.",
+          "monthTarget": [5, 7],
           "milestones": [
-            { "id": "vae-1", "description": "Basic autoencoder working", "completed": false },
-            { "id": "vae-2", "description": "Add variational inference (KL + reparameterization)", "completed": false },
-            { "id": "vae-3", "description": "Train on MNIST/Fashion-MNIST", "completed": false },
-            { "id": "vae-4", "description": "Latent space visualization and interpolation", "completed": false },
-            { "id": "vae-5", "description": "Conditional VAE implementation", "completed": false }
+            { "id": "vae-1", "description": "Basic autoencoder working on MNIST", "completed": false },
+            { "id": "vae-2", "description": "Add variational inference: KL divergence term + reparameterization trick", "completed": false },
+            { "id": "vae-3", "description": "Train on MNIST and Fashion-MNIST, log loss curves with wandb", "completed": false },
+            { "id": "vae-4", "description": "Latent space visualization (PCA + UMAP) and latent interpolation", "completed": false },
+            { "id": "vae-5", "description": "Conditional VAE: condition on class labels, generate class-specific samples", "completed": false },
+            { "id": "vae-6", "description": "README with mathematical derivation of ELBO written from scratch", "completed": false }
           ],
           "status": "not_started"
         },
@@ -152,14 +381,15 @@
           "id": "gnn-from-scratch",
           "name": "Graph Neural Networks From Scratch",
           "phase": "phase1-foundations",
-          "description": "Complete GNN implementations with math explanations and experiments",
+          "description": "Complete GNN implementations with mathematical derivations and experiments. Implement each architecture manually before switching to PyG. Spread across months 7-10 — one architecture per 2-3 weekends. Final repo should be a reference-quality resource.",
+          "monthTarget": [7, 10],
           "milestones": [
-            { "id": "gnn-1", "description": "GCN implementation + node classification", "completed": false },
-            { "id": "gnn-2", "description": "GAT implementation", "completed": false },
-            { "id": "gnn-3", "description": "GraphSAGE implementation", "completed": false },
-            { "id": "gnn-4", "description": "Molecular property prediction", "completed": false },
-            { "id": "gnn-5", "description": "Graph autoencoder", "completed": false },
-            { "id": "gnn-6", "description": "Clean README with math + experiments", "completed": false }
+            { "id": "gnn-1", "description": "GCN implementation + Cora node classification experiment", "completed": false },
+            { "id": "gnn-2", "description": "GAT implementation + attention visualization", "completed": false },
+            { "id": "gnn-3", "description": "GraphSAGE implementation + inductive experiment", "completed": false },
+            { "id": "gnn-4", "description": "Molecular property prediction on QM9 with MPNN", "completed": false },
+            { "id": "gnn-5", "description": "Graph autoencoder for link prediction", "completed": false },
+            { "id": "gnn-6", "description": "Clean README with math derivations, benchmark table, and learning notes", "completed": false }
           ],
           "status": "not_started"
         }
@@ -168,15 +398,31 @@
     {
       "id": "phase2-compbio",
       "name": "Phase 2 — Enter Computational Biology",
-      "monthRange": [6, 12],
-      "description": "Domain transition into single-cell computational biology. Learn biology through the computational lens.",
+      "monthRange": [8, 17],
+      "description": "Overlap with Phase 1 from month 8. Domain transition into single-cell computational biology. Learn biology through the computational lens. Weekday Thursday slot is reserved for biology from month 8 onward. With a job, this phase takes longer — that is expected and fine.",
       "topics": [
         {
           "id": "cell-biology-basics",
           "name": "Cell Biology for ML",
           "phase": "phase2-compbio",
           "priority": "high",
-          "subtopics": ["cells", "RNA", "gene expression", "sequencing basics", "perturbations", "CRISPR basics", "transcriptomics"],
+          "monthTarget": [8, 10],
+          "weekday_approach": "Thu: Read one section of sc-best-practices.org. Keep biology reading separate from ML implementation days.",
+          "weekend_approach": "Sun: Watch one Theis lab lecture on YouTube. Write a 3-sentence summary connecting the biology to the ML problem.",
+          "subtopics": [
+            "cells",
+            "RNA",
+            "gene expression",
+            "central dogma",
+            "sequencing basics",
+            "perturbations",
+            "CRISPR basics",
+            "transcriptomics"
+          ],
+          "resources": [
+            "Single-cell best practices book — sc-best-practices.org (Chapters 1-3, free online)",
+            "A primer on single-cell RNA sequencing — YouTube lectures by Fabian Theis lab"
+          ],
           "status": "not_started"
         },
         {
@@ -184,7 +430,25 @@
           "name": "Scanpy & AnnData",
           "phase": "phase2-compbio",
           "priority": "critical",
-          "subtopics": ["preprocessing", "normalization", "HVG selection", "PCA", "neighbors graph", "clustering", "UMAP", "differential expression"],
+          "monthTarget": [8, 11],
+          "weekday_approach": "Thu: Work through one Scanpy tutorial step. Fri: Write one observation about the data structure in your journal.",
+          "weekend_approach": "Sat: Complete one end-to-end Scanpy analysis step (normalization, HVG selection, PCA). Sun: Visualize the output and write annotations.",
+          "subtopics": [
+            "preprocessing",
+            "normalization",
+            "highly variable gene selection",
+            "PCA",
+            "neighbors graph",
+            "Leiden clustering",
+            "UMAP",
+            "differential expression",
+            "AnnData structure: obs, var, obsm, uns"
+          ],
+          "resources": [
+            "Scanpy PBMC tutorial (scanpy.readthedocs.io)",
+            "Scanpy paper — Wolf et al. Genome Biology 2018",
+            "AnnData documentation and tutorials"
+          ],
           "status": "not_started"
         },
         {
@@ -192,7 +456,20 @@
           "name": "Batch Correction Methods",
           "phase": "phase2-compbio",
           "priority": "high",
-          "subtopics": ["batch effects", "scanorama", "harmony", "scVI", "benchmarking"],
+          "monthTarget": [10, 13],
+          "weekday_approach": "Mon: Read Luecken et al. benchmarking paper section. Thu: Run a harmony or scanorama tutorial on a public dataset.",
+          "weekend_approach": "Sat: Implement batch correction pipeline and evaluate with LISI/ASW metrics. Sun: Compare methods visually with UMAP.",
+          "subtopics": [
+            "batch effects and their causes",
+            "scanorama",
+            "harmony",
+            "scVI for batch correction",
+            "benchmarking metrics: LISI, ASW"
+          ],
+          "resources": [
+            "Benchmarking atlas-level data integration — Luecken et al. 2022",
+            "scvi-tools documentation"
+          ],
           "status": "not_started"
         },
         {
@@ -200,7 +477,23 @@
           "name": "Lotfollahi Papers Deep Dive",
           "phase": "phase2-compbio",
           "priority": "critical",
-          "subtopics": ["scGen", "trVAE", "CPA", "chemCPA", "expiMap"],
+          "monthTarget": [10, 17],
+          "weekday_approach": "Mon: Re-read one section of current Lotfollahi paper with annotations. Wed: Map one design decision from the paper to a specific PyTorch component you could implement.",
+          "weekend_approach": "Sun: Read one full Lotfollahi paper per fortnight — read it 2-3 times across two Sundays. Write detailed notes on architecture choices.",
+          "subtopics": [
+            "scGen — VAE + perturbation arithmetic",
+            "trVAE — conditional generation with MMD loss",
+            "CPA — compositional perturbation autoencoder",
+            "chemCPA — drug perturbation prediction",
+            "expiMap — gene program identification"
+          ],
+          "resources": [
+            "scGen — Lotfollahi et al. Nature Methods 2019",
+            "trVAE — Lotfollahi et al. Bioinformatics 2020 (arXiv:1910.01791)",
+            "CPA — Lotfollahi et al. Nature Genetics 2023",
+            "expiMap — Lotfollahi et al. Nature Cell Biology 2023",
+            "chemCPA — Hetzel et al. 2022 (arXiv:2204.13545)"
+          ],
           "status": "not_started"
         },
         {
@@ -208,28 +501,61 @@
           "name": "Single-Cell ML",
           "phase": "phase2-compbio",
           "priority": "critical",
-          "subtopics": ["cell embeddings", "perturbation prediction", "gene programs", "foundation models", "multi-modal integration"],
+          "monthTarget": [11, 17],
+          "weekday_approach": "Thu: Read one scVI or foundation model paper section. Mon: Watch one lecture from a single-cell ML course.",
+          "weekend_approach": "Sat: Run scVI on a public dataset. Sun: Compare scVI latent space to PCA and note the differences in your journal.",
+          "subtopics": [
+            "cell embeddings",
+            "perturbation prediction",
+            "gene programs",
+            "foundation models for single cell",
+            "multi-modal integration",
+            "scVI deep generative model"
+          ],
+          "resources": [
+            "scVI — Lopez et al. Nature Methods 2018",
+            "Geneformer — Theodoris et al. Nature 2023",
+            "scGPT — Cui et al. Nature Methods 2024",
+            "Single-cell best practices book (Chapters 4-8)"
+          ],
           "status": "not_started"
         }
       ],
       "deliverables": [
-        "Reproduce scGen results",
-        "Simplified CPA implementation",
-        "trVAE reproduction",
-        "Single-cell VAE for perturbation prediction project"
+        "Scanpy PBMC tutorial completed end-to-end with own annotations",
+        "scGen reproduction with comparison to paper figures",
+        "trVAE reproduction with MMD loss implemented",
+        "CPA deep dive writeup — architecture explained in own words",
+        "Single-cell VAE for perturbation prediction — original project"
       ],
       "projects": [
         {
           "id": "scgen-reproduce",
           "name": "scGen Reproduction",
           "phase": "phase2-compbio",
-          "description": "Reproduce the scGen paper results for perturbation prediction",
+          "description": "Reproduce scGen paper results from scratch. Implement the VAE architecture independently — do not copy lab code. With a job, give this 6-8 weekends. Document every discrepancy between your results and the paper. This is the single most important credibility signal for the lab.",
+          "monthTarget": [10, 13],
           "milestones": [
-            { "id": "scgen-1", "description": "Understand scGen architecture", "completed": false },
-            { "id": "scgen-2", "description": "Process Kang et al. dataset", "completed": false },
-            { "id": "scgen-3", "description": "Implement VAE with perturbation arithmetic", "completed": false },
-            { "id": "scgen-4", "description": "Evaluate predictions", "completed": false },
-            { "id": "scgen-5", "description": "Write up results", "completed": false }
+            { "id": "scgen-1", "description": "Read paper 3 times — annotate every equation and design choice", "completed": false },
+            { "id": "scgen-2", "description": "Process Kang et al. 2018 IFN-β dataset with Scanpy", "completed": false },
+            { "id": "scgen-3", "description": "Implement VAE encoder, decoder, perturbation vector arithmetic", "completed": false },
+            { "id": "scgen-4", "description": "Train and evaluate: compare predicted vs actual stimulated cells", "completed": false },
+            { "id": "scgen-5", "description": "Write up results: what matched, what did not, and why", "completed": false },
+            { "id": "scgen-6", "description": "Publish GitHub repo with reproduction report", "completed": false }
+          ],
+          "status": "not_started"
+        },
+        {
+          "id": "trvae-reproduce",
+          "name": "trVAE Reproduction",
+          "phase": "phase2-compbio",
+          "description": "Reproduce trVAE — conditional generation across conditions using MMD loss. Focus on understanding the conditional architecture and the Maximum Mean Discrepancy regularization. Give this 4-6 weekends.",
+          "monthTarget": [12, 15],
+          "milestones": [
+            { "id": "trvae-1", "description": "Understand MMD loss: derive it, implement it from scratch", "completed": false },
+            { "id": "trvae-2", "description": "Implement conditional encoder with condition embedding", "completed": false },
+            { "id": "trvae-3", "description": "Train on dataset from paper, evaluate conditional generation", "completed": false },
+            { "id": "trvae-4", "description": "Publish repo with clean README", "completed": false }
           ],
           "status": "not_started"
         },
@@ -237,13 +563,14 @@
           "id": "perturbation-vae",
           "name": "Single-cell VAE for Perturbation Prediction",
           "phase": "phase2-compbio",
-          "description": "Build a custom perturbation prediction system combining ideas from scGen + CPA",
+          "description": "Build an original perturbation prediction system combining ideas from scGen and CPA. Make at least one architectural decision of your own. Train on Replogle et al. 2022 Perturb-seq. Benchmark against scGen and CPA baselines. Treat the write-up as a mini-paper. Allow 3-4 months of weekends.",
+          "monthTarget": [16, 20],
           "milestones": [
-            { "id": "pvae-1", "description": "Design architecture", "completed": false },
-            { "id": "pvae-2", "description": "Implement conditional perturbation encoding", "completed": false },
-            { "id": "pvae-3", "description": "Train on real single-cell data", "completed": false },
-            { "id": "pvae-4", "description": "Benchmark against baselines", "completed": false },
-            { "id": "pvae-5", "description": "GitHub repo with documentation", "completed": false }
+            { "id": "pvae-1", "description": "Design architecture — document every choice and rationale", "completed": false },
+            { "id": "pvae-2", "description": "Implement conditional perturbation encoding with new design element", "completed": false },
+            { "id": "pvae-3", "description": "Train on Replogle et al. 2022 Perturb-seq dataset", "completed": false },
+            { "id": "pvae-4", "description": "Benchmark against scGen and CPA baselines quantitatively", "completed": false },
+            { "id": "pvae-5", "description": "GitHub repo with documentation, demo notebook, and results table", "completed": false }
           ],
           "status": "not_started"
         }
@@ -252,15 +579,33 @@
     {
       "id": "phase3-visibility",
       "name": "Phase 3 — Become Publicly Visible",
-      "monthRange": [9, 18],
-      "description": "Build research identity. Associate yourself with ML for biology, generative modeling, GNNs, perturbation learning.",
+      "monthRange": [9, 24],
+      "description": "Build research identity in parallel with all other work. With a job, writing output is lower volume — 6 blog posts over 15 months (one every ~10 weeks) is realistic and still impressive. Associate yourself with ML for biology, generative modeling, GNNs, perturbation learning. You need to be findable before you reach out.",
       "topics": [
         {
           "id": "technical-writing",
           "name": "Technical Blog Writing",
           "phase": "phase3-visibility",
           "priority": "high",
-          "subtopics": ["paper breakdowns", "latent space intuition", "perturbation modeling", "GNN explanations", "implementation walkthroughs"],
+          "monthTarget": [11, 24],
+          "weekday_approach": "Fri: Write 2-3 sentences toward the current blog draft — do NOT try to write a full post on a weekday.",
+          "weekend_approach": "Sun: 1 hour on current blog post — outline, draft a section, or finalize. Publish only when it's good, not on a deadline.",
+          "subtopics": [
+            "paper breakdowns",
+            "latent space intuition pieces",
+            "perturbation modeling explainers",
+            "GNN explanations",
+            "implementation walkthroughs",
+            "reproduction reports"
+          ],
+          "blogPlan": [
+            { "month": 12, "title": "scGen explained — how VAEs predict perturbation responses", "type": "paper breakdown" },
+            { "month": 14, "title": "CPA explained — compositional perturbation autoencoder", "type": "paper breakdown" },
+            { "month": 16, "title": "My scGen reproduction — what matched, what did not, and why", "type": "reproduction report" },
+            { "month": 18, "title": "GNNs for single-cell biology — a practical guide", "type": "explainer" },
+            { "month": 21, "title": "Breaking down a recent Lotfollahi lab preprint", "type": "paper breakdown" },
+            { "month": 23, "title": "Building a perturbation VAE from scratch — architecture decisions", "type": "implementation walkthrough" }
+          ],
           "status": "not_started"
         },
         {
@@ -268,7 +613,25 @@
           "name": "GitHub Portfolio",
           "phase": "phase3-visibility",
           "priority": "critical",
-          "subtopics": ["clean repos", "documentation", "math explanations", "reproducibility", "README quality"],
+          "monthTarget": [9, 24],
+          "weekday_approach": "Tue: Push at least one small commit (even documentation) to keep the streak alive. Fri: Check if READMEs need updating.",
+          "weekend_approach": "Sat or Sun: After completing any major implementation, immediately write the README before moving on.",
+          "subtopics": [
+            "clean repos with consistent structure",
+            "mathematical derivations in READMEs",
+            "reproducible experiments with wandb",
+            "demo notebooks",
+            "requirements.txt and environment files",
+            "README quality: motivation, architecture, results, usage"
+          ],
+          "targetRepos": [
+            "vae-from-scratch",
+            "gnn-from-scratch",
+            "scgen-reproduction",
+            "trvae-reproduction",
+            "cpa-reproduction",
+            "perturbation-vae-custom"
+          ],
           "status": "not_started"
         },
         {
@@ -276,31 +639,51 @@
           "name": "Community Engagement",
           "phase": "phase3-visibility",
           "priority": "medium",
-          "subtopics": ["Twitter/X presence", "follow comp bio labs", "engage with ML researchers", "single-cell community"],
+          "monthTarget": [8, 24],
+          "weekday_approach": "Fri: 10-minute Twitter/X pass — post one sentence update or like/comment on one relevant thread. Do not spend more than 10 minutes.",
+          "weekend_approach": "Sun: After finishing a milestone, post a short thread showing what you built. Include one image (loss curve, latent space, or UMAP). Tag relevant researchers only when you have something specific to say about their work.",
+          "subtopics": [
+            "Twitter/X: weekly progress posts — even one sentence counts",
+            "Tag @M_Lotfollahi on technical posts — not asking, just showing work",
+            "Follow: Lotfollahi lab PhD students and postdocs",
+            "Follow: Fabian Theis lab, Satija lab, Regev lab",
+            "Engage with preprints: post short threads breaking them down",
+            "File GitHub issues and PRs on scvi-tools and scanpy when you have something real to contribute"
+          ],
           "status": "not_started"
         }
       ],
       "deliverables": [
-        "4-6 serious GitHub repos",
-        "Technical blog with paper breakdowns",
-        "Visible research identity",
-        "2-3 paper reproductions",
-        "Workshop/open-source contribution"
+        "6 serious GitHub repos with clean documentation",
+        "Technical blog with 4-6 published posts",
+        "Visible research identity on Twitter/X",
+        "3 paper reproductions published",
+        "At least 1 open-source contribution merged"
       ],
       "projects": []
     },
     {
       "id": "phase4-alignment",
       "name": "Phase 4 — Direct Lab Alignment",
-      "monthRange": [12, 24],
-      "description": "Targeted alignment with Lotfollahi lab ecosystem. Develop sharp specialization.",
+      "monthRange": [15, 22],
+      "description": "Targeted alignment with Lotfollahi lab ecosystem. Choose and execute one sharp specialization. Contribute to the open-source tools the lab builds on. This phase starts only after Phase 1 GNN work is done and Phase 2 reproductions are underway.",
       "topics": [
         {
           "id": "lab-ecosystem",
           "name": "Lab Ecosystem Study",
           "phase": "phase4-alignment",
           "priority": "high",
-          "subtopics": ["lab publications", "collaborators", "PhD students", "GitHub repos", "Cambridge/Sanger/Helmholtz/Theis Lab connections"],
+          "monthTarget": [15, 16],
+          "weekday_approach": "Mon: Read one Lotfollahi lab paper per week during this focused mapping period. Thu: Map co-author connections — note who collaborates with whom.",
+          "weekend_approach": "Sun: Survey the lab GitHub repos — open issues, recent PRs, recent commits. Write a map of the ecosystem in a private Markdown file.",
+          "subtopics": [
+            "all Lotfollahi lab publications and preprints",
+            "lab collaborators: Theis lab, Helmholtz Munich, Cambridge",
+            "PhD students and postdocs — read their papers too",
+            "lab GitHub repos: scgen, CPA, chemCPA",
+            "scvi-tools ecosystem and architecture",
+            "open issues and recent PRs in scvi-tools"
+          ],
           "status": "not_started"
         },
         {
@@ -308,7 +691,22 @@
           "name": "Specialization: Generative Models for Perturbation",
           "phase": "phase4-alignment",
           "priority": "critical",
-          "subtopics": ["advanced VAEs", "flow-based models", "diffusion for biology", "perturbation response generation", "counterfactual prediction"],
+          "monthTarget": [16, 22],
+          "weekday_approach": "Mon: Read one section of the current specialization paper. Wed: Write one paragraph connecting the new method to what you already know.",
+          "weekend_approach": "Sat: Implement one component of the flow/diffusion model per weekend. Sun: Experiment and visualize — do not just read.",
+          "subtopics": [
+            "flow-based models: normalizing flows, RealNVP",
+            "diffusion models for biological data",
+            "score-based generative models",
+            "perturbation response generation",
+            "counterfactual prediction in latent space",
+            "causal ML for perturbations"
+          ],
+          "resources": [
+            "Denoising Diffusion Probabilistic Models — Ho et al. 2020",
+            "Flow Matching for Generative Modeling — Lipman et al. 2022",
+            "Causal machine learning for perturbation biology — Lotfollahi et al. perspectives"
+          ],
           "status": "not_started"
         },
         {
@@ -316,7 +714,22 @@
           "name": "Specialization: GNNs for Spatial Transcriptomics",
           "phase": "phase4-alignment",
           "priority": "critical",
-          "subtopics": ["spatial data formats", "tissue graphs", "spatial gene expression", "graph construction from spatial data", "spatial domain identification"],
+          "monthTarget": [16, 22],
+          "weekday_approach": "Thu: Work through one Squidpy tutorial step. Mon: Read one spatial transcriptomics paper section.",
+          "weekend_approach": "Sat: Load a Visium or MERFISH dataset, build a tissue graph, run GNN on it. Sun: Visualize spatial domain results and note where the GNN helps vs hurts.",
+          "subtopics": [
+            "spatial data formats: Visium, MERFISH, Xenium",
+            "Squidpy for spatial analysis",
+            "tissue graph construction from spatial coordinates",
+            "spatial gene expression modeling",
+            "spatial domain identification with GNNs",
+            "cell-cell communication from spatial data"
+          ],
+          "resources": [
+            "Squidpy documentation and tutorials",
+            "Spatially resolved transcriptomics — Staahl et al. 2016",
+            "STAGATE — Dong & Zhang 2022 (spatial domain identification with GNNs)"
+          ],
           "status": "not_started"
         },
         {
@@ -324,79 +737,631 @@
           "name": "Open Source Contributions",
           "phase": "phase4-alignment",
           "priority": "high",
-          "subtopics": ["scvi-tools", "scanpy ecosystem", "bug fixes", "feature PRs", "documentation"],
+          "monthTarget": [17, 22],
+          "weekday_approach": "Tue: Find one good-first-issue in scvi-tools or scanpy. Read the codebase around it. Wed: Write a comment or draft a fix.",
+          "weekend_approach": "Sat: Work on the PR — implement fix, write tests, document. Do one PR per 4-6 weeks — quality over quantity.",
+          "subtopics": [
+            "scvi-tools: find and file good-first-issues",
+            "scanpy: documentation improvements, small bug fixes",
+            "Submit at least 2 PRs — aim for at least 1 merged",
+            "Write informative PR descriptions explaining the change"
+          ],
+          "resources": [
+            "scvi-tools GitHub — scverse/scvi-tools",
+            "scanpy GitHub — scverse/scanpy"
+          ],
           "status": "not_started"
         }
       ],
       "deliverables": [
-        "One sharp technical specialization",
-        "Open source contributions to relevant repos",
-        "Research-grade implementation"
+        "One clear specialization chosen and executed with a project",
+        "scvi-tools PR merged",
+        "Research-grade implementation of chosen specialization area",
+        "Full lab ecosystem mapped: papers, people, connections"
       ],
       "projects": []
     },
     {
       "id": "phase5-outreach",
-      "name": "Phase 5 — Research Outreach",
-      "monthRange": [12, 24],
-      "description": "Strategic outreach with substance. Become 'that engineering guy seriously transitioning into AI biology.'",
+      "name": "Phase 5 — Strategic Outreach",
+      "monthRange": [13, 24],
+      "description": "Strategic outreach with substance. Become 'that engineering professional seriously transitioning into AI biology.' Never email Mo before you have scGen reproduction, VAE project, and visible GitHub. Reach PhD students and postdocs first. With a job, each outreach action is slower — that is fine because your output is what matters.",
       "topics": [
         {
           "id": "outreach-preparation",
           "name": "Outreach Preparation",
           "phase": "phase5-outreach",
           "priority": "high",
-          "subtopics": ["brief meeting reminder", "specific paper references", "implementation work links", "technical observations"],
+          "monthTarget": [13, 15],
+          "weekday_approach": "Fri: Check GitHub portfolio — would you be comfortable linking it to a researcher today? If no, what's missing?",
+          "weekend_approach": "Sun: Do one 'dry run' — write a draft outreach email, then delete it. Only send when the portfolio is ready.",
+          "subtopics": [
+            "reproduce a paper before emailing its author",
+            "read target person's last 3 papers",
+            "prepare specific technical question from reproduction",
+            "GitHub portfolio ready before first contact",
+            "Twitter/X presence established before first contact"
+          ],
+          "status": "not_started"
+        },
+        {
+          "id": "phd-student-outreach",
+          "name": "PhD Student / Postdoc Outreach",
+          "phase": "phase5-outreach",
+          "priority": "high",
+          "monthTarget": [13, 15],
+          "weekday_approach": "Research the target person's recent papers this week before sending the email.",
+          "weekend_approach": "Write and send one outreach email with scGen reproduction repo link and a specific technical question. Do not send more than 2 in the same week.",
+          "subtopics": [
+            "email the PhD student whose paper you reproduced",
+            "include: reproduction repo link, one specific technical question",
+            "propose: 20-minute call or async Q&A",
+            "do not ask about internships or positions in first contact",
+            "follow up once after 3 weeks if no reply"
+          ],
+          "emailTemplate": "Subject: Reproduction of [their paper] — question on [specific technical point]. Body: I reproduced [paper] and trained it on [dataset]. I found [specific observation]. I am trying to understand [specific question]. Link to repo: [GitHub link]. Would you be open to a brief async exchange? (~3 sentences max)",
+          "status": "not_started"
+        },
+        {
+          "id": "mo-outreach",
+          "name": "Mo Lotfollahi Outreach",
+          "phase": "phase5-outreach",
+          "priority": "critical",
+          "monthTarget": [16, 18],
+          "weekday_approach": "Draft the email on a weekday — iterate on it across 3 days before sending.",
+          "weekend_approach": "Final review and send on a weekend when you are not rushed. Email only after: scGen reproduction published, CPA studied, perturbation VAE project started.",
+          "subtopics": [
+            "email only after: scGen reproduction, CPA study, perturbation VAE project started",
+            "150 words maximum",
+            "link to GitHub — not a CV attachment",
+            "state one specific research question you want to explore",
+            "ask for collaboration or small project — not a position",
+            "one follow-up after 3 weeks if no reply"
+          ],
+          "emailTemplate": "Subject: Implementation of CPA + proposed extension for [specific thing]. Body (150 words max): I am a CE graduate working full-time who reproduced scGen and studied CPA in detail. I built [perturbation VAE project name] — [one sentence on what it does]. GitHub: [link]. I noticed [specific technical observation from your reproduction]. I am curious whether [specific research question]. Is there room for a remote collaboration or small project? I can commit [X hours per week].",
           "status": "not_started"
         },
         {
           "id": "collaboration-seeking",
-          "name": "Remote Research Collaboration",
+          "name": "Remote Research Collaboration & Applications",
           "phase": "phase5-outreach",
           "priority": "high",
-          "subtopics": ["identify collaboration opportunities", "research engineer roles", "funded programs"],
+          "monthTarget": [19, 24],
+          "weekday_approach": "Mon: Research one program or opening. Fri: Add it to your application tracker.",
+          "weekend_approach": "Sun: Work on one application or statement per month. Do not rush these — quality matters enormously.",
+          "subtopics": [
+            "Wellcome Sanger Research Engineer roles",
+            "Open Targets funded programs",
+            "EMBL-EBI funded training programs",
+            "Helmholtz Munich computational biology positions",
+            "PhD program applications: Cambridge, ETH Zurich, EMBL"
+          ],
           "status": "not_started"
         }
       ],
       "deliverables": [
-        "Meaningful outreach with substance",
-        "Research collaboration or engineer opportunity"
+        "Outreach to 2-3 lab PhD students with reproduction repo links",
+        "Email to Mo Lotfollahi with substance — GitHub link, specific question",
+        "Formal applications to Sanger / Open Targets / EMBL-EBI programs",
+        "Research collaboration or engineer opportunity secured"
       ],
       "projects": []
     }
   ],
+  "monthly_milestones": [
+    {
+      "month": 1,
+      "title": "PyTorch foundation — slow start",
+      "phase": "phase1-foundations",
+      "weekday_focus": "Mon: pytorch.org tutorials. Wed: Derive one gradient by hand. Fri: Plan weekend implementation.",
+      "weekend_focus": "Sat: Implement linear regression from scratch. Sun: Write notes, commit.",
+      "goals": [
+        "Complete PyTorch official tutorials sections 1-3",
+        "Implement linear regression and MLP using only raw PyTorch tensors",
+        "Master autograd: compute gradients manually on paper, then verify with PyTorch",
+        "Build a custom Dataset for a real dataset (not MNIST)",
+        "Read Goodfellow Chapters 6 (backprop)"
+      ],
+      "deliverable": "Linear model + MLP committed to GitHub — focus on clean code, not yet on accuracy",
+      "buffer_note": null
+    },
+    {
+      "month": 2,
+      "title": "CNN + optimization basics",
+      "phase": "phase1-foundations",
+      "weekday_focus": "Mon: CS231n notes. Wed: Derive convolution by hand on a 3x3 kernel. Fri: Review weekend commit.",
+      "weekend_focus": "Sat: Implement CNN on CIFAR-10. Sun: Visualize feature maps, push commit.",
+      "goals": [
+        "Implement SGD and Adam from scratch — verify against PyTorch",
+        "Understand learning rate scheduling: cosine annealing, step decay",
+        "Build a CNN for CIFAR-10 — achieve 75%+ accuracy",
+        "Implement batch normalization from scratch",
+        "Read Goodfellow Chapters 7-8 (regularization, optimization)"
+      ],
+      "deliverable": "CNN on CIFAR-10 with 75%+ accuracy committed to GitHub",
+      "buffer_note": null
+    },
+    {
+      "month": 3,
+      "title": "Autoencoders",
+      "phase": "phase1-foundations",
+      "weekday_focus": "Mon: Goodfellow Chapter 14. Wed: Trace encoder-decoder forward pass on paper. Fri: Review and plan.",
+      "weekend_focus": "Sat: Implement basic autoencoder on MNIST. Sun: Visualize latent space with PCA.",
+      "goals": [
+        "Implement basic autoencoder — encoder, bottleneck, decoder, reconstruction loss",
+        "Visualize MNIST latent space with PCA and UMAP",
+        "Implement denoising autoencoder",
+        "Derive KL divergence from scratch on paper — know it cold",
+        "Reach 80%+ CIFAR-10 accuracy if month 2 was under target"
+      ],
+      "deliverable": "Autoencoder GitHub repo with latent space visualization notebook",
+      "buffer_note": null
+    },
+    {
+      "month": 4,
+      "title": "VAE — foundations",
+      "phase": "phase1-foundations",
+      "weekday_focus": "Mon: Kingma & Welling paper pass 1. Wed: Attempt ELBO derivation on paper. Fri: Review what confused you.",
+      "weekend_focus": "Sat: Implement encoder + reparameterization trick. Sun: Implement decoder + ELBO loss. Do not train yet — focus on correctness.",
+      "goals": [
+        "Read Kingma & Welling 2013 VAE paper — 2 full annotated passes",
+        "Derive ELBO by hand from the definition of the marginal likelihood",
+        "Implement encoder, reparameterization trick, decoder, ELBO loss",
+        "Read Tutorial on VAEs — Doersch 2016 as a complement"
+      ],
+      "deliverable": "VAE code committed to GitHub — even if not fully trained yet",
+      "buffer_note": null
+    },
+    {
+      "month": 5,
+      "title": "VAE mastery",
+      "phase": "phase1-foundations",
+      "weekday_focus": "Mon: Paper pass 3. Wed: Re-derive ELBO without looking at notes. Fri: Review training logs from weekend.",
+      "weekend_focus": "Sat: Train VAE on MNIST — log with wandb. Sun: Visualize latent traversals and interpolations.",
+      "goals": [
+        "Train VAE on MNIST and Fashion-MNIST — visualize latent traversals and interpolations",
+        "Implement beta-VAE and observe disentanglement effect",
+        "Implement Conditional VAE — condition on class labels",
+        "Write ELBO derivation in README from scratch"
+      ],
+      "deliverable": "vae-from-scratch GitHub repo with ELBO derivation written in README",
+      "buffer_note": null
+    },
+    {
+      "month": 6,
+      "title": "BUFFER — VAE polish + embeddings",
+      "phase": "phase1-foundations",
+      "weekday_focus": "Light maintenance only — read embeddings papers. No new implementations unless you are ahead of schedule.",
+      "weekend_focus": "Sat: Polish VAE repo — clean README, add demo notebook. Sun: Word2Vec implementation or embeddings exploration.",
+      "goals": [
+        "Polish VAE repo: clean README, add demo notebook, fix any remaining bugs",
+        "Explore word embeddings with Word2Vec",
+        "Catch up on any month 1-5 goals not yet completed",
+        "Rest and recharge — this is a recovery month"
+      ],
+      "deliverable": "VAE repo polished and presentable. No new hard deliverable — catch-up is the deliverable.",
+      "buffer_note": "THIS IS A BUFFER MONTH. If you are behind, use this month to catch up. If you are on track, use it to go deeper on VAE or start transformers early."
+    },
+    {
+      "month": 7,
+      "title": "Transformers & Attention",
+      "phase": "phase1-foundations",
+      "weekday_focus": "Mon: Attention Is All You Need sections. Wed: Trace one attention computation on paper. Fri: Review.",
+      "weekend_focus": "Sat: Implement scaled dot-product and multi-head attention. Sun: Test on a toy sequence task, visualize weights.",
+      "goals": [
+        "Read Attention Is All You Need — 2 full passes with annotations",
+        "Implement scaled dot-product attention from scratch",
+        "Implement multi-head attention wrapper",
+        "Read The Illustrated Transformer blog post",
+        "Implement positional encoding"
+      ],
+      "deliverable": "Transformer attention module committed to GitHub with explanation in README",
+      "buffer_note": null
+    },
+    {
+      "month": 8,
+      "title": "Biology entry + GCN start",
+      "phase": "phase1-foundations + phase2-compbio",
+      "weekday_focus": "Mon: CS224W lecture. Thu: sc-best-practices.org reading. Wed: Derive GCN propagation on a toy 4-node graph.",
+      "weekend_focus": "Sat: Install Scanpy, complete PBMC3k tutorial. Sun: Watch Theis lab lecture, read AnnData docs.",
+      "goals": [
+        "Study spectral graph theory: graph Laplacian, eigendecomposition",
+        "Read GCN paper (Kipf & Welling 2017) — 2 passes with annotations",
+        "Watch CS224W Lectures 1-5",
+        "Install Scanpy — complete the PBMC3k tutorial end-to-end with own annotations",
+        "Learn AnnData structure: obs, var, obsm, obsp, uns",
+        "Read sc-best-practices.org Chapters 1-2",
+        "Begin biology self-study: central dogma, RNA, gene expression"
+      ],
+      "deliverable": "Scanpy PBMC tutorial completed with annotations + CS224W lectures 1-5 watched",
+      "buffer_note": null
+    },
+    {
+      "month": 9,
+      "title": "GCN implementation + Twitter presence",
+      "phase": "phase1-foundations + phase3-visibility",
+      "weekday_focus": "Mon: CS224W Lectures 6-8. Thu: AnnData advanced structure. Fri: Plan first Twitter/X thread.",
+      "weekend_focus": "Sat: Implement GCN from adjacency matrix up — no PyG yet. Sun: Run Cora node classification, post first Twitter/X progress thread.",
+      "goals": [
+        "Implement GCN from scratch — no PyG",
+        "Run Cora node classification experiment",
+        "Watch CS224W Lectures 6-8",
+        "Start Twitter/X presence: post first progress thread showing your VAE or AE visualization",
+        "Log GCN experiment with wandb"
+      ],
+      "deliverable": "GCN for Cora committed to GitHub + first Twitter/X thread posted",
+      "buffer_note": null
+    },
+    {
+      "month": 10,
+      "title": "GAT + GraphSAGE + scGen paper",
+      "phase": "phase1-foundations + phase2-compbio",
+      "weekday_focus": "Mon: GAT paper. Thu: scGen paper pass 1. Wed: Trace GAT attention coefficient calculation.",
+      "weekend_focus": "Sat: Implement GAT from scratch — single head, then multi-head. Sun: Read scGen paper and annotate every equation.",
+      "goals": [
+        "Implement GAT from scratch — attention over neighbors, multi-head version",
+        "Read scGen paper (Lotfollahi et al. Nature Methods 2019) — 1 annotated pass",
+        "Watch CS224W Lectures 9-12",
+        "Process Kang et al. 2018 IFN-β dataset with Scanpy",
+        "Understand scGen architecture at a high level"
+      ],
+      "deliverable": "GAT implementation on GitHub + scGen paper annotations in private notes",
+      "buffer_note": null
+    },
+    {
+      "month": 11,
+      "title": "GraphSAGE + MPNN + scGen prep",
+      "phase": "phase1-foundations + phase2-compbio",
+      "weekday_focus": "Mon: GraphSAGE paper. Thu: scGen paper pass 2. Wed: Map scGen architecture to PyTorch components.",
+      "weekend_focus": "Sat: Implement GraphSAGE. Sun: Start scGen encoder implementation.",
+      "goals": [
+        "Implement GraphSAGE — inductive learning, neighborhood sampling",
+        "Read Gilmer et al. MPNN paper",
+        "Read scGen paper — 2nd pass with focus on architecture decisions",
+        "Begin scGen VAE encoder implementation"
+      ],
+      "deliverable": "GraphSAGE implementation on GitHub + scGen implementation started",
+      "buffer_note": null
+    },
+    {
+      "month": 12,
+      "title": "BUFFER — GNN polish + scGen foundations",
+      "phase": "phase1-foundations + phase2-compbio",
+      "weekday_focus": "Light reading only. No new implementations unless you are ahead.",
+      "weekend_focus": "Sat: Polish GNN repos. Sun: Catch up on any months 8-11 goals not completed.",
+      "goals": [
+        "Polish GCN/GAT/GraphSAGE repos — READMEs, demo notebooks",
+        "Catch up on scGen paper reading if behind",
+        "Publish blog post 1: 'scGen explained — how VAEs predict perturbation responses' (first blog post)",
+        "Rest — 24-month plan requires sustainable pace"
+      ],
+      "deliverable": "Blog post 1 published. GNN repos polished. This is a recovery month.",
+      "buffer_note": "THIS IS A BUFFER MONTH. Consolidate everything from months 1-11. Do not start major new work."
+    },
+    {
+      "month": 13,
+      "title": "scGen reproduction",
+      "phase": "phase2-compbio + phase5-outreach",
+      "weekday_focus": "Mon: scGen paper pass 3. Thu: Process IFN-β dataset in Scanpy. Wed: Implement one scGen component.",
+      "weekend_focus": "Sat: Implement scGen VAE from scratch — encoder, perturbation arithmetic, decoder. Sun: Train and compare to paper figures.",
+      "goals": [
+        "Complete scGen reproduction — train, apply perturbation arithmetic, evaluate",
+        "Compare your results to paper figures — document every discrepancy",
+        "Begin outreach preparation — is GitHub ready to link to a researcher?",
+        "Email 1 PhD student in the Lotfollahi lab with your scGen reproduction repo"
+      ],
+      "deliverable": "scGen reproduction repo on GitHub + first PhD student outreach email sent",
+      "buffer_note": null
+    },
+    {
+      "month": 14,
+      "title": "scGen polish + trVAE start + MPNN",
+      "phase": "phase1-foundations + phase2-compbio",
+      "weekday_focus": "Mon: trVAE paper. Thu: Derive MMD loss on paper. Wed: Implement MPNN message function.",
+      "weekend_focus": "Sat: Complete MPNN implementation on QM9. Sun: Begin trVAE MMD loss implementation.",
+      "goals": [
+        "Complete MPNN implementation for molecular property prediction on QM9",
+        "Read trVAE paper — understand MMD loss and the conditional generation setup",
+        "Begin trVAE implementation: derive and implement MMD loss from scratch",
+        "Publish blog post 2: 'CPA explained — compositional perturbation autoencoder'",
+        "Email 1 more PhD student if month 13 outreach received no reply"
+      ],
+      "deliverable": "MPNN on QM9 committed + trVAE MMD loss implemented",
+      "buffer_note": null
+    },
+    {
+      "month": 15,
+      "title": "GNN project complete + trVAE",
+      "phase": "phase1-foundations + phase2-compbio",
+      "weekday_focus": "Mon: GNN architecture reviews. Thu: trVAE conditional encoder. Wed: Write GNN README derivations.",
+      "weekend_focus": "Sat: Complete GNN-from-scratch repo — graph AE for link prediction. Sun: Continue trVAE — implement conditional encoder.",
+      "goals": [
+        "Complete GNN-from-scratch repo: GCN, GAT, GraphSAGE, MPNN, graph AE",
+        "Write comprehensive README with mathematical derivations for each architecture",
+        "Complete trVAE implementation — conditional encoder, full training loop",
+        "Begin mapping Lotfollahi lab ecosystem: all papers, co-authors, GitHub repos"
+      ],
+      "deliverable": "GNN-from-scratch repo complete with full READMEs",
+      "buffer_note": null
+    },
+    {
+      "month": 16,
+      "title": "trVAE complete + CPA study + specialization decision",
+      "phase": "phase2-compbio + phase4-alignment",
+      "weekday_focus": "Mon: CPA paper pass 1. Thu: trVAE training and evaluation. Wed: Sketch CPA architecture on paper.",
+      "weekend_focus": "Sat: Complete trVAE — train, evaluate, document. Sun: Read CPA paper, map architecture to components.",
+      "goals": [
+        "Complete trVAE reproduction — train and publish repo with clean README",
+        "Read CPA paper (Lotfollahi et al. Nature Genetics 2023) — 1 annotated pass",
+        "Choose specialization track: Generative models for perturbation OR GNNs for spatial transcriptomics",
+        "Publish blog post 3: 'My scGen reproduction — findings and discrepancies'",
+        "Find first scvi-tools good-first-issue and start work"
+      ],
+      "deliverable": "trVAE repo published + specialization track committed + scvi-tools issue filed",
+      "buffer_note": null
+    },
+    {
+      "month": 17,
+      "title": "CPA deep dive + specialization start",
+      "phase": "phase2-compbio + phase4-alignment",
+      "weekday_focus": "Mon: CPA paper passes 2-3. Thu: Spatial or generative specialization reading. Wed: Map CPA embedding arithmetic.",
+      "weekend_focus": "Sat: Begin CPA implementation from scratch. Sun: Start specialization project (Squidpy spatial OR diffusion model).",
+      "goals": [
+        "Read CPA paper — 3 full passes total",
+        "Study CPA architecture: embedding arithmetic for drugs and genes",
+        "Begin CPA implementation from scratch",
+        "For spatial track: install Squidpy, read Visium data format, build first tissue graph",
+        "For generative track: read Ho et al. diffusion paper, understand forward/reverse process",
+        "Email Mo Lotfollahi — 150 words, GitHub link, specific research question"
+      ],
+      "deliverable": "Mo Lotfollahi email sent + CPA implementation started",
+      "buffer_note": null
+    },
+    {
+      "month": 18,
+      "title": "BUFFER — CPA progress + catch-up",
+      "phase": "phase2-compbio",
+      "weekday_focus": "Light reading only. No new hard targets.",
+      "weekend_focus": "Continue CPA implementation if on track. Polish any incomplete repos. Rest.",
+      "goals": [
+        "Continue CPA implementation at your own pace",
+        "Publish blog post 4: 'GNNs for single-cell biology — a practical guide'",
+        "Respond to any feedback from Lotfollahi lab contacts",
+        "Polish GitHub repos — consistent structure, requirements.txt, demo notebooks",
+        "Rest — 18-month milestone is a major checkpoint"
+      ],
+      "deliverable": "Blog post 4 published. CPA in progress. No pressure deliverable — consolidation month.",
+      "buffer_note": "THIS IS A BUFFER MONTH. You are at the 18-month mark. Take stock of what you have. Rest if needed."
+    },
+    {
+      "month": 19,
+      "title": "CPA complete + perturbation VAE design",
+      "phase": "phase2-compbio + phase4-alignment",
+      "weekday_focus": "Mon: CPA final evaluation. Thu: Perturb-seq dataset exploration. Wed: Design perturbation VAE architecture on paper.",
+      "weekend_focus": "Sat: Complete CPA — evaluate on held-out perturbations, document. Sun: Design perturbation VAE — sketch architecture with rationale for each choice.",
+      "goals": [
+        "Complete CPA reproduction — evaluate on held-out perturbations",
+        "Design original perturbation VAE architecture with at least one novel decision",
+        "Document every architectural choice and rationale",
+        "Submit scvi-tools PR",
+        "Begin Replogle et al. 2022 Perturb-seq dataset exploration"
+      ],
+      "deliverable": "CPA repo published + perturbation VAE architecture document",
+      "buffer_note": null
+    },
+    {
+      "month": 20,
+      "title": "Perturbation VAE implementation",
+      "phase": "phase2-compbio + phase4-alignment",
+      "weekday_focus": "Mon: Train loop debugging. Thu: Perturb-seq data loading and QC. Wed: Implement one VAE component.",
+      "weekend_focus": "Sat: Implement conditional perturbation encoding. Sun: First training runs — even partial results are useful.",
+      "goals": [
+        "Implement perturbation VAE: conditional encoder, perturbation latent, decoder",
+        "Begin training on Replogle et al. 2022 Perturb-seq dataset",
+        "Get scvi-tools PR reviewed — respond to feedback",
+        "Apply to: Wellcome Sanger Research Engineer, Open Targets, EMBL-EBI programs",
+        "Publish blog post 5: breakdown of a very recent Lotfollahi lab preprint"
+      ],
+      "deliverable": "Perturbation VAE training started + formal program applications submitted",
+      "buffer_note": null
+    },
+    {
+      "month": 21,
+      "title": "Perturbation VAE benchmarking + depth",
+      "phase": "phase2-compbio + phase4-alignment",
+      "weekday_focus": "Mon: Benchmarking papers for baselines. Thu: scGen/CPA baseline runs. Wed: Analyze quantitative results.",
+      "weekend_focus": "Sat: Run baseline benchmarks — scGen and CPA on same dataset. Sun: Compare quantitatively and write results section.",
+      "goals": [
+        "Benchmark perturbation VAE against scGen and CPA baselines quantitatively",
+        "Go deeper on chosen specialization — read 5 additional papers in the sub-area",
+        "Prepare a 5-slide research summary deck for potential interviews",
+        "Follow up on any open applications",
+        "Get scvi-tools PR merged"
+      ],
+      "deliverable": "Perturbation VAE benchmark results + research summary deck ready",
+      "buffer_note": null
+    },
+    {
+      "month": 22,
+      "title": "Second project + specialization depth",
+      "phase": "phase4-alignment + phase3-visibility",
+      "weekday_focus": "Mon: Second project reading. Thu: Specialization implementation. Wed: Write research journal entry.",
+      "weekend_focus": "Sat: Start second original project or meaningful extension of perturbation VAE. Sun: Read 2 papers in specialization sub-area.",
+      "goals": [
+        "Start a second original project or a meaningful extension of month 19-21 work",
+        "Polish perturbation VAE repo: documentation, demo notebook, results table",
+        "Final follow-up to Mo Lotfollahi if no response received",
+        "Engage in at least one substantive comp-bio discussion per week on Twitter/X"
+      ],
+      "deliverable": "Second project started + perturbation VAE repo complete and polished",
+      "buffer_note": null
+    },
+    {
+      "month": 23,
+      "title": "Final push — portfolio and writing",
+      "phase": "all",
+      "weekday_focus": "Mon-Fri: Short polish tasks — no new implementations. Focus on writing and applications.",
+      "weekend_focus": "Sat: Complete second project and document. Sun: Write personal research statement draft.",
+      "goals": [
+        "Complete second project and GitHub repo",
+        "Finalize portfolio: 6+ repos, 5+ blog posts, 1+ open-source contributions merged",
+        "Write a 1-page personal research statement: what problem do you want to solve and why?",
+        "Publish blog post 6: 'Building a perturbation VAE from scratch — architecture decisions'",
+        "Apply to remaining programs or research engineer positions"
+      ],
+      "deliverable": "Blog post 6 published + research statement draft complete",
+      "buffer_note": null
+    },
+    {
+      "month": 24,
+      "title": "Full portfolio + applications + position",
+      "phase": "all",
+      "weekday_focus": "Focus on applications and interviews — maintain Twitter/X presence only.",
+      "weekend_focus": "Sat: Final portfolio review — what would a Lotfollahi lab member see? Sun: PhD program application materials.",
+      "goals": [
+        "Finalize all GitHub repos: consistent structure, demo notebooks, clean READMEs",
+        "All formal applications submitted",
+        "Final outreach touches if any",
+        "Explore PhD program applications for 2027 entry: Cambridge, ETH Zurich, EMBL-EBI",
+        "Reflect: what did you learn, what would you do differently, what is the next phase?"
+      ],
+      "deliverable": "Full portfolio live + all formal applications submitted + PhD applications in progress",
+      "buffer_note": null
+    }
+  ],
   "reading_list": [
+    {
+      "title": "Auto-Encoding Variational Bayes",
+      "authors": "Kingma & Welling",
+      "phase": "phase1-foundations",
+      "priority": 1,
+      "url": "https://arxiv.org/abs/1312.6114",
+      "note": "Read 10 times. Derive ELBO by hand. Foundation of all Lotfollahi models. With a job, spread 10 reads over months 4-6."
+    },
+    {
+      "title": "Semi-Supervised Classification with Graph Convolutional Networks",
+      "authors": "Kipf & Welling",
+      "phase": "phase1-foundations",
+      "priority": 2,
+      "url": "https://arxiv.org/abs/1609.02907",
+      "note": "Implement from scratch before using PyG."
+    },
+    {
+      "title": "Graph Attention Networks",
+      "authors": "Veličković et al.",
+      "phase": "phase1-foundations",
+      "priority": 3,
+      "url": "https://arxiv.org/abs/1710.10903",
+      "note": "Implement from scratch. Understand attention masks for inductive learning."
+    },
+    {
+      "title": "Attention Is All You Need",
+      "authors": "Vaswani et al.",
+      "phase": "phase1-foundations",
+      "priority": 4,
+      "url": "https://arxiv.org/abs/1706.03762"
+    },
     {
       "title": "scGen predicts single-cell perturbation responses",
       "authors": "Lotfollahi et al.",
       "phase": "phase2-compbio",
-      "priority": 1,
-      "url": "https://www.nature.com/articles/s41592-019-0494-8"
+      "priority": 5,
+      "url": "https://www.nature.com/articles/s41592-019-0494-8",
+      "note": "Reproduce this. Most important paper on the list. Spread 3 passes across months 8-10."
     },
     {
       "title": "Conditional out-of-sample generation for unpaired data using trVAE",
       "authors": "Lotfollahi et al.",
       "phase": "phase2-compbio",
-      "priority": 2,
-      "url": "https://arxiv.org/abs/1910.01791"
+      "priority": 6,
+      "url": "https://arxiv.org/abs/1910.01791",
+      "note": "Reproduce this. Understand MMD loss."
     },
     {
       "title": "Predicting cellular responses to complex perturbations in high-throughput screens (CPA)",
       "authors": "Lotfollahi et al.",
       "phase": "phase2-compbio",
-      "priority": 3,
-      "url": "https://www.nature.com/articles/s41588-023-01477-6"
+      "priority": 7,
+      "url": "https://www.nature.com/articles/s41588-023-01477-6",
+      "note": "Most technically rich Lotfollahi paper. Study architecture in extreme detail."
     },
     {
       "title": "Biologically informed deep learning to query gene programs in single-cell atlases (expiMap)",
       "authors": "Lotfollahi et al.",
       "phase": "phase2-compbio",
-      "priority": 4,
+      "priority": 8,
       "url": "https://www.nature.com/articles/s41556-022-01072-x"
+    },
+    {
+      "title": "A deep generative model for single-cell RNA sequencing (scVI)",
+      "authors": "Lopez et al.",
+      "phase": "phase2-compbio",
+      "priority": 9,
+      "url": "https://www.nature.com/articles/s41592-018-0229-2",
+      "note": "Understand before contributing to scvi-tools."
+    },
+    {
+      "title": "SCANPY: Large-Scale Single-Cell Gene Expression Data Analysis",
+      "authors": "Wolf et al.",
+      "phase": "phase2-compbio",
+      "priority": 10,
+      "url": "https://genomebiology.biomedcentral.com/articles/10.1186/s13059-017-1382-0"
+    },
+    {
+      "title": "Geometric Deep Learning: Grids, Groups, Graphs, Geodesics, and Gauges",
+      "authors": "Bronstein et al.",
+      "phase": "phase1-foundations",
+      "priority": 11,
+      "url": "https://arxiv.org/abs/2104.13478",
+      "note": "Reference — read selectively, not cover-to-cover."
+    },
+    {
+      "title": "Benchmarking atlas-level data integration in single-cell genomics",
+      "authors": "Luecken et al.",
+      "phase": "phase2-compbio",
+      "priority": 12,
+      "url": "https://www.nature.com/articles/s41592-021-01336-8"
+    },
+    {
+      "title": "Denoising Diffusion Probabilistic Models",
+      "authors": "Ho et al.",
+      "phase": "phase4-alignment",
+      "priority": 13,
+      "url": "https://arxiv.org/abs/2006.11239",
+      "note": "Read if taking generative specialization track."
+    },
+    {
+      "title": "Flow Matching for Generative Modeling",
+      "authors": "Lipman et al.",
+      "phase": "phase4-alignment",
+      "priority": 14,
+      "url": "https://arxiv.org/abs/2210.02747",
+      "note": "Read if taking generative specialization track. Increasingly used in single-cell biology."
     }
   ],
-  "schedule_config": {
-    "weekday_hours": 3,
-    "weekend_hours": 10
-  }
+  "tools_to_master": [
+    { "name": "PyTorch", "priority": "critical", "phase": "phase1", "note": "Master base PyTorch before any high-level wrappers" },
+    { "name": "PyTorch Geometric (PyG)", "priority": "critical", "phase": "phase1", "note": "Use after implementing GCN/GAT manually" },
+    { "name": "Scanpy + AnnData", "priority": "critical", "phase": "phase2", "note": "Must know preprocessing to UMAP cold" },
+    { "name": "scvi-tools", "priority": "high", "phase": "phase4", "note": "Read source code, contribute PRs" },
+    { "name": "Weights & Biases (wandb)", "priority": "high", "phase": "phase1", "note": "Log all experiments from the start — even small ones" },
+    { "name": "Squidpy", "priority": "high", "phase": "phase4", "note": "Spatial transcriptomics — if taking spatial track" },
+    { "name": "NumPy + pandas", "priority": "high", "phase": "phase1", "note": "Should already know as a CE graduate" }
+  ],
+  "buffer_months": [6, 12, 18],
+  "anti_patterns": [
+    "Do not try to compress two weekend sessions into one — you will burn out",
+    "Do not email Mo Lotfollahi before month 16 unless you have exceptional published output",
+    "Do not say 'I am very interested in your research' — every email says this",
+    "Do not ask for a PhD position — ask for a collaboration or small defined project",
+    "Do not send a CV attachment in the first email — link your GitHub instead",
+    "Do not start CPA implementation before finishing scGen reproduction",
+    "Do not use scGen lab code to reproduce scGen — implement from the paper",
+    "Do not disappear from Twitter/X between milestone completions — even one sentence per week counts",
+    "Do not learn Scanpy before having PyTorch and VAE foundations solid",
+    "Do not copy-paste implementations — type every line and understand every parameter",
+    "Do not skip buffer months — they exist precisely for when life gets in the way",
+    "Do not compare your pace to the 12-month plan — you have a job. The output is the same; the timeline is different.",
+    "Do not try to do weekday deep work after a mentally exhausting day at work — reading or journaling only"
+  ]
 }

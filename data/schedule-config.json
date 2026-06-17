@@ -1,0 +1,61 @@
+{
+  "weekday": [
+    {
+      "startHour": 20,
+      "endHour": 21,
+      "activity": "Paper Reading / Theory"
+    },
+    {
+      "startHour": 21,
+      "endHour": 22,
+      "activity": "Implementation / Coding"
+    },
+    {
+      "startHour": 22,
+      "endHour": 23,
+      "activity": "Math + Experiments"
+    }
+  ],
+  "weekend": [
+    {
+      "startHour": 8,
+      "endHour": 10,
+      "activity": "Deep Focus: Implementation"
+    },
+    {
+      "startHour": 10,
+      "endHour": 10.5,
+      "activity": "Break"
+    },
+    {
+      "startHour": 10.5,
+      "endHour": 12.5,
+      "activity": "Paper Reading + Notes"
+    },
+    {
+      "startHour": 12.5,
+      "endHour": 13.5,
+      "activity": "Lunch Break"
+    },
+    {
+      "startHour": 13.5,
+      "endHour": 15.5,
+      "activity": "Project Work"
+    },
+    {
+      "startHour": 15.5,
+      "endHour": 16,
+      "activity": "Break"
+    },
+    {
+      "startHour": 16,
+      "endHour": 17.5,
+      "activity": "Spaced Repetition + Review"
+    },
+    {
+      "startHour": 17.5,
+      "endHour": 18.5,
+      "activity": "Blog Writing / Documentation"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "chromaUrl": "http://localhost:8000",
+  "collections": {
+    "chat": "study-chat-history",
+    "insights": "study-insights",
+    "sessions": "study-sessions",
+    "papers": "study-papers"
+  }
+}

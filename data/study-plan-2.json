@@ -1,0 +1,1064 @@
+{
+  "meta": {
+    "name": "Lotfollahi Lab Research Path — 12-Month Optimized",
+    "version": "2.0",
+    "created": "2026-06-07",
+    "target": "Computational biology researcher at Wellcome Sanger Institute (Lotfollahi Lab)",
+    "timeframe_months": 12,
+    "total_hours": 1220,
+    "background": "Final-year computer engineering student"
+  },
+  "schedule_config": {
+    "weekday_hours": 3,
+    "weekend_hours": 10,
+    "weekday_breakdown": {
+      "monday": "Theory — paper reading, derivations, implement key equation",
+      "tuesday": "Implementation — build on Monday code, debug, visualize, commit",
+      "wednesday": "Depth — go deep on one sub-concept, reproduce specific result",
+      "thursday": "Biology (from month 4) — Scanpy workflows, Lotfollahi papers, planning",
+      "friday": "Writing + community — blog drafts, Twitter/X, week review"
+    },
+    "weekend_breakdown": {
+      "saturday": "Deep work block 1 (2.5 hrs): major implementation. Break (0.5 hr). Deep work block 2 (2 hrs): experiment/analysis",
+      "sunday": "Paper reading + replication (2 hrs). Blog/README writing (1.5 hrs). Week planning (0.5 hr). Light review (1 hr)"
+    }
+  },
+  "phases": [
+    {
+      "id": "phase1-foundations",
+      "name": "Phase 1 — Core ML Foundations",
+      "monthRange": [1, 5],
+      "description": "Build elite-level PyTorch, deep maths intuition, and GNN mastery. Deliver a VAE repo and GNN repo that would impress any ML researcher. Non-negotiable base — no computational biology without it.",
+      "topics": [
+        {
+          "id": "pytorch-deep",
+          "name": "PyTorch Deep Mastery",
+          "phase": "phase1-foundations",
+          "priority": "critical",
+          "monthTarget": [1, 3],
+          "subtopics": [
+            "tensor operations",
+            "autograd",
+            "custom datasets",
+            "dataloaders",
+            "training loops",
+            "GPU management",
+            "custom layers",
+            "hooks"
+          ],
+          "resources": [
+            "PyTorch official tutorials (pytorch.org/tutorials)",
+            "Dive into Deep Learning (d2l.ai) — Chapters 1-5"
+          ],
+          "status": "not_started"
+        },
+        {
+          "id": "backprop-optimization",
+          "name": "Backpropagation & Optimization",
+          "phase": "phase1-foundations",
+          "priority": "critical",
+          "monthTarget": [1, 3],
+          "subtopics": [
+            "chain rule",
+            "gradient flow",
+            "SGD",
+            "Adam",
+            "RMSprop",
+            "learning rate scheduling",
+            "gradient clipping",
+            "batch normalization"
+          ],
+          "resources": [
+            "Deep Learning — Goodfellow, Bengio, Courville (Chapters 6-8)",
+            "The Matrix Calculus You Need for Deep Learning — Parr & Howard (free PDF)"
+          ],
+          "status": "not_started"
+        },
+        {
+          "id": "math-foundations",
+          "name": "Mathematics Foundations",
+          "phase": "phase1-foundations",
+          "priority": "high",
+          "monthTarget": [1, 4],
+          "subtopics": [
+            "linear algebra",
+            "probability distributions",
+            "Gaussian intuition",
+            "gradients",
+            "expectation",
+            "KL divergence math",
+            "ELBO derivation"
+          ],
+          "resources": [
+            "Mathematics for Machine Learning — Deisenroth et al. (free PDF)",
+            "The Matrix Calculus You Need for Deep Learning — Parr & Howard"
+          ],
+          "status": "not_started"
+        },
+        {
+          "id": "autoencoders",
+          "name": "Autoencoders",
+          "phase": "phase1-foundations",
+          "priority": "critical",
+          "monthTarget": [2, 3],
+          "subtopics": [
+            "encoder-decoder architecture",
+            "latent spaces",
+            "reconstruction loss",
+            "denoising AE",
+            "sparse AE",
+            "contractive AE"
+          ],
+          "resources": [
+            "Deep Learning — Goodfellow Chapter 14",
+            "Implement from scratch in PyTorch before using any library"
+          ],
+          "status": "not_started"
+        },
+        {
+          "id": "vaes",
+          "name": "Variational Autoencoders",
+          "phase": "phase1-foundations",
+          "priority": "critical",
+          "monthTarget": [3, 4],
+          "subtopics": [
+            "KL divergence",
+            "ELBO",
+            "reparameterization trick",
+            "variational inference",
+            "posterior collapse",
+            "beta-VAE",
+            "conditional VAE"
+          ],
+          "resources": [
+            "Auto-Encoding Variational Bayes — Kingma & Welling 2013 (arXiv:1312.6114) — read 10 times",
+            "Tutorial on Variational Autoencoders — Doersch 2016 (arXiv:1606.05908)",
+            "Derive ELBO by hand before implementing"
+          ],
+          "status": "not_started"
+        },
+        {
+          "id": "embeddings-representations",
+          "name": "Embeddings & Representations",
+          "phase": "phase1-foundations",
+          "priority": "high",
+          "monthTarget": [2, 4],
+          "subtopics": [
+            "word embeddings",
+            "learned representations",
+            "embedding spaces",
+            "similarity metrics"
+          ],
+          "resources": [
+            "d2l.ai Chapter 14-15",
+            "Word2Vec original papers (Mikolov et al. 2013)"
+          ],
+          "status": "not_started"
+        },
+        {
+          "id": "transformers-attention",
+          "name": "Transformers & Attention",
+          "phase": "phase1-foundations",
+          "priority": "critical",
+          "monthTarget": [4, 5],
+          "subtopics": [
+            "self-attention",
+            "multi-head attention",
+            "positional encoding",
+            "encoder-decoder",
+            "layer normalization",
+            "BERT",
+            "GPT architecture"
+          ],
+          "resources": [
+            "Attention Is All You Need — Vaswani et al. 2017 (arXiv:1706.03762)",
+            "The Illustrated Transformer — Jay Alammar blog post",
+            "Annotated Transformer — Harvard NLP"
+          ],
+          "status": "not_started"
+        },
+        {
+          "id": "gcn",
+          "name": "Graph Convolutional Networks",
+          "phase": "phase1-foundations",
+          "priority": "critical",
+          "monthTarget": [3, 5],
+          "subtopics": [
+            "spectral graph theory",
+            "graph Laplacian",
+            "graph convolution",
+            "node features",
+            "adjacency matrix",
+            "GCN layers",
+            "semi-supervised classification"
+          ],
+          "resources": [
+            "Semi-Supervised Classification with GCN — Kipf & Welling 2017 (arXiv:1609.02907)",
+            "CS224W Lectures 1-8 — Stanford (YouTube, free)",
+            "Implement from scratch before using PyG"
+          ],
+          "status": "not_started"
+        },
+        {
+          "id": "gat",
+          "name": "Graph Attention Networks",
+          "phase": "phase1-foundations",
+          "priority": "critical",
+          "monthTarget": [4, 5],
+          "subtopics": [
+            "attention over neighbors",
+            "multi-head graph attention",
+            "masked attention",
+            "inductive learning"
+          ],
+          "resources": [
+            "Graph Attention Networks — Veličković et al. 2018 (arXiv:1710.10903)",
+            "CS224W Lectures 9-12"
+          ],
+          "status": "not_started"
+        },
+        {
+          "id": "graphsage",
+          "name": "GraphSAGE",
+          "phase": "phase1-foundations",
+          "priority": "high",
+          "monthTarget": [4, 5],
+          "subtopics": [
+            "sampling neighbors",
+            "aggregation functions",
+            "inductive representation learning",
+            "mini-batch training"
+          ],
+          "resources": [
+            "Inductive Representation Learning on Large Graphs — Hamilton et al. 2017 (arXiv:1706.02216)"
+          ],
+          "status": "not_started"
+        },
+        {
+          "id": "message-passing",
+          "name": "Message Passing Neural Networks",
+          "phase": "phase1-foundations",
+          "priority": "critical",
+          "monthTarget": [4, 5],
+          "subtopics": [
+            "message function",
+            "update function",
+            "aggregation",
+            "MPNN framework",
+            "edge features"
+          ],
+          "resources": [
+            "Neural Message Passing for Quantum Chemistry — Gilmer et al. 2017 (arXiv:1704.01212)"
+          ],
+          "status": "not_started"
+        },
+        {
+          "id": "cnns",
+          "name": "Convolutional Neural Networks",
+          "phase": "phase1-foundations",
+          "priority": "high",
+          "monthTarget": [2, 3],
+          "subtopics": [
+            "convolution operation",
+            "pooling",
+            "ResNet",
+            "VGG",
+            "feature maps",
+            "receptive fields"
+          ],
+          "resources": [
+            "Deep Learning — Goodfellow Chapter 9",
+            "CS231n — Stanford (notes, free online)"
+          ],
+          "status": "not_started"
+        },
+        {
+          "id": "graph-transformers",
+          "name": "Graph Transformers",
+          "phase": "phase1-foundations",
+          "priority": "high",
+          "monthTarget": [5, 5],
+          "subtopics": [
+            "positional encodings for graphs",
+            "graph attention vs transformer attention",
+            "Graphormer",
+            "GPS"
+          ],
+          "resources": [
+            "Do Transformers Really Perform Bad for Graph Representation? — Ying et al. 2021",
+            "Recipe for a General, Powerful, Scalable Graph Transformer — Rampasek et al. 2022"
+          ],
+          "status": "not_started"
+        },
+        {
+          "id": "geometric-dl",
+          "name": "Geometric Deep Learning",
+          "phase": "phase1-foundations",
+          "priority": "high",
+          "monthTarget": [5, 6],
+          "subtopics": [
+            "symmetry groups",
+            "equivariance",
+            "invariance",
+            "gauge equivariant CNNs",
+            "manifold learning"
+          ],
+          "resources": [
+            "Geometric Deep Learning: Grids, Groups, Graphs, Geodesics, and Gauges — Bronstein et al. 2021 (free PDF)"
+          ],
+          "status": "not_started"
+        }
+      ],
+      "deliverables": [
+        "MLP trained on CIFAR-10 achieving 80%+ accuracy",
+        "Autoencoder repo with MNIST latent space visualization",
+        "VAE from scratch — full repo with ELBO derivation in README",
+        "GNN from scratch repo — GCN, GAT, GraphSAGE, graph AE",
+        "GitHub commit history showing steady progression"
+      ],
+      "projects": [
+        {
+          "id": "vae-from-scratch",
+          "name": "VAE From Scratch",
+          "phase": "phase1-foundations",
+          "description": "Implement a complete VAE with training, visualization of latent space, and generation. Do NOT use high-level libraries — build encoder, reparameterization, decoder, ELBO loss from primitive PyTorch.",
+          "monthTarget": [3, 4],
+          "milestones": [
+            { "id": "vae-1", "description": "Basic autoencoder working on MNIST", "completed": false },
+            { "id": "vae-2", "description": "Add variational inference: KL divergence term + reparameterization trick", "completed": false },
+            { "id": "vae-3", "description": "Train on MNIST and Fashion-MNIST, log loss curves with wandb", "completed": false },
+            { "id": "vae-4", "description": "Latent space visualization (PCA + UMAP) and latent interpolation", "completed": false },
+            { "id": "vae-5", "description": "Conditional VAE: condition on class labels, generate class-specific samples", "completed": false },
+            { "id": "vae-6", "description": "README with mathematical derivation of ELBO written from scratch", "completed": false }
+          ],
+          "status": "not_started"
+        },
+        {
+          "id": "gnn-from-scratch",
+          "name": "Graph Neural Networks From Scratch",
+          "phase": "phase1-foundations",
+          "description": "Complete GNN implementations with mathematical derivations and experiments. Implement each architecture manually before switching to PyG. Final repo should be a reference-quality resource.",
+          "monthTarget": [4, 6],
+          "milestones": [
+            { "id": "gnn-1", "description": "GCN implementation + Cora node classification experiment", "completed": false },
+            { "id": "gnn-2", "description": "GAT implementation + attention visualization", "completed": false },
+            { "id": "gnn-3", "description": "GraphSAGE implementation + inductive experiment", "completed": false },
+            { "id": "gnn-4", "description": "Molecular property prediction on QM9 with MPNN", "completed": false },
+            { "id": "gnn-5", "description": "Graph autoencoder for link prediction", "completed": false },
+            { "id": "gnn-6", "description": "Clean README with math derivations, benchmark table, and learning notes", "completed": false }
+          ],
+          "status": "not_started"
+        }
+      ]
+    },
+    {
+      "id": "phase2-compbio",
+      "name": "Phase 2 — Enter Computational Biology",
+      "monthRange": [4, 9],
+      "description": "Overlap with Phase 1 from month 4. Domain transition into single-cell computational biology. Learn biology through the computational lens — biology is a means to understand the data format, not an end in itself.",
+      "topics": [
+        {
+          "id": "cell-biology-basics",
+          "name": "Cell Biology for ML",
+          "phase": "phase2-compbio",
+          "priority": "high",
+          "monthTarget": [4, 5],
+          "subtopics": [
+            "cells",
+            "RNA",
+            "gene expression",
+            "central dogma",
+            "sequencing basics",
+            "perturbations",
+            "CRISPR basics",
+            "transcriptomics"
+          ],
+          "resources": [
+            "Single-cell best practices book — sc-best-practices.org (Chapters 1-3, free online)",
+            "A primer on single-cell RNA sequencing — YouTube lectures by Fabian Theis lab"
+          ],
+          "status": "not_started"
+        },
+        {
+          "id": "scanpy",
+          "name": "Scanpy & AnnData",
+          "phase": "phase2-compbio",
+          "priority": "critical",
+          "monthTarget": [4, 6],
+          "subtopics": [
+            "preprocessing",
+            "normalization",
+            "highly variable gene selection",
+            "PCA",
+            "neighbors graph",
+            "Leiden clustering",
+            "UMAP",
+            "differential expression",
+            "AnnData structure: obs, var, obsm, uns"
+          ],
+          "resources": [
+            "Scanpy PBMC tutorial (scanpy.readthedocs.io)",
+            "Scanpy paper — Wolf et al. Genome Biology 2018",
+            "AnnData documentation and tutorials"
+          ],
+          "status": "not_started"
+        },
+        {
+          "id": "batch-correction",
+          "name": "Batch Correction Methods",
+          "phase": "phase2-compbio",
+          "priority": "high",
+          "monthTarget": [5, 7],
+          "subtopics": [
+            "batch effects and their causes",
+            "scanorama",
+            "harmony",
+            "scVI for batch correction",
+            "benchmarking metrics: LISI, ASW"
+          ],
+          "resources": [
+            "Benchmarking atlas-level data integration — Luecken et al. 2022",
+            "scvi-tools documentation"
+          ],
+          "status": "not_started"
+        },
+        {
+          "id": "lotfollahi-papers",
+          "name": "Lotfollahi Papers Deep Dive",
+          "phase": "phase2-compbio",
+          "priority": "critical",
+          "monthTarget": [5, 9],
+          "subtopics": [
+            "scGen — VAE + perturbation arithmetic",
+            "trVAE — conditional generation with MMD loss",
+            "CPA — compositional perturbation autoencoder",
+            "chemCPA — drug perturbation prediction",
+            "expiMap — gene program identification"
+          ],
+          "resources": [
+            "scGen — Lotfollahi et al. Nature Methods 2019",
+            "trVAE — Lotfollahi et al. Bioinformatics 2020 (arXiv:1910.01791)",
+            "CPA — Lotfollahi et al. Nature Genetics 2023",
+            "expiMap — Lotfollahi et al. Nature Cell Biology 2023",
+            "chemCPA — Hetzel et al. 2022 (arXiv:2204.13545)"
+          ],
+          "status": "not_started"
+        },
+        {
+          "id": "single-cell-ml",
+          "name": "Single-Cell ML",
+          "phase": "phase2-compbio",
+          "priority": "critical",
+          "monthTarget": [6, 9],
+          "subtopics": [
+            "cell embeddings",
+            "perturbation prediction",
+            "gene programs",
+            "foundation models for single cell",
+            "multi-modal integration",
+            "scVI deep generative model"
+          ],
+          "resources": [
+            "scVI — Lopez et al. Nature Methods 2018",
+            "Geneformer — Theodoris et al. Nature 2023",
+            "scGPT — Cui et al. Nature Methods 2024",
+            "Single-cell best practices book (Chapters 4-8)"
+          ],
+          "status": "not_started"
+        }
+      ],
+      "deliverables": [
+        "Scanpy PBMC tutorial completed end-to-end with own annotations",
+        "scGen reproduction with comparison to paper figures",
+        "trVAE reproduction with MMD loss implemented",
+        "CPA deep dive writeup — architecture explained in own words",
+        "Single-cell VAE for perturbation prediction — original project"
+      ],
+      "projects": [
+        {
+          "id": "scgen-reproduce",
+          "name": "scGen Reproduction",
+          "phase": "phase2-compbio",
+          "description": "Reproduce scGen paper results from scratch. Implement the VAE architecture independently — do not copy lab code. Document every discrepancy between your results and the paper. This is the single most important credibility signal for the lab.",
+          "monthTarget": [5, 7],
+          "milestones": [
+            { "id": "scgen-1", "description": "Read paper 3 times — annotate every equation and design choice", "completed": false },
+            { "id": "scgen-2", "description": "Process Kang et al. 2018 IFN-β dataset with Scanpy", "completed": false },
+            { "id": "scgen-3", "description": "Implement VAE encoder, decoder, perturbation vector arithmetic", "completed": false },
+            { "id": "scgen-4", "description": "Train and evaluate: compare predicted vs actual stimulated cells", "completed": false },
+            { "id": "scgen-5", "description": "Write up results: what matched, what did not, and why", "completed": false },
+            { "id": "scgen-6", "description": "Publish GitHub repo with reproduction report", "completed": false }
+          ],
+          "status": "not_started"
+        },
+        {
+          "id": "trvae-reproduce",
+          "name": "trVAE Reproduction",
+          "phase": "phase2-compbio",
+          "description": "Reproduce trVAE — conditional generation across conditions using MMD loss. Focus on understanding the conditional architecture and the Maximum Mean Discrepancy regularization.",
+          "monthTarget": [6, 8],
+          "milestones": [
+            { "id": "trvae-1", "description": "Understand MMD loss: derive it, implement it from scratch", "completed": false },
+            { "id": "trvae-2", "description": "Implement conditional encoder with condition embedding", "completed": false },
+            { "id": "trvae-3", "description": "Train on dataset from paper, evaluate conditional generation", "completed": false },
+            { "id": "trvae-4", "description": "Publish repo with clean README", "completed": false }
+          ],
+          "status": "not_started"
+        },
+        {
+          "id": "perturbation-vae",
+          "name": "Single-cell VAE for Perturbation Prediction",
+          "phase": "phase2-compbio",
+          "description": "Build an original perturbation prediction system combining ideas from scGen and CPA. Make at least one architectural decision of your own. Train on a real public dataset (Replogle et al. 2022 Perturb-seq). Benchmark against scGen and CPA baselines. Treat the write-up as a mini-paper.",
+          "monthTarget": [8, 10],
+          "milestones": [
+            { "id": "pvae-1", "description": "Design architecture — document every choice and rationale", "completed": false },
+            { "id": "pvae-2", "description": "Implement conditional perturbation encoding with new design element", "completed": false },
+            { "id": "pvae-3", "description": "Train on Replogle et al. 2022 Perturb-seq dataset", "completed": false },
+            { "id": "pvae-4", "description": "Benchmark against scGen and CPA baselines quantitatively", "completed": false },
+            { "id": "pvae-5", "description": "GitHub repo with documentation, demo notebook, and results table", "completed": false }
+          ],
+          "status": "not_started"
+        }
+      ]
+    },
+    {
+      "id": "phase3-visibility",
+      "name": "Phase 3 — Become Publicly Visible",
+      "monthRange": [5, 12],
+      "description": "Build research identity in parallel with all other work. Associate yourself with ML for biology, generative modeling, GNNs, perturbation learning. You need to be findable before you reach out.",
+      "topics": [
+        {
+          "id": "technical-writing",
+          "name": "Technical Blog Writing",
+          "phase": "phase3-visibility",
+          "priority": "high",
+          "monthTarget": [6, 12],
+          "subtopics": [
+            "paper breakdowns",
+            "latent space intuition pieces",
+            "perturbation modeling explainers",
+            "GNN explanations",
+            "implementation walkthroughs",
+            "reproduction reports"
+          ],
+          "blogPlan": [
+            { "month": 7, "title": "scGen explained — how VAEs predict perturbation responses", "type": "paper breakdown" },
+            { "month": 8, "title": "CPA explained — compositional perturbation autoencoder", "type": "paper breakdown" },
+            { "month": 9, "title": "My scGen reproduction — what matched, what did not, and why", "type": "reproduction report" },
+            { "month": 10, "title": "GNNs for single-cell biology — a practical guide", "type": "explainer" },
+            { "month": 11, "title": "Breaking down a recent Lotfollahi lab preprint", "type": "paper breakdown" },
+            { "month": 12, "title": "Building a perturbation VAE from scratch — architecture decisions", "type": "implementation walkthrough" }
+          ],
+          "status": "not_started"
+        },
+        {
+          "id": "github-portfolio",
+          "name": "GitHub Portfolio",
+          "phase": "phase3-visibility",
+          "priority": "critical",
+          "monthTarget": [5, 12],
+          "subtopics": [
+            "clean repos with consistent structure",
+            "mathematical derivations in READMEs",
+            "reproducible experiments with wandb",
+            "demo notebooks",
+            "requirements.txt and environment files",
+            "README quality: motivation, architecture, results, usage"
+          ],
+          "targetRepos": [
+            "vae-from-scratch",
+            "gnn-from-scratch",
+            "scgen-reproduction",
+            "trvae-reproduction",
+            "cpa-reproduction",
+            "perturbation-vae-custom"
+          ],
+          "status": "not_started"
+        },
+        {
+          "id": "community-engagement",
+          "name": "Community Engagement",
+          "phase": "phase3-visibility",
+          "priority": "medium",
+          "monthTarget": [4, 12],
+          "subtopics": [
+            "Twitter/X: weekly progress posts",
+            "Tag @M_Lotfollahi on technical posts — not asking, just showing work",
+            "Follow: Lotfollahi lab PhD students and postdocs",
+            "Follow: Fabian Theis lab, Satija lab, Regev lab",
+            "Engage with preprints: post threads breaking them down",
+            "File GitHub issues and PRs on scvi-tools and scanpy"
+          ],
+          "status": "not_started"
+        }
+      ],
+      "deliverables": [
+        "6 serious GitHub repos with clean documentation",
+        "Technical blog with 4-6 published posts",
+        "Visible research identity on Twitter/X",
+        "3 paper reproductions published",
+        "At least 1 open-source contribution merged"
+      ],
+      "projects": []
+    },
+    {
+      "id": "phase4-alignment",
+      "name": "Phase 4 — Direct Lab Alignment",
+      "monthRange": [8, 12],
+      "description": "Targeted alignment with Lotfollahi lab ecosystem. Choose and execute one sharp specialization. Contribute to the open-source tools the lab builds on.",
+      "topics": [
+        {
+          "id": "lab-ecosystem",
+          "name": "Lab Ecosystem Study",
+          "phase": "phase4-alignment",
+          "priority": "high",
+          "monthTarget": [8, 9],
+          "subtopics": [
+            "all Lotfollahi lab publications and preprints",
+            "lab collaborators: Theis lab, Helmholtz Munich, Cambridge",
+            "PhD students and postdocs — read their papers too",
+            "lab GitHub repos: scgen, CPA, chemCPA",
+            "scvi-tools ecosystem and architecture",
+            "open issues and recent PRs in scvi-tools"
+          ],
+          "status": "not_started"
+        },
+        {
+          "id": "specialization-generative",
+          "name": "Specialization: Generative Models for Perturbation",
+          "phase": "phase4-alignment",
+          "priority": "critical",
+          "monthTarget": [9, 12],
+          "subtopics": [
+            "flow-based models: normalizing flows, RealNVP",
+            "diffusion models for biological data",
+            "score-based generative models",
+            "perturbation response generation",
+            "counterfactual prediction in latent space",
+            "causal ML for perturbations"
+          ],
+          "resources": [
+            "Denoising Diffusion Probabilistic Models — Ho et al. 2020",
+            "Flow Matching for Generative Modeling — Lipman et al. 2022",
+            "Causal machine learning for perturbation biology — Lotfollahi et al. perspectives"
+          ],
+          "status": "not_started"
+        },
+        {
+          "id": "specialization-spatial",
+          "name": "Specialization: GNNs for Spatial Transcriptomics",
+          "phase": "phase4-alignment",
+          "priority": "critical",
+          "monthTarget": [9, 12],
+          "subtopics": [
+            "spatial data formats: Visium, MERFISH, Xenium",
+            "Squidpy for spatial analysis",
+            "tissue graph construction from spatial coordinates",
+            "spatial gene expression modeling",
+            "spatial domain identification with GNNs",
+            "cell-cell communication from spatial data"
+          ],
+          "resources": [
+            "Squidpy documentation and tutorials",
+            "Spatially resolved transcriptomics — Staahl et al. 2016",
+            "STAGATE — Dong & Zhang 2022 (spatial domain identification with GNNs)"
+          ],
+          "status": "not_started"
+        },
+        {
+          "id": "open-source-contrib",
+          "name": "Open Source Contributions",
+          "phase": "phase4-alignment",
+          "priority": "high",
+          "monthTarget": [9, 12],
+          "subtopics": [
+            "scvi-tools: find and file good-first-issues",
+            "scanpy: documentation improvements, small bug fixes",
+            "Submit at least 2 PRs — aim for at least 1 merged",
+            "Write informative PR descriptions explaining the change"
+          ],
+          "resources": [
+            "scvi-tools GitHub — scverse/scvi-tools",
+            "scanpy GitHub — scverse/scanpy"
+          ],
+          "status": "not_started"
+        }
+      ],
+      "deliverables": [
+        "One clear specialization chosen and executed with a project",
+        "scvi-tools PR merged",
+        "Research-grade implementation of chosen specialization area",
+        "Full lab ecosystem mapped: papers, people, connections"
+      ],
+      "projects": []
+    },
+    {
+      "id": "phase5-outreach",
+      "name": "Phase 5 — Strategic Outreach",
+      "monthRange": [7, 12],
+      "description": "Strategic outreach with substance. Become 'that engineering student seriously transitioning into AI biology.' Never email Mo before you have something real. Reach PhD students and postdocs first.",
+      "topics": [
+        {
+          "id": "outreach-preparation",
+          "name": "Outreach Preparation",
+          "phase": "phase5-outreach",
+          "priority": "high",
+          "monthTarget": [7, 9],
+          "subtopics": [
+            "reproduce a paper before emailing its author",
+            "read target person's last 3 papers",
+            "prepare specific technical question from reproduction",
+            "GitHub portfolio ready before first contact",
+            "Twitter/X presence established before first contact"
+          ],
+          "status": "not_started"
+        },
+        {
+          "id": "phd-student-outreach",
+          "name": "PhD Student / Postdoc Outreach",
+          "phase": "phase5-outreach",
+          "priority": "high",
+          "monthTarget": [7, 9],
+          "subtopics": [
+            "email the PhD student whose paper you reproduced",
+            "include: reproduction repo link, one specific technical question",
+            "propose: 20-minute call or async Q&A",
+            "do not ask about internships or positions in first contact",
+            "follow up once after 3 weeks if no reply"
+          ],
+          "emailTemplate": "Subject: Reproduction of [their paper] — question on [specific technical point]. Body: I reproduced [paper] and trained it on [dataset]. I found [specific observation]. I am trying to understand [specific question]. Link to repo: [GitHub link]. Would you be open to a brief async exchange? (~3 sentences max)",
+          "status": "not_started"
+        },
+        {
+          "id": "mo-outreach",
+          "name": "Mo Lotfollahi Outreach",
+          "phase": "phase5-outreach",
+          "priority": "critical",
+          "monthTarget": [9, 10],
+          "subtopics": [
+            "email only after: scGen reproduction, CPA study, perturbation VAE project",
+            "150 words maximum",
+            "link to GitHub — not a CV attachment",
+            "state one specific research question you want to explore",
+            "ask for collaboration or small project — not a position",
+            "one follow-up after 3 weeks if no reply"
+          ],
+          "emailTemplate": "Subject: Implementation of CPA + proposed extension for [specific thing]. Body (150 words max): I am a final-year CE student who reproduced scGen and studied CPA in detail. I built [perturbation VAE project name] — [one sentence on what it does]. GitHub: [link]. I noticed [specific technical observation from your reproduction]. I am curious whether [specific research question]. Is there room for a remote collaboration or small project? I can commit [X hours per week].",
+          "status": "not_started"
+        },
+        {
+          "id": "collaboration-seeking",
+          "name": "Remote Research Collaboration",
+          "phase": "phase5-outreach",
+          "priority": "high",
+          "monthTarget": [10, 12],
+          "subtopics": [
+            "Wellcome Sanger Research Engineer roles",
+            "Open Targets funded programs",
+            "EMBL-EBI funded training programs",
+            "Helmholtz Munich computational biology positions",
+            "PhD program applications: Cambridge, ETH Zurich, EMBL"
+          ],
+          "status": "not_started"
+        }
+      ],
+      "deliverables": [
+        "Outreach to 2-3 lab PhD students with reproduction repo links",
+        "Email to Mo Lotfollahi with substance — GitHub link, specific question",
+        "Formal applications to Sanger / Open Targets / EMBL-EBI programs",
+        "Research collaboration or engineer opportunity secured"
+      ],
+      "projects": []
+    }
+  ],
+  "monthly_milestones": [
+    {
+      "month": 1,
+      "title": "PyTorch foundation",
+      "phase": "phase1-foundations",
+      "goals": [
+        "Complete PyTorch official tutorials end-to-end",
+        "Implement linear regression, MLP, and CNN from scratch using only raw PyTorch",
+        "Master autograd: compute gradients manually on paper, then verify with PyTorch",
+        "Build a custom Dataset + DataLoader for a real dataset (not MNIST)",
+        "Read Goodfellow Chapters 6-8 (backprop, regularization, optimization)",
+        "Read The Matrix Calculus You Need for Deep Learning — Parr & Howard"
+      ],
+      "deliverable": "Working MLP trained on CIFAR-10 with 80%+ accuracy — committed to GitHub"
+    },
+    {
+      "month": 2,
+      "title": "Optimization + Autoencoders",
+      "phase": "phase1-foundations",
+      "goals": [
+        "Implement SGD, Adam, RMSprop from scratch — verify outputs match PyTorch",
+        "Understand learning rate scheduling: cosine annealing, step decay, linear warmup",
+        "Build a basic autoencoder for MNIST — visualize latent space with PCA and UMAP",
+        "Implement denoising autoencoder — understand noise injection and reconstruction",
+        "Derive KL divergence from scratch on paper: know it by heart",
+        "Implement batch normalization from scratch"
+      ],
+      "deliverable": "Autoencoder GitHub repo with latent space visualization notebook"
+    },
+    {
+      "month": 3,
+      "title": "VAE mastery",
+      "phase": "phase1-foundations",
+      "goals": [
+        "Read Kingma & Welling 2013 VAE paper — minimum 3 full passes with annotations",
+        "Derive ELBO by hand from the definition of the marginal likelihood",
+        "Implement VAE: encoder, reparameterization trick, decoder, combined ELBO loss",
+        "Train on MNIST and Fashion-MNIST — visualize latent traversals and interpolations",
+        "Implement beta-VAE and observe disentanglement effect",
+        "Implement Conditional VAE — condition on class labels"
+      ],
+      "deliverable": "vae-from-scratch GitHub repo with ELBO derivation written in README"
+    },
+    {
+      "month": 4,
+      "title": "GNNs begin + Biology entry",
+      "phase": "phase1-foundations + phase2-compbio",
+      "goals": [
+        "Study spectral graph theory: graph Laplacian, eigendecomposition, spectral convolution",
+        "Read and implement GCN (Kipf & Welling 2017) from adjacency matrix up",
+        "Watch CS224W Lectures 1-8 (Stanford, YouTube)",
+        "Install Scanpy — complete the PBMC3k tutorial end-to-end with own annotations",
+        "Learn AnnData structure cold: obs, var, obsm, obsp, uns",
+        "Read single-cell best practices book Chapters 1-2",
+        "Begin biology self-study: central dogma, RNA, gene expression"
+      ],
+      "deliverable": "GCN for Cora node classification committed to GitHub + Scanpy PBMC tutorial completed"
+    },
+    {
+      "month": 5,
+      "title": "GAT + scGen entry + public presence",
+      "phase": "phase1-foundations + phase2-compbio + phase3-visibility",
+      "goals": [
+        "Implement GAT from scratch — attention over neighbors, multi-head version",
+        "Implement GraphSAGE — inductive learning, neighborhood sampling, aggregation functions",
+        "Read scGen paper (Lotfollahi et al. Nature Methods 2019) in full — annotate every equation",
+        "Process Kang et al. 2018 IFN-β dataset with Scanpy",
+        "Understand scGen architecture: what does the perturbation vector arithmetic mean biologically?",
+        "Begin scGen implementation — encoder, latent perturbation, decoder",
+        "Start Twitter/X presence: post first progress thread showing your VAE visualization"
+      ],
+      "deliverable": "GAT implementation on GitHub + first Twitter/X thread posted"
+    },
+    {
+      "month": 6,
+      "title": "GNN project complete + scGen reproduce",
+      "phase": "phase1-foundations + phase2-compbio",
+      "goals": [
+        "Complete GNN-from-scratch repo: GCN, GAT, GraphSAGE, MPNN, graph AE",
+        "Write comprehensive README with mathematical derivations for each architecture",
+        "Complete scGen reproduction: train, apply perturbation arithmetic, evaluate",
+        "Compare your scGen results to paper figures — document every discrepancy",
+        "Read trVAE paper — understand MMD loss and the conditional generation setup",
+        "Begin trVAE implementation",
+        "Begin blog post 1: 'scGen explained — how VAEs predict perturbation responses'"
+      ],
+      "deliverable": "scGen reproduction repo on GitHub with reproduction report"
+    },
+    {
+      "month": 7,
+      "title": "CPA deep dive + first PhD student outreach",
+      "phase": "phase2-compbio + phase3-visibility + phase5-outreach",
+      "goals": [
+        "Complete trVAE reproduction",
+        "Read CPA paper (Lotfollahi et al. Nature Genetics 2023) in detail — 3 full passes",
+        "Study CPA architecture: how does embedding arithmetic for drugs and genes work?",
+        "Begin CPA implementation from scratch (expect this to take 4-6 weeks)",
+        "Publish blog post 1 on Medium or personal site",
+        "Email 1-2 PhD students in the Lotfollahi lab with your scGen reproduction repo"
+      ],
+      "deliverable": "Blog post 1 published + first outreach email sent with GitHub link"
+    },
+    {
+      "month": 8,
+      "title": "CPA complete + specialization decision",
+      "phase": "phase2-compbio + phase4-alignment",
+      "goals": [
+        "Complete CPA reproduction — evaluate on held-out perturbations",
+        "Map the full Lotfollahi lab ecosystem: all papers, co-authors, GitHub repos, connections to Theis lab",
+        "Choose specialization track: Generative models for perturbation OR GNNs for spatial transcriptomics",
+        "For spatial track: install Squidpy, read Visium data format, build first tissue graph",
+        "For generative track: read diffusion models paper, understand flow matching",
+        "Publish blog post 2: 'CPA explained — compositional perturbation autoencoder'",
+        "Find first scvi-tools good-first-issue and start work"
+      ],
+      "deliverable": "Specialization track committed + scvi-tools issue filed or PR opened"
+    },
+    {
+      "month": 9,
+      "title": "Perturbation VAE + Mo outreach",
+      "phase": "phase2-compbio + phase4-alignment + phase5-outreach",
+      "goals": [
+        "Build original perturbation VAE combining scGen + CPA ideas with at least one novel design choice",
+        "Implement conditional perturbation encoding on Replogle et al. 2022 Perturb-seq data",
+        "Begin quantitative benchmarking against scGen and CPA baselines",
+        "Submit first PR to scvi-tools",
+        "Publish blog post 3: 'My scGen reproduction — findings and discrepancies'",
+        "Email Mo Lotfollahi — 150 words, GitHub link, specific research question"
+      ],
+      "deliverable": "Perturbation VAE repo started + Mo Lotfollahi email sent"
+    },
+    {
+      "month": 10,
+      "title": "Polish + open source contribution",
+      "phase": "phase3-visibility + phase4-alignment + phase5-outreach",
+      "goals": [
+        "Respond to any feedback from Lotfollahi lab contacts",
+        "Complete perturbation VAE project: benchmarking, documentation, demo notebook",
+        "Clean all GitHub repos: consistent structure, requirements.txt, demo notebooks",
+        "Get scvi-tools PR reviewed and merged",
+        "Apply to: Wellcome Sanger Research Engineer, Open Targets, EMBL-EBI programs",
+        "Publish blog post 4: 'GNNs for single-cell biology — a practical guide'",
+        "Aim for 10+ substantive conversations with researchers on Twitter/X"
+      ],
+      "deliverable": "First open-source PR merged + formal program applications submitted"
+    },
+    {
+      "month": 11,
+      "title": "Depth + second project",
+      "phase": "phase4-alignment + phase3-visibility",
+      "goals": [
+        "Go deeper on chosen specialization — read 5 additional papers in the sub-area",
+        "Start a second original project or a meaningful extension of month 9 project",
+        "Prepare a 5-slide research summary deck for potential interviews",
+        "Publish blog post 5: breakdown of a very recent Lotfollahi lab preprint",
+        "Follow up on any open applications",
+        "Engage in at least one substantive comp-bio discussion per week on Twitter/X"
+      ],
+      "deliverable": "Second project started + research summary deck ready"
+    },
+    {
+      "month": 12,
+      "title": "Final push + position",
+      "phase": "all",
+      "goals": [
+        "Complete second project and GitHub repo",
+        "Finalize portfolio: 6+ repos, 4+ blog posts, 1+ open-source contributions merged",
+        "Write a 1-page personal research statement: what problem do you want to solve and why?",
+        "Apply to remaining programs or research engineer positions",
+        "Final follow-up to Lotfollahi if no response received",
+        "Explore PhD program applications for 2026 entry: Cambridge, ETH Zurich, EMBL-EBI"
+      ],
+      "deliverable": "Full portfolio live + all formal applications submitted"
+    }
+  ],
+  "reading_list": [
+    {
+      "title": "Auto-Encoding Variational Bayes",
+      "authors": "Kingma & Welling",
+      "phase": "phase1-foundations",
+      "priority": 1,
+      "url": "https://arxiv.org/abs/1312.6114",
+      "note": "Read 10 times. Derive ELBO by hand. Foundation of all Lotfollahi models."
+    },
+    {
+      "title": "Semi-Supervised Classification with Graph Convolutional Networks",
+      "authors": "Kipf & Welling",
+      "phase": "phase1-foundations",
+      "priority": 2,
+      "url": "https://arxiv.org/abs/1609.02907",
+      "note": "Implement from scratch before using PyG."
+    },
+    {
+      "title": "Graph Attention Networks",
+      "authors": "Veličković et al.",
+      "phase": "phase1-foundations",
+      "priority": 3,
+      "url": "https://arxiv.org/abs/1710.10903",
+      "note": "Implement from scratch. Understand attention masks for inductive learning."
+    },
+    {
+      "title": "Attention Is All You Need",
+      "authors": "Vaswani et al.",
+      "phase": "phase1-foundations",
+      "priority": 4,
+      "url": "https://arxiv.org/abs/1706.03762"
+    },
+    {
+      "title": "scGen predicts single-cell perturbation responses",
+      "authors": "Lotfollahi et al.",
+      "phase": "phase2-compbio",
+      "priority": 5,
+      "url": "https://www.nature.com/articles/s41592-019-0494-8",
+      "note": "Reproduce this. Most important paper on the list."
+    },
+    {
+      "title": "Conditional out-of-sample generation for unpaired data using trVAE",
+      "authors": "Lotfollahi et al.",
+      "phase": "phase2-compbio",
+      "priority": 6,
+      "url": "https://arxiv.org/abs/1910.01791",
+      "note": "Reproduce this. Understand MMD loss."
+    },
+    {
+      "title": "Predicting cellular responses to complex perturbations in high-throughput screens (CPA)",
+      "authors": "Lotfollahi et al.",
+      "phase": "phase2-compbio",
+      "priority": 7,
+      "url": "https://www.nature.com/articles/s41588-023-01477-6",
+      "note": "Most technically rich Lotfollahi paper. Study architecture in extreme detail."
+    },
+    {
+      "title": "Biologically informed deep learning to query gene programs in single-cell atlases (expiMap)",
+      "authors": "Lotfollahi et al.",
+      "phase": "phase2-compbio",
+      "priority": 8,
+      "url": "https://www.nature.com/articles/s41556-022-01072-x"
+    },
+    {
+      "title": "A deep generative model for single-cell RNA sequencing (scVI)",
+      "authors": "Lopez et al.",
+      "phase": "phase2-compbio",
+      "priority": 9,
+      "url": "https://www.nature.com/articles/s41592-018-0229-2",
+      "note": "Understand before contributing to scvi-tools."
+    },
+    {
+      "title": "SCANPY: Large-Scale Single-Cell Gene Expression Data Analysis",
+      "authors": "Wolf et al.",
+      "phase": "phase2-compbio",
+      "priority": 10,
+      "url": "https://genomebiology.biomedcentral.com/articles/10.1186/s13059-017-1382-0"
+    },
+    {
+      "title": "Geometric Deep Learning: Grids, Groups, Graphs, Geodesics, and Gauges",
+      "authors": "Bronstein et al.",
+      "phase": "phase1-foundations",
+      "priority": 11,
+      "url": "https://arxiv.org/abs/2104.13478",
+      "note": "Reference — read selectively, not cover-to-cover."
+    },
+    {
+      "title": "Benchmarking atlas-level data integration in single-cell genomics",
+      "authors": "Luecken et al.",
+      "phase": "phase2-compbio",
+      "priority": 12,
+      "url": "https://www.nature.com/articles/s41592-021-01336-8"
+    }
+  ],
+  "tools_to_master": [
+    { "name": "PyTorch", "priority": "critical", "phase": "phase1", "note": "Master base PyTorch before any high-level wrappers" },
+    { "name": "PyTorch Geometric (PyG)", "priority": "critical", "phase": "phase1", "note": "Use after implementing GCN/GAT manually" },
+    { "name": "Scanpy + AnnData", "priority": "critical", "phase": "phase2", "note": "Must know preprocessing to UMAP cold" },
+    { "name": "scvi-tools", "priority": "high", "phase": "phase4", "note": "Read source code, contribute PRs" },
+    { "name": "Weights & Biases (wandb)", "priority": "high", "phase": "phase1", "note": "Log all experiments from the start" },
+    { "name": "Squidpy", "priority": "high", "phase": "phase4", "note": "Spatial transcriptomics — if taking spatial track" },
+    { "name": "NumPy + pandas", "priority": "high", "phase": "phase1", "note": "Should already know as a CE student" }
+  ],
+  "anti_patterns": [
+    "Do not email Mo Lotfollahi before month 9 unless you have exceptional output to show",
+    "Do not say 'I am very interested in your research' — every email says this",
+    "Do not ask for a PhD position — ask for a collaboration or small defined project",
+    "Do not send a CV attachment in the first email — link your GitHub instead",
+    "Do not start CPA implementation before finishing scGen reproduction",
+    "Do not use scGen lab code to reproduce scGen — implement from the paper",
+    "Do not disappear from Twitter/X between milestone completions — consistency matters",
+    "Do not learn Scanpy before having PyTorch and VAE foundations solid",
+    "Do not copy-paste implementations — type every line and understand every parameter"
+  ]
+}
